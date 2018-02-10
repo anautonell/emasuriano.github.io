@@ -11,7 +11,7 @@
     "lint":
       "./node_modules/.bin/eslint --cache --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gatsby build --prefix-links && gh-pages -d public"
+    "deploy": "gatsby build && gh-pages -b master -d public"
   },
   "repository": "git+https://github.com/alxshelepenok/gatsby-starter-lumen.git",
   "keywords": ["gatsby", "blog", "react", "theme", "starter"],
@@ -37,6 +37,7 @@
     "gatsby-source-filesystem": "^1.5.11",
     "gatsby-transformer-remark": "^1.7.28",
     "gatsby-transformer-sharp": "^1.6.17",
+    "gh-pages": "^1.1.0",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-disqus-comments": "^1.1.1",
