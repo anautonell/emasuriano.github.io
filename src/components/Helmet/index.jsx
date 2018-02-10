@@ -13,7 +13,7 @@ const ApplictionHelmet = ({ title, description }) => (
     <meta name="description" content={description} />
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
-    <meta name="og:image" content={'http://emasuriano.netlify.com' + bigIcon} />
+    <meta name="og:image" content={'https://emasuriano.github.io' + bigIcon} />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@emasuriano" />
@@ -21,7 +21,7 @@ const ApplictionHelmet = ({ title, description }) => (
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:image"
-      content={'http://emasuriano.netlify.com' + bigIcon}
+      content={'https://emasuriano.github.io' + bigIcon}
     />
 
     <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
