@@ -4,7 +4,7 @@ module.exports = {
     title: 'Emanuel Suriano',
     subtitle: 'Web Developer',
     copyright: '',
-    disqusShortname: '',
+    disqusShortname: 'emasuriano',
     menu: [
       {
         label: 'Articles',

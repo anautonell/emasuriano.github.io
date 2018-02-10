@@ -12,7 +12,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const pageTemplate = path.resolve('./src/templates/page-template.jsx');
     const tagTemplate = path.resolve('./src/templates/tag-template.jsx');
     const categoryTemplate = path.resolve(
-      './src/templates/category-template.jsx',
+      './src/templates/category-template.jsx'
     );
 
     graphql(`
@@ -45,13 +45,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           createPage({
             path: edge.node.fields.slug,
             component: slash(pageTemplate),
-            context: { slug: edge.node.fields.slug },
+            context: { slug: edge.node.fields.slug }
           });
         } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(postTemplate),
-            context: { slug: edge.node.fields.slug },
+            context: { slug: edge.node.fields.slug }
           });
 
           let tags = [];
@@ -65,7 +65,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             createPage({
               path: tagPath,
               component: tagTemplate,
-              context: { tag },
+              context: { tag }
             });
           });
 
@@ -80,7 +80,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             createPage({
               path: categoryPath,
               component: categoryTemplate,
-              context: { category },
+              context: { category }
             });
           });
         }
@@ -110,19 +110,19 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     createNodeField({
       node,
       name: 'slug',
-      value: slug,
+      value: slug
     });
 
     if (node.frontmatter.tags) {
       const tagSlugs = node.frontmatter.tags.map(
-        tag => `/tags/${_.kebabCase(tag)}/`,
+        tag => `/tags/${_.kebabCase(tag)}/`
       );
       createNodeField({ node, name: 'tagSlugs', value: tagSlugs });
     }
 
     if (typeof node.frontmatter.category !== 'undefined') {
       const categorySlug = `/categories/${_.kebabCase(
-        node.frontmatter.category,
+        node.frontmatter.category
       )}/`;
       createNodeField({ node, name: 'categorySlug', value: categorySlug });
     }
@@ -152,13 +152,13 @@ exports.modifyWebpackConfig = ({ config }) => {
           'padding-bottom',
           'padding-right',
           'border-radius',
-          'width',
+          'width'
         ],
         selectorBlackList: [],
         replace: true,
         mediaQuery: false,
-        minPixelValue: 0,
-      }),
-    ],
+        minPixelValue: 0
+      })
+    ]
   });
 };

@@ -22,6 +22,8 @@
       { "requireReturnForObjectLiteral": true }
     ],
     "import/extensions": [0],
-    "no-console": "off"
+    "no-console": "off",
+    "comma-dangle": "off",
+    "arrow-parens": "off"
   }
 }
