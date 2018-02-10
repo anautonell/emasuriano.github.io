@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const Promise = require('bluebird');
 const path = require('path');
 const lost = require('lost');
 const pxtorem = require('postcss-pxtorem');
@@ -12,46 +11,47 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const postTemplate = path.resolve('./src/templates/post-template.jsx');
     const pageTemplate = path.resolve('./src/templates/page-template.jsx');
     const tagTemplate = path.resolve('./src/templates/tag-template.jsx');
-    const categoryTemplate = path.resolve('./src/templates/category-template.jsx');
+    const categoryTemplate = path.resolve(
+      './src/templates/category-template.jsx',
+    );
 
     graphql(`
-    {
-      allMarkdownRemark(
-        limit: 1000,
-        filter: { frontmatter: { draft: { ne: true } } },
-      ) {
-        edges {
-          node {
-            fields {
-              slug
-            }
-            frontmatter {
-              tags
-              layout
-              category
+      {
+        allMarkdownRemark(
+          limit: 1000
+          filter: { frontmatter: { draft: { ne: true } } }
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                tags
+                layout
+                category
+              }
             }
           }
         }
       }
-    }
-  `).then((result) => {
+    `).then(result => {
       if (result.errors) {
-        console.log(result.errors);
         reject(result.errors);
       }
 
-      _.each(result.data.allMarkdownRemark.edges, (edge) => {
+      _.each(result.data.allMarkdownRemark.edges, edge => {
         if (_.get(edge, 'node.frontmatter.layout') === 'page') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(pageTemplate),
-            context: { slug: edge.node.fields.slug }
+            context: { slug: edge.node.fields.slug },
           });
         } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(postTemplate),
-            context: { slug: edge.node.fields.slug }
+            context: { slug: edge.node.fields.slug },
           });
 
           let tags = [];
@@ -60,12 +60,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
 
           tags = _.uniq(tags);
-          _.each(tags, (tag) => {
+          _.each(tags, tag => {
             const tagPath = `/tags/${_.kebabCase(tag)}/`;
             createPage({
               path: tagPath,
               component: tagTemplate,
-              context: { tag }
+              context: { tag },
             });
           });
 
@@ -75,12 +75,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
 
           categories = _.uniq(categories);
-          _.each(categories, (category) => {
+          _.each(categories, category => {
             const categoryPath = `/categories/${_.kebabCase(category)}/`;
             createPage({
               path: categoryPath,
               component: categoryTemplate,
-              context: { category }
+              context: { category },
             });
           });
         }
@@ -103,23 +103,27 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     typeof node.slug === 'undefined'
   ) {
     const fileNode = getNode(node.parent);
-    let slug = fileNode.fields.slug;
+    let { slug } = fileNode.fields;
     if (typeof node.frontmatter.path !== 'undefined') {
       slug = node.frontmatter.path;
     }
     createNodeField({
       node,
       name: 'slug',
-      value: slug
+      value: slug,
     });
 
     if (node.frontmatter.tags) {
-      const tagSlugs = node.frontmatter.tags.map(tag => `/tags/${_.kebabCase(tag)}/`);
+      const tagSlugs = node.frontmatter.tags.map(
+        tag => `/tags/${_.kebabCase(tag)}/`,
+      );
       createNodeField({ node, name: 'tagSlugs', value: tagSlugs });
     }
 
     if (typeof node.frontmatter.category !== 'undefined') {
-      const categorySlug = `/categories/${_.kebabCase(node.frontmatter.category)}/`;
+      const categorySlug = `/categories/${_.kebabCase(
+        node.frontmatter.category,
+      )}/`;
       createNodeField({ node, name: 'categorySlug', value: categorySlug });
     }
   }
@@ -149,13 +153,12 @@ exports.modifyWebpackConfig = ({ config }) => {
           'padding-right',
           'border-radius',
           'width',
-          'max-width'
         ],
         selectorBlackList: [],
         replace: true,
         mediaQuery: false,
-        minPixelValue: 0
-      })
-    ]
+        minPixelValue: 0,
+      }),
+    ],
   });
 };

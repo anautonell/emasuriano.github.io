@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
 import kebabCase from 'lodash/kebabCase';
+import ApplictionHelmet from '../components/Helmet';
 import Sidebar from '../components/Sidebar';
 
 class TagsRoute extends React.Component {
@@ -11,7 +11,7 @@ class TagsRoute extends React.Component {
 
     return (
       <div>
-        <Helmet title={`All Tags - ${title}`} />
+        <ApplictionHelmet title={title} description={title} />
         <Sidebar {...this.props} />
         <div className="content">
           <div className="content__inner">

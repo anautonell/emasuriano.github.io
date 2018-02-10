@@ -1,25 +1,23 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import ApplictionHelmet from '../components/Helmet';
 import PageTemplateDetails from '../components/PageTemplateDetails';
 
-class PageTemplate extends React.Component {
-  render() {
-    const { title, subtitle } = this.props.data.site.siteMetadata;
-    const page = this.props.data.markdownRemark;
-    const { title: pageTitle, description: pageDescription } = page.frontmatter;
-    const description = pageDescription !== null ? pageDescription : subtitle;
+const PageTemplate = props => {
+  const { title, subtitle } = props.data.site.siteMetadata;
+  const page = props.data.markdownRemark;
+  const { title: pageTitle, description: pageDescription } = page.frontmatter;
+  const description = pageDescription !== null ? pageDescription : subtitle;
 
-    return (
-      <div>
-        <Helmet>
-          <title>{`${pageTitle} - ${title}`}</title>
-          <meta name="description" content={description} />
-        </Helmet>
-        <PageTemplateDetails {...this.props} />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <ApplictionHelmet
+        title={`${pageTitle} - ${title}`}
+        description={description}
+      />
+      <PageTemplateDetails {...props} />
+    </div>
+  );
+};
 
 export default PageTemplate;
 

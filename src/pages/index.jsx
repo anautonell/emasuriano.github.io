@@ -1,30 +1,25 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import ApplictionHelmet from '../components/Helmet';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
 
-class IndexRoute extends React.Component {
-  render() {
-    const { title, subtitle } = this.props.data.site.siteMetadata;
-    const posts = this.props.data.allMarkdownRemark.edges;
-    const items = posts.map(post => (
-      <Post data={post} key={post.node.fields.slug} />
-    ));
+const IndexRoute = props => {
+  const { title, subtitle } = props.data.site.siteMetadata;
+  const posts = props.data.allMarkdownRemark.edges;
+  const items = posts.map(post => (
+    <Post data={post} key={post.node.fields.slug} />
+  ));
 
-    return (
-      <div>
-        <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={subtitle} />
-        </Helmet>
-        <Sidebar {...this.props} />
-        <div className="content">
-          <div className="content__inner">{items}</div>
-        </div>
+  return (
+    <div>
+      <ApplictionHelmet title={title} description={subtitle} />
+      <Sidebar {...props} />
+      <div className="content">
+        <div className="content__inner">{items}</div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default IndexRoute;
 

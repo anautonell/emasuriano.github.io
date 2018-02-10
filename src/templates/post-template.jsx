@@ -1,25 +1,25 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import ApplictionHelmet from '../components/Helmet';
 import PostTemplateDetails from '../components/PostTemplateDetails';
 
-class PostTemplate extends React.Component {
-  render() {
-    const { title, subtitle } = this.props.data.site.siteMetadata;
-    const post = this.props.data.markdownRemark;
-    const { title: postTitle, description: postDescription } = post.frontmatter;
-    const description = postDescription !== null ? postDescription : subtitle;
+const PostTemplate = props => {
+  const { title, subtitle } = props.data.site.siteMetadata;
+  const {
+    title: postTitle,
+    description: postDescription
+  } = props.data.markdownRemark.frontmatter;
+  const description = postDescription !== null ? postDescription : subtitle;
 
-    return (
-      <div>
-        <Helmet>
-          <title>{`${postTitle} - ${title}`}</title>
-          <meta name="description" content={description} />
-        </Helmet>
-        <PostTemplateDetails {...this.props} />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <ApplictionHelmet
+        title={`${postTitle} - ${title}`}
+        description={description}
+      />
+      <PostTemplateDetails {...props} />
+    </div>
+  );
+};
 
 export default PostTemplate;
 
