@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    url: 'http://emasuriano.netlify.com/',
+    url: 'https://emasuriano.github.io',
     title: 'Emanuel Suriano',
     subtitle: 'Web Developer',
     copyright: '',
