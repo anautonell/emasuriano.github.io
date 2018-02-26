@@ -1,9 +1,9 @@
 ---
-title: My experience building a JS library 2018
+title: My experience building a JS library in 2018
 date: "2018-02-26"
 layout: post
 draft: false
-path: "/posts/my-experience-building-a-JS-library-2018/"
+path: "/posts/my-experience-building-a-JS-library-in-2018/"
 category: "Tutorial"
 tags:
  - "Building"
