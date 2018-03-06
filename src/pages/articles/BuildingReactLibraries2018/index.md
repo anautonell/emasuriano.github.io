@@ -8,10 +8,10 @@ category: "Tutorial"
 tags:
  - "Building"
  - "Learning"
-description: "In the past month, I successfully wrote 2 libraries for any React application and I learned that building an Open Source library in Javascript is not an easy task at all 😣"
+description: "In the past month, I successfully wrote 2 libraries for any React application and I learned that building an Open Source library in Javascript is not an easy task at all."
 ---
 
-In the past month, I successfully wrote 2 libraries for any React application and I learned that building an Open Source library in Javascript is not an easy task at all 😣
+In the past month, I successfully wrote 2 libraries for any React application and I learned that building an Open Source library in Javascript is not an easy task at all :persevere:
 
 ![WhyEverythingIsSoHard](./everythingHard.gif)
 
@@ -47,11 +47,11 @@ This a set of weather animated icons built with React. They are configurable by 
 
 ### Why I decided to create it?
 
-In this case, the idea of creating a library wasn't mine, in fact it was from a user on Twitter! After tweeting an image of how the application looks, someone asked me about the icons and how he could get them. And that was when I came up with the idea of the library, so huge thanks to that person 🙏
+In this case, the idea of creating a library wasn't mine, in fact it was from a user on Twitter! After tweeting an image of how the application looks, someone asked me about the icons and how he could get them. And that was when I came up with the idea of the library, so huge thanks to that person :pray:
 
 ## The process of writing a library
 
-I've never created a library for Javascript (more specially for React), maybe one or two for C# and C, but Javascript was different. The number of frameworks and tools that a person needs to know is really large! 😱
+I've never created a library for Javascript (more specially for React), maybe one or two for C# and C, but Javascript was different. The number of frameworks and tools that a person needs to know is really large! :anguished:
 
 Let's summarize each part and divide them in mandatory and optional.
 
@@ -74,13 +74,13 @@ So as you can see, there are a bunch of suggestions to take into consideration t
 
 I highly recommend using [nwb](https://github.com/insin/nwb)! This is a toolkit for quick development with React, Inferno, Preact or vanilla JavaScript. In simple words, it will give you a fully functional project to develop your library with the most used command: start, test and build.
 
-Another great feature is that it comes with a full Travis CI configuration already made! So the only thing that you have to do is just enable Travis to run inside your repository via their page and it will automatically start running the project's setup 💪
+Another great feature is that it comes with a full Travis CI configuration already made! So the only thing that you have to do is just enable Travis to run inside your repository via their page and it will automatically start running the project's setup :muscle:
 
 Same goes to test coverage online reports, if you check the Travis configuration you will notice that the result of the coverage it's being sent to Coveralls, so the only thing that it's left to do is to activate in their page and that's it!
 
 ### What is missing to do:
 
-#### Write the library 😂
+#### Write the library :sweat_smile:
 
 This is the part when you have to code your library, inside the `src` folder plus writing your test into the `test` folder, and optionally write a simple demo inside the `demo` folder.
 
@@ -88,7 +88,7 @@ This is the part when you have to code your library, inside the `src` folder plu
 
 Depending on the one you've chosen the process would be different, so I will explain how it's like to deploy to npm. It's the easiest process but at some point could be a bit frustrating. The only command that you have to run is `npm publish`, and that's it! Your package will be ready to be installed from any console that runs `npm install my-package-name`.
 
-But in case you re-run the command of `publish`, you will receive a warning saying that the version number can't be the same. So we have to manually change it from the `package.json` 😓 This takes less than a minute, but it could become very tiring at some point.
+But in case you re-run the command of `publish`, you will receive a warning saying that the version number can't be the same. So we have to manually change it from the `package.json` :sweat: This takes less than a minute, but it could become very tiring at some point.
 
 #### Set up Semantic Versioning
 
@@ -96,19 +96,19 @@ This tool can release you from the stress of changing that number each time you 
 
 > semantic-release automates the whole package release workflow including: determining the next version number, generating the release notes and publishing the package.
 
-This is soooooooooo magic ✨ To sum up, you only have to write commit messages following a specific format and this tool will upgrade the version of the package, create a release (similar to a changelog) and publish to a package manager! 🤩
+This is soooooooooo magic :sparkles: To sum up, you only have to write commit messages following a specific format and this tool will upgrade the version of the package, create a release (similar to a changelog) and publish to a package manager! :star_struck:
 
 ## My experience through it all
 
 ![afterAll](./afterAll.gif)
 
-After learning all this, I can tell you that you will be spending more time setting up all these tools than writing your library, which can sound a bit boring … But whenever you want to make a change on it, magically all the pieces will be already connected so your only concern will be coding, which is AWESOME! 🙌
+After learning all this, I can tell you that you will be spending more time setting up all these tools than writing your library, which can sound a bit boring … But whenever you want to make a change on it, magically all the pieces will be already connected so your only concern will be coding, which is AWESOME! :raised_hands:
 
 I can assure you that it's not as hard as it seems, there a lot of learning to do but is not that difficult. There are plenty of resources for any possible problem out there, so in case you are stuck in something I bet you that it has happened to someone else before!
 
 ---
 
-I hope that this post has encouraged you to create your own library! Let’s keep building stuff together 👷‍
+I hope that this post has encouraged you to create your own library! Let’s keep building stuff together :construction_worker:
 
 ### Refs:
 
