@@ -31,9 +31,9 @@ So I've just searched for a Gatsby Starter that matches my requirements for my p
 * Contact me: where I can write how people how to find me and get it in touch with me.
 * Blog: where I can list all my posts on one page with a brief description and after clicking on one, it will be shown on full screen.
 
-So I end up downloading [this starter](https://github.com/alxshelepenok/gatsby-starter-lumen). For me, it's really slick and displays the information in a clear and simple way. Also, it has the possibility to query post by category and tags, which in the first place I didn't ask for it but it was great 👏
+So I end up downloading [this starter](https://github.com/alxshelepenok/gatsby-starter-lumen). For me, it's really slick and displays the information in a clear and simple way. Also, it has the possibility to query post by category and tags, which in the first place I didn't ask for it but it was great :clap:
 
-After I downloaded it and opened it in my text editor, I said _"Holly Molly, there are a lot of files here! How am I going to change this in order to display my information?"_ 😰. I have to admit that I've never worked with Gatsby, I've just heard it in a couple of podcasts and read a few posts. Fortunately, it is not as hard as it seems 😅.
+After I downloaded it and opened it in my text editor, I said _"Holly Molly, there are a lot of files here! How am I going to change this in order to display my information?"_ :worried:. I have to admit that I've never worked with Gatsby, I've just heard it in a couple of podcasts and read a few posts. Fortunately, it is not as hard as it seems :sweat_smile:.
 
 ## How to Customize your app
 
@@ -96,7 +96,7 @@ Plugins can:
 
 **Please do not stay with the plugins that the starter has**. Gatsby's community has created a lot of them and the majority of them are awesome and easy to implement. [Here](https://www.gatsbyjs.org/docs/plugins/) is the official list of plugins.
 
-I hope that this post has encouraged you to create your own page! Let's keep building stuff 👷‍
+I hope that this post has encouraged you to create your own page! Let's keep building stuff :construction_worker:
 
 Refs:
 

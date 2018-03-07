@@ -49,6 +49,18 @@
       width: 100%;
     }
 
+    & .emojione {
+      font-size: inherit;
+      height: 2.5ex;
+      width: 2.6ex;
+      min-height: 20px;
+      min-width: 20px;
+      display: inline-block;
+      margin: -.2ex .15em .2ex;
+      line-height: normal;
+      vertical-align: middle;
+    }
+
     & :not(div) {
       max-width: $layout-post-single-width;
       margin-left: auto;

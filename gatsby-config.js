@@ -111,7 +111,11 @@ module.exports = {
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
           'gatsby-transformer-sharp',
-          'gatsby-plugin-sharp'
+          'gatsby-plugin-sharp',
+          {
+            resolve: 'gatsby-remark-emoji-ema',
+            options: { emojiConversion: 'shortnameToImage' }
+          }
         ]
       }
     },
