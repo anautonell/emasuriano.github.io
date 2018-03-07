@@ -113,9 +113,9 @@ module.exports = {
           'gatsby-transformer-sharp',
           'gatsby-plugin-sharp',
           {
-            resolve: 'gatsby-remark-emoji',
+            resolve: 'gatsby-remark-emoji-ema',
             options: { emojiConversion: 'shortnameToImage' }
-          },
+          }
         ]
       }
     },
