@@ -27,125 +27,298 @@ This is when Context helps us! By removing those props chain between component, 
 
 ### Diagram Communication
 
-```
 Via props
 
-<ParentComponent>   props: { foo: 'bar'}  ↓
-  <IntermediateComponent>   props: { foo: 'bar'}  ↓
-    <OtherIntermediateComponent>    props: { foo: 'bar'}  ↓
-      <ChildComponent>    props: { foo: 'bar'}
+```
+<ParentComponent>   props: {  value: 1 }  ↓
+  <IntermediateComponent>   props: {  value: 1 }  ↓
+    <OtherIntermediateComponent>    props: {  value: 1 }  ↓
+      <ChildComponent>    props: {  value: 1 }
+```
 
 Via Context
 
-<ParentComponent>   context: { foo: 'bar'}
+```
+<ParentComponent>   context: {  value: 1 }
   <IntermediateComponent>
     <OtherIntermediateComponent>
-      <ChildComponent>    props: { foo: 'bar'}
+      <ChildComponent>    props: {  value: 1 }
 ```
 
-So what has changed?
-Mainly the way we define context to our children.
+## What does this new API offer?
 
-Comparison of code before and after
+React developer team has re-disegn from start the way we declare a context inside a Component and introduce new concepts that previously were not present inside the framework.
 
-Let's build something!
-One of the most annoying component to build inside React is a Radio Group. Why? Because we have to always check if the value that is currently selected matches with the value of each radio button, leaving our code with lots of validation in lots of screens. A possible implementation of what I'm saying could be like this:
+Let's see a comparison between the new version and the old.
 
-Problems that I see:
-There are a lot of repetitive code inside: onChange, selected value, etc.
-RadioGroup: it's a container that does not anything useful at all.
+### Old version
 
-That's a lot of code for just 3 radio button, right? So we're going to write a new cool component that given a selectedValue to our radioGroup will choose for us which is selected!
+```javascript
+import React, { Component } from 'react';
+import { number } from 'prop-types';
 
-Yes, only one night. In fact, it took me about 3 hours. So if you want to have your own, I highly recommend you to continue reading!
+class Parent extends Component {
+  static childContextTypes = {
+    value: string
+  };
 
-I'm sooo far away from building this website from scratch in one night. What I did was something different, I like to call it _'personalized'_. In software development, there is a quote that I love:
+  getChildContext() {
+    return { value: 1 };
+  }
 
-> 'You don't have to reinvent the wheel'
+  render() {
+    return <Child />;
+  }
+}
 
-If there is anything that you want to build, first start by looking up someone on the Internet who has already made it. And that was exactly what I did!
+class Child extends Component {
+  static contextTypes = {
+    value: number
+  };
 
-![Wheel](./wheel.jpg)
-
-## Looking for the solution
-
-A few months ago (July 2017), the version 1.0.0 of Gatsby was announced, a Blazing-fast static site generator for React. In my opinion, a static site is the perfect match for a personal page where you just want to display information which doesn't have any complex logic (in case you want to implement something crazy).
-
-So I've just searched for a Gatsby Starter that matches my requirements for my page. I wanted my page to have 3 sections:
-
-* About me: where I can put information of who I am.
-* Contact me: where I can write how people how to find me and get it in touch with me.
-* Blog: where I can list all my posts on one page with a brief description and after clicking on one, it will be shown on full screen.
-
-So I end up downloading [this starter](https://github.com/alxshelepenok/gatsby-starter-lumen). For me, it's really slick and displays the information in a clear and simple way. Also, it has the possibility to query post by category and tags, which in the first place I didn't ask for it but it was great :clap:
-
-After I downloaded it and opened it in my text editor, I said _"Holly Molly, there are a lot of files here! How am I going to change this in order to display my information?"_ :worried:. I have to admit that I've never worked with Gatsby, I've just heard it in a couple of podcasts and read a few posts. Fortunately, it is not as hard as it seems :sweat_smile:.
-
-## How to Customize your app
-
-There are specific files/folders that you have to look into:
-
-* `Gatsby-config.js`: it is divided into two sections:
-
-  * siteMetadata: as the name implies this is where you will find the information of the site (like your name, photo, links, etc.). Changing those values will have an immediate impact because they are being used along the whole application.
-  * plugins: all the Gatsby plugins that will be run when the application starts. You might not have to change any of them, but we'll talk about it later.
-
-* `/templates`: inside templates folder, you will find all the pages of your application, so if you want to change any of them (e.g. remove one component in a specific application) this is the place! As Gatsby is a static generator page, generally components are simple (in most cases they are stateless) so changing them is pretty easy task.
-
-* `/pages`: This is the most important folder of your application, this is where you can create content for your page. Inside, you'll find Markdown files, images and any other resources for your pages. All the markdown files will be magically transformed into HTML by Gatsby, so you focus only on writing content and not getting distracted by other things. A markdown file has this structure:
-
-```Markdown
----
-title: My Post Title
-date: "2018-01-27"
-layout: post # Which template is going to use
-draft: false # If you want to hide it in our page
-path: "/posts/my-custom-url/"
-category: "My Category"
-tags:
-  - "Tag 1"
-  - "Tag 2"
-description: "Post Description"
----
-
-CONTENT OF THE POST
+  render() {
+    const { value } = this.context;
+    return <p>The value from Context is: {value}</p>;
+  }
+}
 ```
 
-## How does Gatsby work?
+### New version
 
-After seeing what is it important for creating our app, there is a big question left: How does Gatsby take all the configuration, template and markdown and transform into HTML? Inside Gatsby official page you'll find this image.
+```javascript
+import React, { createContext } from 'react';
+import { number } from 'prop-types';
 
-![Gatsby flow](./gatsby.jpg)
+const { Provider, Consumer } = createContext('contextExample')
 
-I'm going to explain what happens inside that Gatsby box:
+const Parent = () => (
+  <Provider value={ value: 1}>
+    <Child />
+  </Provider>
+)
 
-1. After running the command of `gatsby develop`, Gatsby will read the gatsby-config.js and gatsby-node file. What happens here depends on what you have in those files, in the starter that I selected it will start the plugins, read the markdown file link it with the template and assign to a route and start the GraphQL server.
+const Child = () => (
+  <Consumer>
+    ({value}) => <p>The value from Context is: {value}</p>
+  </Consumer>
+)
+```
 
-2. When you hit a link it reads the value from the router that it has defined inside the config file and return the template of it.
+#### List of changes:
 
-3. Inside any template you can specify a pageQuery, this will enable us to get information from our GraphQL database (or any dataSource that e (Think that query as a select in SQL, where you select the field from our database that you really want).
+* Remove the need of using getChildContext to set values inside a context.
+* Remove contextType and childContextTypes static definition in parent and children (which in my opinion was the worst).
+* Add a new method `React.createContext` which create a new instance of a Context and return an object with a `Provider` and a `Consumer`.
+* The `Provider` component allows you to define values inside the Context created.
+* The `Consumer` component uses `renderProp` pattern inside its children, inside that function we'll have access to all the information inside the context created.
 
-I have summarized the process of conversion inside Gatsby, please visit their documentation (gatsby documentation link), it's very well explained and structured!
+## Let's build something!
 
-## What are plugins?
+In 2017 I wrote a RadioGroup component with the old Context, so my goal is to re-write it using the new!
 
-> Plugins help accelerate developing websites as you can build on what others have done and help collaborate with others on basic building blocks.
->
-> -- <cite>Kyle Mathews</cite>
+I choose a RadioGroup because is one of those component that are very annoying component to build in React. If you want to know why, just check this portion of code which objetive is to render a set of radio button that are controlled.
 
-Plugins can:
+```javascript
+import React, { Component } from 'react';
 
-* add support for webpack loaders such as Sass, Less
-* add a sitemap or RSS feed
-* add Google Analytics
-* …and so much more!
+class Example extends Component {
+  state = {
+    selectedFruit: 'apple'
+  };
 
-**Please do not stay with the plugins that the starter has**. Gatsby's community has created a lot of them and the majority of them are awesome and easy to implement. [Here](https://www.gatsbyjs.org/docs/plugins/) is the official list of plugins.
+  onChangeFruit = ({ target: { value } }) =>
+    this.setState({ selectedFruit: value });
 
-I hope that this post has encouraged you to create your own page! Let's keep building stuff :construction_worker:
+  render() {
+    return (
+      <div>
+        <input
+          type="fruits"
+          value="apple"
+          id="apple"
+          onChange={this.onChangeFruit}
+          checked={this.state.selectedFruit === 'apple'}
+        />
+        <label for="apple">Apple</label>
+        <br />
+        <input
+          type="fruits"
+          value="grapes"
+          id="grapes"
+          onChange={this.onChangeFruit}
+          checked={this.state.selectedFruit === 'grapes'}
+        />
+        <label for="apple">Grapes</label>
+        <br />
+        <input
+          type="fruits"
+          value="orange"
+          id="orange"
+          onChange={this.onChangeFruit}
+          checked={this.state.selectedFruit === 'orange'}
+        />
+        <label for="apple">Orange</label>
+        <br />
+      </div>
+    );
+  }
+}
+```
 
-Refs:
+![Horrible](./horrible.gif)
 
-* [gatsby-starter-lumen](https://github.com/alxshelepenok/gatsby-starter-lumen)
-* [Gatsby Documentation](https://www.gatsbyjs.org/docs/)
-* [Announcing Gatsby 1.0.0](https://www.gatsbyjs.org/blog/gatsby-v1/)
+That's a lot of code just to manage 3 radio buttons! Let's see how you can accomplish the same with the abstraction of the RadioGroup built with context.
+
+```javascript
+import React, { Component } from 'react';
+import { RadioButton, RadioGroup } from 'react-radio-group-context';
+
+class Example extends Component {
+  state = {
+    selectedFruit: 'apple'
+  };
+
+  onChangeFruit = ({ target: { value } }) =>
+    this.setState({ selectedFruit: value });
+
+  render() {
+    return (
+      <RadioGroup
+        name="fruits"
+        selected={this.state.selectedFruit}
+        onChange={this.onChangeFruit}
+      >
+        <RadioButton id="apple">Apple</RadioButton> <br />
+        <RadioButton id="grapes">Grapes</RadioButton> <br />
+        <RadioButton id="orange">Orange</RadioButton> <br />
+      </RadioGroup>
+    );
+  }
+}
+```
+
+That looks sooo much better right? Lets see what is happening.
+
+As you can see I have created a new component called RadioGroup which received all the shared properties along the RadioButton.
+
+Then those properties are magically passed to every RadioButton which can determine if they are selected or not by themself. So, how are we going to do that? And the answer is Context :smile:
+
+To create a new context you just to call to `React.createContext` and pass a name for the context.
+
+```javascript
+import React from 'react';
+
+const { Provider, Consumer } = React.createContext('radioGroup');
+```
+
+Lets see how to write `RadioGroup` and `RadioButton`.
+
+### RadioGroup
+
+This component is in charge of distributing the information to all the RadioButton and nothing more, it doesn't have to render anything in special.
+
+This component have to store inside its context:
+
+* Name of the group for the radio buttons,
+* The callback on onChange.
+* The selected radio.
+* If the group is disabled
+
+```javascript
+const RadioGroup = ({ selected, onChange, name, disabled, children }) => (
+  <Provider
+    value={{
+      selected,
+      onChange,
+      name,
+      disabledGroup: disabled
+    }}
+  >
+    {children}
+  </Provider>
+);
+```
+
+### RadioButton
+
+This component has to read from the context defined by the `RadioGroup` and make some validations:
+
+* If the selected radio is equal to the `id`, then `checked` has to be `true`.
+* If the `disabled` or `disabledGroup` were true, then `disabled` has to be `true`.
+* In case `value` was not being sent, then `value` should be equal to `id`.
+
+```javascript
+const RadioButton = ({ id, value, disabled, children }) => (
+  <Consumer>
+    {({ selected, onChange, disabledGroup, name }) => (
+      <Fragment>
+        <input
+          type="radio"
+          checked={selected === id}
+          disabled={disabled || disabledGroup}
+          id={id}
+          value={value || id}
+          name={name}
+          onChange={onChange}
+        />
+        <label for={id}>{children}</label>
+      </Fragment>
+    )}
+  </Consumer>
+);
+```
+
+Merging all, we endup with this powerful library!
+
+```javascript
+import React, { Fragment } from 'react';
+
+const { Provider, Consumer } = React.createContext('radioGroup');
+
+const RadioGroup = ({ selected, onChange, name, disabled, children }) => (
+  <Provider
+    value={{
+      selected,
+      onChange,
+      name,
+      disabledGroup: disabled
+    }}
+  >
+    {children}
+  </Provider>
+);
+
+const RadioButton = ({ id, value, disabled, children }) => (
+  <Consumer>
+    {({ selected, onChange, disabledGroup, name }) => (
+      <Fragment>
+        <input
+          type="radio"
+          checked={selected === id}
+          disabled={disabled || disabledGroup}
+          id={id}
+          value={value || id}
+          name={name}
+          onChange={onChange}
+        />
+        <label for={id}>{children}</label>
+      </Fragment>
+    )}
+  </Consumer>
+);
+
+export { RadioGroup, RadioButton };
+```
+
+---
+
+I really like this new API, and I think it will be game changing in React. I invite all of you to build your own components using this awesome API, it's really powerful :fire:
+
+Let’s keep building stuff together :construction_worker:
+
+### Refs:
+
+* [Context - React Documentation](https://reactjs.org/docs/context.html)
+* [New version of Context - Pull Request](https://github.com/reactjs/rfcs/pull/2)
+* [React new Context API - Blog](https://medium.com/dailyjs/reacts-%EF%B8%8F-new-context-api-70c9fe01596b)
+* [Context in ReactJS Applications - Blog](https://javascriptplayground.com/context-in-reactjs-applications/)
