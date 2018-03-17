@@ -1,29 +1,29 @@
 ---
-title: Understanding new Context API
+title: Understanding the new Context API
 date: "2018-03-12"
 layout: post
-draft: true
-path: "/posts/understanding-new-context-api/"
+draft: false
+path: "/posts/understanding-the-new-context-api/"
 category: "Tutorial"
 tags:
   - "Building"
   - "Learning"
-description: "I've playing a lot with the new Context API, comparing it with the old one and also re-write an old component of mine. You will learn the advantages of using it and why you should take a look ASAP!"
+description: "I've playing a lot with the new Context API, comparing it with the old one and also rewriting an old component of mine. You will learn the advantages of using it and why you should take a look ASAP!"
 ---
 
-If you were following all the React trends in the last month, you would know that some API's have received a redesign: Context, refs, etc.
+If you were following all the React trends in the last month, you should know that some API's have received a redesign: Context, refs, etc.
 
-In this opportunity, I'm going to tell you my experience of re-writing a Component using this new Context API!
+In this opportunity, I'm going to tell you my experience of rewriting a Component using this new Context API!
 
 ![Connection](./connection.jpg)
 
-## But first, What the heck is Context?
+## But first ... What the heck is Context? :thinking:
 
-Context is another way of sharing information between parent and children (like props). You could say that props is `explicit` communication, while Context is `implicit` Communication.
+Context is another way of sharing information between parents and children (like props). You could say that using props is `explicit` communication, while Context is `implicit` Communication.
 
-When an application starts to grow, you will end up having more components that also start to share more information between them. When this happened is common to start seeing the DrillingProps problem, which is a component passing down lots of props just to give access to component below of it.
+When an application starts to grow, you will end up having more components that also start to share more information between them. When this happened is common to start seeing the `DrillingProps` problem, which is a component passing down lots of props just to give access to component below of it :slightly_frowning_face:
 
-This is when Context helps us! By removing those props chain between component, we endup with a more readeable and understandable code.
+This is when Context helps us! By removing those props chain between component, we end up with a more readable and understandable code :thumbsup:
 
 ### Diagram Communication
 
@@ -45,13 +45,20 @@ Via Context
       <ChildComponent>    props: {  value: 1 }
 ```
 
+## Why did React rewrite Context?
+
+The main flaw with context today is how it interacts with `shouldComponentUpdate` :fearful:
+
+* **`shouldComponentUpdate` blocks context changes**: context changes will not propagate through a component whose `shouldComponentUpdate` return false. `shouldComponentUpdate` is a fairly common optimization in React applications.
+* **Shifts complexity to user space**: developers circumvent the `shouldComponentUpdate` problem using subscriptions which are largely used in Open Source libraries like Redux and React Broadcast. The problem is that the ownership and responsibility for a core feature (Context) has been shifted from the framework to its users.
+
 ## What does this new API offer?
 
-React developer team has re-disegn from start the way we declare a context inside a Component and introduce new concepts that previously were not present inside the framework.
+React developer team has re-design from scratch the way we declare a context inside a Component and introduce new concepts that previously were not present inside the framework :fire:
 
-Let's see a comparison between the new version and the old.
+Let's see a comparison between the new version and the old one.
 
-### Old version
+### Old version :older_man:
 
 ```javascript
 import React, { Component } from 'react';
@@ -83,7 +90,7 @@ class Child extends Component {
 }
 ```
 
-### New version
+### New version :man:
 
 ```javascript
 import React, { createContext } from 'react';
@@ -106,17 +113,17 @@ const Child = () => (
 
 #### List of changes:
 
-* Remove the need of using getChildContext to set values inside a context.
-* Remove contextType and childContextTypes static definition in parent and children (which in my opinion was the worst).
+* Remove the need of using `getChildContext` to set values inside a context.
+* Remove `contextType` and `childContextTypes` static definition in parent and children (which in my opinion was the worst).
 * Add a new method `React.createContext` which create a new instance of a Context and return an object with a `Provider` and a `Consumer`.
 * The `Provider` component allows you to define values inside the Context created.
 * The `Consumer` component uses `renderProp` pattern inside its children, inside that function we'll have access to all the information inside the context created.
 
-## Let's build something!
+## Let's build something! :construction_worker:
 
-In 2017 I wrote a RadioGroup component with the old Context, so my goal is to re-write it using the new!
+In 2017 I wrote a RadioGroup component with the old Context, so my goal is to rewrite it using the new one! :muscle:
 
-I choose a RadioGroup because is one of those component that are very annoying component to build in React. If you want to know why, just check this portion of code which objetive is to render a set of radio button that are controlled.
+I choose a RadioGroup because is one of those component that are very annoying component to build in React. If you want to know why, just check this portion of code which objective is to render a set of radio button that are controlled.
 
 ```javascript
 import React, { Component } from 'react';
@@ -167,7 +174,7 @@ class Example extends Component {
 
 ![Horrible](./horrible.gif)
 
-That's a lot of code just to manage 3 radio buttons! Let's see how you can accomplish the same with the abstraction of the RadioGroup built with context.
+That's a lot of code just to manage 3 radio buttons! Let's see how you can accomplish the same with the abstraction of the `RadioGroup` built with context.
 
 ```javascript
 import React, { Component } from 'react';
@@ -197,13 +204,13 @@ class Example extends Component {
 }
 ```
 
-That looks sooo much better right? Lets see what is happening.
+That looks sooo much better right? :sparkles: Lets see what is happening.
 
-As you can see I have created a new component called RadioGroup which received all the shared properties along the RadioButton.
+As you can see I have created a new component called `RadioGroup` which received all the shared properties along the `RadioButton`.
 
-Then those properties are magically passed to every RadioButton which can determine if they are selected or not by themself. So, how are we going to do that? And the answer is Context :smile:
+Then those properties are magically passed to every `RadioButton` which can determine if they are selected or not by themself. So, how are we going to do that? And the answer is Context :smile:
 
-To create a new context you just to call to `React.createContext` and pass a name for the context.
+In order to create a new context just call to `React.createContext` and pass a name for the context.
 
 ```javascript
 import React from 'react';
@@ -215,7 +222,7 @@ Lets see how to write `RadioGroup` and `RadioButton`.
 
 ### RadioGroup
 
-This component is in charge of distributing the information to all the RadioButton and nothing more, it doesn't have to render anything in special.
+This component is in charge of distributing the information to all the `RadioButton` and nothing more, it doesn't have to render anything in particular.
 
 This component have to store inside its context:
 
@@ -268,7 +275,7 @@ const RadioButton = ({ id, value, disabled, children }) => (
 );
 ```
 
-Merging all, we endup with this powerful library!
+Merging all, we endup with this powerful library! :atom_symbol:
 
 ```javascript
 import React, { Fragment } from 'react';
