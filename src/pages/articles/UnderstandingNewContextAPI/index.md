@@ -29,7 +29,7 @@ This is when Context helps us! By removing those props chain between component, 
 
 Via props
 
-```
+```javascript
 <ParentComponent>   props: {  value: 1 }  ↓
   <IntermediateComponent>   props: {  value: 1 }  ↓
     <OtherIntermediateComponent>    props: {  value: 1 }  ↓
@@ -38,7 +38,7 @@ Via props
 
 Via Context
 
-```
+```javascript
 <ParentComponent>   context: {  value: 1 }
   <IntermediateComponent>
     <OtherIntermediateComponent>
