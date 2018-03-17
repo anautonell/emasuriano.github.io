@@ -123,7 +123,7 @@ const Child = () => (
 
 In 2017 I wrote a RadioGroup component with the old Context, so my goal is to rewrite it using the new one! :muscle:
 
-[Here](https://github.com/EmaSuriano/react-radio-group-context) it's the repository in case you want to skip all the explanation and go straight foward to the codebase.
+[Here](https://github.com/EmaSuriano/react-radio-group-context) it's the repository in case you want to skip all the explanation and go straight forward to the codebase.
 
 I choose a RadioGroup because is one of those component that are very annoying component to build in React. If you want to know why, just check this portion of code which objective is to render a set of radio button that are controlled.
 
@@ -229,7 +229,7 @@ This component is in charge of distributing the information to all the `RadioBut
 This component have to store inside its context:
 
 * Name of the group for the radio buttons,
-* The callback on onChange.
+* The callback `onChange`.
 * The selected radio.
 * If the group is disabled
 
@@ -277,7 +277,7 @@ const RadioButton = ({ id, value, disabled, children }) => (
 );
 ```
 
-Merging all, we endup with this powerful library! :atom_symbol:
+Merging all, we end up with this powerful library! :atom_symbol: ⚛
 
 ```javascript
 import React, { Fragment } from 'react';
