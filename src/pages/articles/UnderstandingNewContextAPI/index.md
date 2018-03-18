@@ -21,7 +21,7 @@ In this opportunity, I'm going to tell you my experience of rewriting a Componen
 
 Context is another way of sharing information between parents and children (like props). You could say that using props is `explicit` communication, while Context is `implicit` Communication.
 
-When an application starts to grow, you will end up having more components that also start to share more information between them. When this happened is common to start seeing the `DrillingProps` problem, which is a component passing down lots of props just to give access to component below of it :slightly_frowning_face:
+When an application starts to grow, you will end up having more components that also start to share more information between them. When this happened is common to start seeing the `Prop Drilling` problem, which consist on components passing down lots of props just to give access to component below of it :slightly_frowning_face:
 
 This is when Context helps us! By removing those props chain between component, we end up with a more readable and understandable code :thumbsup:
 
