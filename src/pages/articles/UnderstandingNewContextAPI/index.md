@@ -17,7 +17,7 @@ In this opportunity, I'm going to tell you my experience of rewriting a Componen
 
 ![Connection](./connection.jpg)
 
-## But first ... What the heck is Context? :thinking:
+## But first ... What the f\*\*k is Context? :thinking:
 
 Context is another way of sharing information between parents and children (like props). You could say that using props is `explicit` communication, while Context is `implicit` Communication.
 
@@ -25,9 +25,9 @@ When an application starts to grow, you will end up having more components that 
 
 This is when Context helps us! By removing those props chain between component, we end up with a more readable and understandable code :thumbsup:
 
-### Diagram Communication
+### Communication Diagram
 
-Via props
+#### Via props
 
 ```javascript
 <ParentComponent>   props: {  value: 1 }  ↓
@@ -36,7 +36,7 @@ Via props
       <ChildComponent>    props: {  value: 1 }
 ```
 
-Via Context
+#### Via Context
 
 ```javascript
 <ParentComponent>   context: {  value: 1 }
