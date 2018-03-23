@@ -19,7 +19,7 @@ In this opportunity, I'm going to tell you my experience of rewriting a Componen
 
 ## But first ... What the f\*\*k is Context? :thinking:
 
-Context is another way of sharing information between parents and children (like props). You could say that using props is `explicit` communication, while Context is `implicit` Communication.
+Context is another way of sharing information between parents and children (like props). Where you have a top component (Father) that define an object with information (Context) so any component inside (Children) of him can access to that. You could say that using props is `explicit` communication, while Context is `implicit` Communication.
 
 When an application starts to grow, you will end up having more components that also start to share more information between them. When this happened is common to start seeing the `Prop Drilling` problem, which consist on components passing down lots of props just to give access to component below of it :slightly_frowning_face:
 
@@ -51,6 +51,10 @@ The main flaw with context today is how it interacts with `shouldComponentUpdate
 
 * **`shouldComponentUpdate` blocks context changes**: context changes will not propagate through a component whose `shouldComponentUpdate` return false. `shouldComponentUpdate` is a fairly common optimization in React applications.
 * **Shifts complexity to user space**: developers circumvent the `shouldComponentUpdate` problem using subscriptions which are largely used in Open Source libraries like Redux and React Broadcast. The problem is that the ownership and responsibility for a core feature (Context) has been shifted from the framework to its users.
+
+<div class="gatsby-highlight">
+<iframe src="https://codesandbox.io/embed/845on7vqx9" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+</div>
 
 ## What does this new API offer?
 
@@ -174,6 +178,10 @@ class Example extends Component {
 }
 ```
 
+<div class="gatsby-highlight">
+<iframe src="https://codesandbox.io/embed/py4m4jjyr7" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+</div>
+
 ![Horrible](./horrible.gif)
 
 That's a lot of code just to manage 3 radio buttons! Let's see how you can accomplish the same with the abstraction of the `RadioGroup` built with context.
@@ -205,6 +213,10 @@ class Example extends Component {
   }
 }
 ```
+
+<div class="gatsby-highlight">
+<iframe src="https://codesandbox.io/embed/ojz83pjz2z" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+</div>
 
 That looks sooo much better right? :sparkles: Lets see what is happening.
 
