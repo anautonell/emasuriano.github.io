@@ -1,5 +1,5 @@
 ---
-title: How I made my page in only 1 night
+title: How I made my Page in only 1 night
 date: "2018-01-28"
 layout: post
 draft: false

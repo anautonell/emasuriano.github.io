@@ -4,7 +4,7 @@ date: "2018-03-12"
 layout: post
 draft: false
 path: "/posts/understanding-the-new-context-api/"
-category: "Tutorial"
+category: "New Concepts"
 tags:
   - "Building"
   - "Learning"

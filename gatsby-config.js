@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    url: 'https://emasuriano.github.io',
+    url: 'https://emanuelsuriano.design',
     title: 'Emanuel Suriano',
     subtitle: 'Web Developer',
     copyright: '',
@@ -9,6 +9,10 @@ module.exports = {
       {
         label: 'Articles',
         path: '/'
+      },
+      {
+        label: 'Projects',
+        path: '/projects/'
       },
       {
         label: 'About me',
@@ -24,7 +28,7 @@ module.exports = {
       email: 'emanuel.suriano@gmail.com',
       twitter: 'emasuriano',
       github: 'EmaSuriano',
-      medium: 'emanuel.suriano',
+      medium: 'emasuriano',
       linkedIn: 'emanuel-suriano'
     }
   },
