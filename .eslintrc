@@ -21,6 +21,7 @@
     "import/extensions": [0],
     "no-console": "off",
     "comma-dangle": "off",
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "linebreak-style": 0
   }
 }

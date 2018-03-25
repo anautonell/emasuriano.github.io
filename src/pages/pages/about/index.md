@@ -17,5 +17,5 @@ When I'm not working, I am committed to the #100DaysOfCode challenge, which main
 
 One of my biggest achievements happened in 2017, when I started a project called Blindle with 3 friends from College. The idea behind it was to provide an accessible Braille learning device, so any person could learn to read and write in Braille with this device. And the best part is that is totally Open Source, thus everything related to the project is on GitHub in case anyone wants to create a Blindle of his own :smile:
 
-![Blindle Team](./blindleTeam.jpg)
+![Blindle Team](./blindleTeam2.jpg)
 _Blindle team with its first users!_

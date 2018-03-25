@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.scss';
-import '../../assets/fonts/fontello-2f6fcc63/css/fontello.css';
-// import '../../assets/fonts/fontello-771c82e0/css/fontello.css';
+import '../../assets/fonts/fontello-88f017ed/css/fontello.css';
 
 const Link = ({ href, iconClass }) => (
   <li className="links__list-item">
@@ -36,6 +35,9 @@ const Links = props => {
           iconClass="icon-linkedin"
         />
         <Link href={`https://medium.com/@${medium}/`} iconClass="icon-medium" />
+      </LinkContainer>
+      <LinkContainer>
+        <Link href="/rss.xml" iconClass="icon-rss" />
       </LinkContainer>
     </div>
   );
