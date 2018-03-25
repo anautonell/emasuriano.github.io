@@ -117,7 +117,7 @@ module.exports = {
           'gatsby-transformer-sharp',
           'gatsby-plugin-sharp',
           {
-            resolve: 'gatsby-remark-emoji-ema',
+            resolve: 'gatsby-remark-emoji',
             options: { emojiConversion: 'shortnameToImage' }
           }
         ]

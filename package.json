@@ -10,6 +10,7 @@
     "clean": "npm run clean:public",
     "lint": "./node_modules/.bin/eslint --cache --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "git add . && git gz",
     "deploy": "gatsby build && gh-pages -b master -d public"
   },
   "repository": "git+https://github.com/alxshelepenok/gatsby-starter-lumen.git",
@@ -23,6 +24,7 @@
   "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "commitizen": "^2.9.6",
     "emojione": "^3.1.2",
     "gatsby": "^1.9.164",
     "gatsby-link": "^1.6.34",
@@ -36,6 +38,7 @@
     "gatsby-plugin-sharp": "^1.6.27",
     "gatsby-plugin-sitemap": "^1.2.10",
     "gatsby-remark-copy-linked-files": "^1.5.25",
+    "gatsby-remark-emoji": "0.0.2",
     "gatsby-remark-images": "^1.5.37",
     "gatsby-remark-prismjs": "^1.2.12",
     "gatsby-remark-responsive-iframe": "^1.4.16",
