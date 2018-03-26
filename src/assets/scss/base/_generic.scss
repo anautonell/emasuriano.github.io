@@ -73,7 +73,7 @@ h6 {
 img {
   border: 0;
   max-width: 100%;
-  display: block;
+  //display: block;
   margin: inherit auto;
 }
 
@@ -98,7 +98,6 @@ hr {
   );
   width: 100px;
 }
-
 a {
   color: $typographic-link-p-font-color;
   text-decoration: none;
@@ -108,12 +107,10 @@ a {
     color: $typographic-link-s-font-color;
   }
 }
-
 b,
 strong {
   font-weight: 500;
 }
-
 ul {
   list-style: square;
   @include margin-bottom(1);
@@ -122,24 +119,20 @@ ul {
     margin-bottom: 10px;
   }
 }
-
 p {
   @include line-height(1);
   @include margin-bottom(1);
 }
-
 blockquote {
   padding: 0;
   font-style: italic;
   text-align: center;
 }
-
 figure {
   display: block;
   width: 100%;
   height: auto;
 }
-
 figcaption {
   @include line-height(0.75);
   @include margin-top(0.25);
@@ -149,17 +142,14 @@ figcaption {
   margin-bottom: 0;
   text-align: center;
 }
-
 .layout {
   lost-center: $layout-width;
 }
-
 .content {
   &__inner {
     padding: 25px 20px;
   }
 }
-
 @include breakpoint-sm {
   figure.float-left,
   figure.float-right {
@@ -179,7 +169,6 @@ figcaption {
     }
   }
 }
-
 @include breakpoint-md {
   .content {
     lost-column: 3/4;
@@ -188,7 +177,6 @@ figcaption {
     }
   }
 }
-
 .emojione {
   font-size: inherit !important;
   height: 2.5ex !important;
