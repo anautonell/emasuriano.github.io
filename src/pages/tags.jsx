@@ -66,7 +66,12 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       limit: 2000
-      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
+      filter: {
+        frontmatter: {
+          layout: { regex: "/(post|project)/" }
+          draft: { ne: true }
+        }
+      }
     ) {
       group(field: frontmatter___tags) {
         fieldValue

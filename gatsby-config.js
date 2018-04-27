@@ -71,7 +71,7 @@ module.exports = {
                 allMarkdownRemark(
                   limit: 1000,
                   sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
+                  filter: { frontmatter: { layout: { regex: "/(post|project)/" }, draft: { ne: true } } }
                 ) {
                   edges {
                     node {

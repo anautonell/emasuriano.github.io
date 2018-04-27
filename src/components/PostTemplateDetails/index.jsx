@@ -8,11 +8,15 @@ const PostTemplateDetails = props => {
   const { subtitle, author } = props.data.site.siteMetadata;
   const post = props.data.markdownRemark;
   const tags = post.fields.tagSlugs;
+  const { layout } = props.pathContext;
 
   const homeBlock = (
     <div>
-      <Link className="post-single__home-button" to="/">
-        All Articles
+      <Link
+        className="post-single__home-button"
+        to={layout === 'post' ? '/' : '/projects'}
+      >
+        All {layout === 'post' ? 'Posts' : 'Projects'}
       </Link>
     </div>
   );

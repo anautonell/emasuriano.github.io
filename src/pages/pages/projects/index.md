@@ -1,7 +1,7 @@
 ---
 title: "Projects"
 layout: page
-path: "/projects"
+path: "/projectsOld"
 ---
 
 While I'm not working I like to develop libraries, web applications, collaborate in Open Source projects, etc.

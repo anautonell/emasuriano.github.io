@@ -41,17 +41,18 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
 
       _.each(result.data.allMarkdownRemark.edges, edge => {
-        if (_.get(edge, 'node.frontmatter.layout') === 'page') {
+        const layout = _.get(edge, 'node.frontmatter.layout');
+        if (layout === 'page') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(pageTemplate),
             context: { slug: edge.node.fields.slug }
           });
-        } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
+        } else if (layout === 'post' || layout === 'project') {
           createPage({
             path: edge.node.fields.slug,
             component: slash(postTemplate),
-            context: { slug: edge.node.fields.slug }
+            context: { slug: edge.node.fields.slug, layout }
           });
 
           let tags = [];

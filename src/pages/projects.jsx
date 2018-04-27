@@ -1,30 +1,30 @@
 import React from 'react';
 import ApplictionHelmet from '../components/Helmet';
+import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
-import TagTemplateDetails from '../components/TagTemplateDetails';
 
-class TagTemplate extends React.Component {
-  render() {
-    const { title } = this.props.data.site.siteMetadata;
-    const { tag } = this.props.pathContext;
+const ProjectRoute = props => {
+  const { title, subtitle } = props.data.site.siteMetadata;
+  const posts = props.data.allMarkdownRemark.edges;
+  const items = posts.map(post => (
+    <Post data={post} key={post.node.fields.slug} />
+  ));
 
-    return (
-      <div>
-        <ApplictionHelmet
-          title={`All Posts tagget as "${tag}" - ${title}`}
-          description={`All Posts tagget as "${tag}" - ${title}`}
-        />
-        <Sidebar {...this.props} />
-        <TagTemplateDetails {...this.props} />
+  return (
+    <div>
+      <ApplictionHelmet title={title} description={subtitle} />
+      <Sidebar {...props} />
+      <div className="content">
+        <div className="content__inner">{items}</div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default TagTemplate;
+export default ProjectRoute;
 
 export const pageQuery = graphql`
-  query TagPage($tag: String) {
+  query ProjectsQuery {
     site {
       siteMetadata {
         title
@@ -39,19 +39,15 @@ export const pageQuery = graphql`
           email
           twitter
           github
-          linkedIn
           medium
+          linkedIn
         }
       }
     }
     allMarkdownRemark(
       limit: 1000
       filter: {
-        frontmatter: {
-          tags: { in: [$tag] }
-          layout: { regex: "/(post|project)/" }
-          draft: { ne: true }
-        }
+        frontmatter: { layout: { eq: "project" }, draft: { ne: true } }
       }
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {

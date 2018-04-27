@@ -8,6 +8,7 @@ category: "Tutorial"
 tags:
  - "Building"
  - "Learning"
+ - "React"
 description: "In the past month, I successfully wrote 2 libraries for any React application and I learned that building an Open Source library in Javascript is not an easy task at all."
 ---
 

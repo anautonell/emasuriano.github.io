@@ -49,7 +49,7 @@ export const pageQuery = graphql`
       filter: {
         frontmatter: {
           category: { eq: $category }
-          layout: { eq: "post" }
+          layout: { regex: "/(post|project)/" }
           draft: { ne: true }
         }
       }
