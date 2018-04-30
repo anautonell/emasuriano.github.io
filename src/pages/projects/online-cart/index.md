@@ -12,7 +12,7 @@ tags:
 description: "Mobile first e-commerce that displays a list of products with prices, the user can the details of any product by clicking on it and also filter them by name and price."
 ---
 
-![online-cart](./product-detail.gif)
+![online-cart](./online-cart.gif)
 
 > Mobile first e-commerce application that displays a list of products with prices, the user can see the details of any product by clicking on it and also filter them by name and price.
 
