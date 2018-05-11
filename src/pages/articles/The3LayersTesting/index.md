@@ -1,5 +1,5 @@
 ---
-title: The 3 layers of testing every Front-end Dev should know
+title: The 3 testing layers which every Front-end Dev should know
 date: "2018-05-03"
 layout: post
 draft: true
@@ -8,7 +8,7 @@ category: "New concepts"
 tags:
   - "React"
   - "Testing"
-description: ""
+description: "For a long time, thinking of writting tests for the UI was a really crazy idea due to its lack of complexity. But in the times we're living a web application is responsible of doing lots of things, for example fetching information from a service, then doing some calculation with it and then display it inside a table."
 ---
 
 For a long time, thinking of writting tests for the UI was a really crazy idea due to its lack of complexity. But in the times we're living a web application is responsible of doing lots of things, for example fetching information from a service, then doing some calculation with it and then display it inside a table.
