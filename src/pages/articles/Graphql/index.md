@@ -51,20 +51,38 @@ Let's calm down and see what they are saying
 
 ### GraphQL is a query language for APIs
 
+Let's first know what is a query language?
+
 > Query Language (QL) refers to any computer programming language that requests and retrieves data from database and information systems by sending queries.
+
+Given that definition and knowing that GraphQL could be used as the service layer, we can affirm that GraphQL is a query language for APIs.
+
+### GraphQL is a runtime for fulfilling those queries with your existing data
+
+GraphQL is able to communicate with lots of different kind of entities, they could be a SQL or NoSQL databases, REST APIs, 3rd-party APIs, legacy systems or even other GraphQL APIs.
+
+This is great for the client, because it hides all the complexity of managing different technologhies under a series of GhraphQL APIs.
+
+### GraphQL provides a complete and understandable description of the data in your API
+
+GraphQL has its own type system that’s used to define the schema of an API. The syntax for writing schemas is called Schema Definition Language (SDL).
+
+```graphql
+type Person {
+  name: String!
+  age: Int!
+}
+```
+
+This is an example of possible definition for a Person inside our server, it has a name which is a string and also an age which is a number, both are mandatory. It's said that this complete and understandable due to the client has the ability to know this kind of definition and know by hand what to send and to received.
+
+I'll cover the schema definition inside [GraphQL Entities](##GraphQL Entities) section
+
+This type has two fields, they’re called name and age and are respectively of type String and Int. The ! following the type means that this field is required.
 
 Talk about the syntax of GraphQL The Schema Definition Language (SDL)
 
 https://www.howtographql.com/basics/2-core-concepts/
-
-So we could assume that we can use GraphQL to get and send information to _something_.
-
-### GraphQL is a runtime for fulfilling those queries with your existing data
-
-Talk about connecting with services and databases.
-
-### GraphQL provides a complete and understandable description of the data in your API
-
 Talk about the schemas and types
 
 ### GraphQL gives clients the power to ask for exactly what they need and nothing more
@@ -78,6 +96,12 @@ Talk about resolvers
 ### GraphQL enables powerful developer tools
 
 Talk about graphi
+
+## GraphQL Entities
+
+Like in every framework you have to know which are the players and their names in order to understand how it works and when it's time for a implementation you'll know what to build.
+
+###
 
 ## GraphQL is not a framework
 
