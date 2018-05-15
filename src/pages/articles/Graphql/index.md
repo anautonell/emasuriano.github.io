@@ -12,9 +12,11 @@ tags:
 description: ""
 ---
 
-FOTITO FACHERA PARA EL ARTICULO
+Nowadays every application is connected to a server. That server could be sending the data using different protocols (HTTP, FTP, HTTPS) and designs (SOAP, REST, something similar to REST :laughing:), and our application has to deal with that so for that we always would like to have a service layer inside our architechture.
 
-Nowadays every application is connected to a server. That server could be sending the data using different protocols (HTTP, FTP, HTTPS) and designs (SOAP, REST, something similar to REST :laughing:), our application has to deal with that so for that we always would like to have a service layer inside our architechture.
+![External Layer](./ExternalLayer.jpg)
+
+<a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px;" href="https://unsplash.com/@redanais?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Anaïs Redant"><span style="display:inline-block;padding:2px 3px;"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white;" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px;">Anaïs Redant</span></a>
 
 Let's see a simple example of them:
 
@@ -47,7 +49,7 @@ If we check the oficial documentation, we would find something like this:
 
 > GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
 
-![What did you said](./what.gif)
+![Too Much](./tooMuch.gif)
 
 Let's calm down and see what they are saying
 
@@ -196,9 +198,9 @@ const CarResolver = {
 
 I already exaplained what GraphQL is, and in any time I mentioned anything about framework or library. So let's see how we can implement GraphQL!
 
-GraphQL-js is the official implementation of the stantard, by using it we ca defined the Schema, Type, resolvers, etc.
+Depending on the server you want to run GraphQL, you will have to install a dependency for your specific. For Example, if you're runnning an `express` backend, then you have to install `express-graphql`. Same goes for `happy`, `koa`, etc.
 
-Explain more of this!!
+One important thing to clarify, there is a really big company which is betting a lot in GraphQL technologies called Apollo. They have built an incredible amount of helpful libraries to get up and running your own GraphQL server and also connected to your client. Please check them out!
 
 ## Uses Cases
 
@@ -246,9 +248,52 @@ Let's take a look at the endpoint they gave me. It returns a list of 1336 items 
 },
 ```
 
-The first thing I noticed was I didn't have a way to get the information of a friend without filtering by name the whole array from the response. This will lead to serious performance issues and a really bad UX.
+The first thing I noticed was I didn't have a way to get the information of a friend without filtering by name the whole array from the response. A possible implementation using old style `fetch` could be:
 
-So I decided to wrap this endpoint with a GraphQL server!
+```javascript
+const getGnomes = () => fetch('gnomeURL'); //will return the whole list of gnomes
+
+const getGnomeById = (id, loadFriends = true) => {
+  const gnome = getGnomes().then(gnomes => {
+    const result = gnomes.filter(gnome => gnome.id === id);
+    if (loadFriends) {
+      const friendsId = gnomes
+        .filter(({ name }) => result.friends.includes(name))
+        .map(gnome => gnome.id);
+      result.friends = Promise.all(
+        friendsId.map(id => getGnomeById(id, false))
+      );
+    }
+    return result;
+  });
+};
+```
+
+As you can see, this will lead to serious performance issues and a really bad UX. There may be some improvement it can be made, but I saw that this was the perfect match for GraphQL. Look the same result, but in this case using a Query from GraphQL!
+
+```javascript
+export const GET_GNOME_BY_ID = gql`
+  query getGnomeById($id: ID!) {
+    gnome(id: $id) {
+      name
+      thumbnail
+      age
+      weight
+      height
+      hair_color
+      professions
+      friends {
+        id
+        name
+        thumbnail
+        professions
+      }
+    }
+  }
+`;
+```
+
+![Magic](./magic.gif)
 
 ### Implementation
 
@@ -256,7 +301,7 @@ As I explained before, you have to decide which implementation of GraphQL you'll
 
 #### Server definition
 
-The entry of our server is the instantiation of Micro and adding the routes for our GraphQL server. This is what you'll find inside the Apollo's examples.
+The entry of our server is the instantiation of Micro and adding the routes for our GraphQL server. This is mainly what you'll find inside the Apollo's examples.
 
 ```javascript
 import { microGraphiql, microGraphql } from 'apollo-server-micro';
@@ -288,8 +333,94 @@ server.listen(3001, () => {
 
 #### GraphQL Schema
 
+As we saw the schema is where we defined the structure for our GraphQL server. When we called `makeExecutableSchema` we should send all the Type Definitions (QueryType, ObjectType, MutationType, etc.) of our server and also them respective resolvers.
+
+Inside `typeDefs` I define:
+
+* Gnome: This is the ObjectType to represent the Gnome entity inside the server, it stores all the relevant information for a gnome and will be the object sent to the client.
+* Queries:
+  * allGNomes: recieves the critiera for filtering the gnomes (name and an array of professions) and will return an array of Gnomes.
+  * gnome: receives an id (Mandatory field) and returns one Gnome with that Id.
+
+In this case I'm defining two Queries one for retrieving all the Gnomes and another for get only one by Id. Both of them returns an ObjectType called `Gnome`.
+
+Each the fields inside the `Gnome` ObjectType are resolved automatically when the key of the object returned by the service matched, except for friends! If you take a loook inside the resolver, you'll see that Gnome redefined the function of getting a Gnome friends, this is super useful because we can modified the data that comes from the server in a really easy way.
+
+```javascript
+import { makeExecutableSchema } from 'graphql-tools';
+import { getGnomes, getGnomeById } from './query';
+
+const typeDefs = `
+  type Query { allGnomes(name: String, professions: [String]): [Gnome], gnome(id: ID!): Gnome }
+  type Gnome {
+    id: ID!,
+    name: String,
+    thumbnail: String,
+    age: Int,
+    weight: Float,
+    height: Float,
+    hair_color: String,
+    professions: [String],
+    friends: [Gnome],
+    createdAt: Int,
+  }
+`;
+
+const resolvers = {
+  Query: { allGnomes: getGnomes, gnome: getGnomeById },
+  Gnome: {
+    friends: async ({ friends }) => {
+      const gnomes = await getGnomes();
+      return gnomes.filter(({ name }) => friends.includes(name));
+    }
+  }
+};
+
+export default makeExecutableSchema({
+  typeDefs,
+  resolvers
+});
+```
+
+#### Query
+
+This is where we get the data from our API non-REST, also apply the logic of filtering by name and/or professions. I'm using memoize just to avoid fetching more than one time the same resource, due to it will always return the same data ...
+
+```javascript
+import fetch from 'node-fetch';
+import memoize from 'fast-memoize';
+import BASE_URL from './constants';
+
+const fetchGnomes = memoize(async () => {
+  const rawData = await fetch(BASE_URL);
+  const jsonData = await rawData.json();
+  return jsonData.Brastlewark;
+});
+
+const getGnomes = async (_, args) => {
+  const gnomes = await fetchGnomes();
+  if (!args) return gnomes;
+
+  const { name = '', professions = [] } = args;
+  return gnomes.filter(
+    gnome =>
+      (!name || new RegExp(name, 'i').test(gnome.name)) &&
+      (!professions.length ||
+        professions.every(prof => gnome.professions.includes(prof)))
+  );
+};
+
+const getGnomeById = async (_, { id }) => {
+  const gnomes = await fetchGnomes();
+  return gnomes.find(gnome => gnome.id == id);
+};
+
+export { getGnomes, getGnomeById };
+```
+
 ## Related links
 
 * https://blog.graph.cool/graphql-server-basics-the-schema-ac5e2950214e
 * https://blog.graph.cool/how-to-wrap-a-rest-api-with-graphql-8bf3fb17547d
-  https://blog.graph.cool/top-5-reasons-to-use-graphql-b60cfa683511
+* https://blog.graph.cool/top-5-reasons-to-use-graphql-b60cfa683511
+* https://dev-blog.apollodata.com/the-concepts-of-graphql-bc68bd819be3
