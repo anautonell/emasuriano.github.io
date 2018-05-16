@@ -9,16 +9,18 @@ tags:
  - "Building"
  - "GraphQL"
  - "React"
-description: ""
+description: "How GraphQL could replace your service layer inside and leave a much better solution. Also, I'll explain my experience with it and the progress of creating my own server from scratch!"
 ---
 
-Nowadays every application is connected to a server. That server could be sending the data using different protocols (HTTP, FTP, HTTPS) and designs (SOAP, REST, something similar to REST :laughing:), and our application has to deal with that so for that we always would like to have a service layer inside our architechture.
+Nowadays every application is connected to a server. That server could be sending the data using different protocols (HTTP, FTP, HTTPS) and designs (SOAP, REST, something similar to REST :laughing:), and our application has to deal with that so for that we always would like to have a service layer inside our architecture.
 
 ![External Layer](./ExternalLayer.jpg)
 
-<a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px;" href="https://unsplash.com/@redanais?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Anaïs Redant"><span style="display:inline-block;padding:2px 3px;"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white;" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px;">Anaïs Redant</span></a>
+Photo by [Anaïs Redant](https://unsplash.com/photos/HzfeNUVpLLU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/@redanais?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-Let's see a simple example of them:
+---
+
+Let's see a simple example of a service layer:
 
 ```javascript
 const myService = await params => {
@@ -34,36 +36,51 @@ const myService = await params => {
 }
 ```
 
-This kind of service layer has some disavantages:
+This kind of service layer has some disadvantages:
 
-* Perfomance issues because of the adapting and parsing
+* Performance issues because of the adapting and parsing the data.
 * The web application has to know the protocol and design the service is following.
-* It may happens that in order to get more information, we would need to perform another requests.
-* It could happened that we don't need all the information inside the response, the parser would do that job but we shouldn't ask for it in the first if we won't use in the future.
+* It may happen that in order to get more information, we would need to perform another request or maybe more.
+* It could happen that we don't need all the information inside the response, the parser would do that job but we shouldn't ask for it in the first if we won't use in the future.
 
-GraphQL could help in all of these points! But first we need to understand what GraphQL is ..
+GraphQL could help in all of these points! But first we need to understand what it is ..
 
-## What is GraphQL?
+## GraphQ what!? :thinking:
 
-If we check the oficial documentation, we would find something like this:
+If we check the official documentation, we would find something like this:
 
 > GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
 
 ![Too Much](./tooMuch.gif)
 
-Let's calm down and see what they are saying
+Wow that was a lot of information! Let's calm down and see what they are saying :pray:
 
 ### GraphQL is a query language for APIs
 
-Let's first know what is a query language?
+Let's see the definition of a [Query Language](https://www.techopedia.com/definition/3948/query-language) :nerd_face:
 
-> Query Language (QL) refers to any computer programming language that requests and retrieves data from database and information systems by sending queries.
+> Query language refers to any computer programming language that requests and retrieves data from database and information systems by sending queries.
 
-Okay so if GraphQL is a language, what are their rules? Due to GraphQL isn't tied to any specific database or storage engine, it has its own type system that’s used to define the schema of an API.
+In summmary, GraphQL is a language that allow us to get and send data to a database or _something_ out there (we'll see what something means in next sections). Every language has a set of rules which define it, in GraphQL this is called Schema.
 
-#### Schema
+#### Schema :brain:
 
-An `Schema` specifies the capabilities of the API and defines how clients can request the data. It is often seen as a contract between the server and client. The syntax for writing schemas is called Schema Definition Language (SDL).
+A `Schema` is the contract between the server and client, it specifies the capabilities of the API and defines how clients can interact with the data. The syntax for writing schemas is called [Schema Definition Language (SDL)](https://blog.graph.cool/graphql-sdl-schema-definition-language-6755bcb9ce51).
+
+Basically, SDL has two main components
+
+* Type: has a name and can extends one or more interfaces.
+  ```graphql
+  type Post implements Item {
+    # ...
+  }
+  ```
+* Field: has a name and a type.
+  ```graphql
+    age: Int
+  ```
+
+If we merge both concepts, we can declare our first `ObjectType`!
 
 ```graphql
 type Car {
@@ -72,15 +89,15 @@ type Car {
 }
 ```
 
-`Car` is an `ObjectType` which defines the structure of a car model in our application using `ScalarTypes`, it should have a patent which is a string and also an color which is a string, both are mandatory.
+`Car` type defines the structure of a car model in our application using [`ScalarTypes`](https://graphql.org/learn/schema/#scalar-types), it should have a patent and color both must be text and mandatory.
 
-One thing to remark is that `ObjectType` or `ScalarTypes` don’t expose any functionality to client applications, for that we should define our entry points for our server.
+One thing to remark is that `ObjectType` or `ScalarTypes` don’t expose any functionality to client applications, for that we should define our _entry points_ for our server.
 
-#### Query Type
+#### Query Type :mag:
 
-Queries are used by the client to request the data it needs from the server. Unlike REST APIs where there’s a clearly defined structure of information returned from each endpoint, GraphQL always exposes only one endpoint, allowing the client to decide what data it really needs from a predefined pattern.
+`Queries` are used by the client to request the data it needs from the server. Unlike REST APIs where there’s a clearly defined structure of information returned from each endpoint, GraphQL always exposes only one endpoint, allowing the client to decide what data it really needs!
 
-Let’s take a look at an example query that a client could send to a server:
+Let's suppose we have a query which returns all the cars with its respective information, but the client only want to retrieve the patent of them and nothing else. The client could perform the following query:
 
 ```graqphql
 {
@@ -90,7 +107,7 @@ Let’s take a look at an example query that a client could send to a server:
 }
 ```
 
-This would return a list of all cars currently stored inside my server, with the following shape:
+This would return a list of all cars currently stored on my server, with the following shape:
 
 ```graqphql
 {
@@ -110,25 +127,15 @@ This would return a list of all cars currently stored inside my server, with the
 }
 ```
 
-In GraphQL, each field can have zero or more arguments if that’s specified in the schema, by doing this we are able to query the amount of fields returned and also select the fields we want!
+#### Mutation Type :chains:
 
-```graqphql
-{
-  allCars(last: 2) {
-    patent
-  }
-}
-```
-
-#### Mutation Type
-
-The majority of applications also need some way of making changes to the data that’s currently stored in the backend. In GraphQL, these changes receive the name of `mutations` and they can be used for:
+`Mutations` allow the client to make changes to data stored inside server. These changes could be:
 
 * Create new data
 * Update existing data
 * Delete existing data
 
-The syntax for mutations look almost the same as queries, but they must start with the mutation keyword.
+The syntax for mutations look almost the same as queries but they must start with the mutation keyword.
 
 ```graqphql
 mutation {
@@ -139,47 +146,35 @@ mutation {
 }
 ```
 
-#### Subscription Type
+#### Subscription Type :envelope_with_arrow:
 
-In case you want to establish a realtime connection to the server in order to get notified after important events, GraphQL offers the concept of Subscriptions. When a client subcribes to an event, it will establish an steady connection with the server, and whenever a particular event happens, the server pushes the corresponding data to the client.
+`Subscriptions` give a client the possibily to establish a real-time connection to the server in order to get notified after important events, whenever a particular event happens, the server pushes the corresponding data to the client.
 
 They are written using the same syntax as queries, but stating with the subscription keyword.
 
 ```graphql
 subscription {
-  newCar {
+  createCar {
     patent
   }
 }
 ```
 
-When a new mutation is performed that creates a new `Car`, the server will send the information directly to the subcribed clients.
-
-```graphql
- "newCar": {
-    "patent": "IUY 784",
-  }
-```
-
 ### GraphQL is a runtime for fulfilling those queries with your existing data
 
-GraphQL itself does not provide any information or data, it will receive the query/mutation from the client and `resolve` it by communication with its entities.
+GraphQL itself does not provide any information or data, it will receive a `query` or a `mutation` from the client and `resolve` it by communication with its entities. It is able to communicate with lots of different kind of entities, they could be a `SQL` or `NoSQL` databases, REST APIs, 3rd-party APIs, legacy systems or even other GraphQL APIs.
 
-GraphQL is able to communicate with lots of different kind of entities, they could be a SQL or NoSQL databases, REST APIs, 3rd-party APIs, legacy systems or even other GraphQL APIs. If we combine a local database with 2 external services we could endup with the following architechture.
+If we combine a local database with 2 external services we could end up with the following architecture.
 
-![GraphQL Architechture](./servicesArchitechture.png)
+![GraphQL Architecture](./servicesArchitecture.jpg)
 
-But how do we retrieve information from those services if all of them could be different? It wasn't an accident to use the word resolve in the above sentence :P Let me introduce Resolvers!
+But how do we retrieve information from those services if all of them could be different? It wasn't an accident to use the word resolve in the above sentence :stuck_out_tongue_winking_eye: Let me introduce Resolvers!
 
-#### Resolvers
+#### Resolvers :satellite:
 
-As we know, a query/mutation/subscription consists of a set of fields. In the GraphQL server implementation, each of these fields actually corresponds to exactly one function that’s called a `resolver`. The sole purpose of a `resolver` function is to fetch the data for its field.
+As we know, a `query`/`mutation`/`subscription` consists of a set of fields. In the GraphQL server implementation, each of these fields actually corresponds to exactly one function that’s called a `resolver`.
 
-Once all resolvers returned, the server will gather all the data in the format that was described by the query and sent it back to the client.
-
-![GraphQL reducer](./reducer.png)
-
-As each field has it owns reducer, we can easily combined the response of different services.
+The sole purpose of a `resolver` function is to fetch the data for its field. As each field has it owns reducer, we can easily combine the response of different services.
 
 ```javascript
 const CarResolver = {
@@ -194,31 +189,43 @@ const CarResolver = {
 };
 ```
 
-## GraphQL is not a framework
+Once all `resolvers` returned, the server will gather all the data in the format that was described by the query and sent it back to the client.
 
-I already exaplained what GraphQL is, and in any time I mentioned anything about framework or library. So let's see how we can implement GraphQL!
+## GraphQL Tools :wrench:
 
-Depending on the server you want to run GraphQL, you will have to install a dependency for your specific. For Example, if you're runnning an `express` backend, then you have to install `express-graphql`. Same goes for `happy`, `koa`, etc.
+GraphQL was released in 2015, and there are many tools out there which will help you building your own server, but there is only one which is critical of having it. Its name is (GraphiQL)[https://github.com/graphql/graphiql].
 
-One important thing to clarify, there is a really big company which is betting a lot in GraphQL technologies called Apollo. They have built an incredible amount of helpful libraries to get up and running your own GraphQL server and also connected to your client. Please check them out!
+GraphiQL allows its users to test and present GraphQL APIs by providing a graphic interface that facilitates performing queries and mutations. It uses schema to provide information about data structure and types, and it also supports autocompletion.
 
-## Uses Cases
+I like to see it as the merge between Postman and Swagger :laughing:
 
-So this is great, this sounds like an excellent framework so why does everyone is building GraphQL server?
+![GraphiQL](./graphiql-example.gif)
 
-The simple question is because maybe we don't need it in most cases, and maybe using REST is enough to build a good software quality. I like to think that GraphQL is a MUST in these cases:
+## GraphQL is not a framework :no_entry:
 
-* Connection with multiple services: it'll work as a facade, it will coopeate between the different services without any problem.
-* Wrap a response from a server: it could be times when you have to communicate with an endpoint, and the response of it is not correctly formatted.
-* Different client platform: this when SDL delights me, when you are working on different platform it's very common to display different information, so just by specifying them inside the query will be enough.
+I already explained what GraphQL is, and in any time I mentioned anything about framework or library. So let's see how we can implement GraphQL!
 
-I'm sure that must be more cases, these are the most important in my opinion so in order to not let the list longer I just chose only these.
+Depending on the server you want to run GraphQL, you will have to install a dependency for your specific. For Example, if you're running an `express` backend, then you have to install `express-graphql`. Same goes for `happy`, `koa`, etc.
 
-## My experience
+I really want to mention that there is a really big company which is betting a lot in GraphQL called **Apollo**, they have built an incredible amount of helpful libraries to get up and running your own GraphQL server and also connected to your client. Please [check them out](https://www.apollographql.com/)!
+
+## Use Cases :muscle:
+
+So this is great, this sounds like an excellent framework so why does everyone is building GraphQL server? :thinking:
+
+The simple question is because maybe we don't need it in most cases, and maybe building a REST server is enough to build a software with good quality. I like to think that GraphQL is a MUST in these cases:
+
+* **Connection with multiple services**: it will cooperate with the different services without any problem, similar to a facade.
+* **Wrap a response from a server**: it could be times when you have to communicate with an endpoint, and its response is not correctly formatted.
+* **Different client platform**: when you are working on different platforms it's very common to display different information, so just by specifying them inside the query will be enough (this when SDL delights me).
+
+I'm sure that must be more cases, these are the most important in my opinion so in order to not keep the list longer I just choose these 3.
+
+## My experience :bulb:
 
 It won't be a full article if I didn't write my experience using it! Considering the uses cases described above, I was in the 2nd case: I need to build an application that will fetch for gnomes, display them inside a list and when clicking view the information of one them.
 
-I named this project [brastlewark-finder](https://github.com/EmaSuriano/brastlewark-finder). I will explained the whole process of adding GraphQL to a project from scratch.
+I named this project [brastlewark-finder](https://github.com/EmaSuriano/brastlewark-finder). I will explain the whole process of adding GraphQL to a project from scratch.
 
 ![brastlewark-finder](./brastlewark-finder.gif)
 
@@ -228,27 +235,34 @@ Let's take a look at the endpoint they gave me. It returns a list of 1336 items 
 
 ```json
 {
-  "id": 0,
-  "name": "Tobus Quickwhistle",
-  "thumbnail":
-"http://www.publicdomainpictures.net/pictures/10000/nahled/thinking-monkey-11282237747K8xB.jpg",
-  "age": 306,
-  "weight": 39.065952,
-  "height": 107.75835,
-  "hair_color": "Pink",
-  "professions": [
-    "Metalworker",
-    "Woodcarver",
-    "Stonecarver",
-    " Tinker",
-    "Tailor",
-    "Potter"
-  ],
-  "friends": ["Cogwitz Chillwidget", "Tinadette Chillbuster"]
-},
+  "Brastlewark": [
+    {
+      "id": 0,
+      "name": "Tobus Quickwhistle",
+      "thumbnail":
+        "http://www.publicdomainpictures.net/pictures/10000/nahled/thinking-monkey-11282237747K8xB.jpg",
+      "age": 306,
+      "weight": 39.065952,
+      "height": 107.75835,
+      "hair_color": "Pink",
+      "professions": [
+        "Metalworker",
+        "Woodcarver",
+        "Stonecarver",
+        " Tinker",
+        "Tailor",
+        "Potter"
+      ],
+      "friends": ["Cogwitz Chillwidget", "Tinadette Chillbuster"]
+    },
+    {
+      "id": 1
+    }
+  ]
+}
 ```
 
-The first thing I noticed was I didn't have a way to get the information of a friend without filtering by name the whole array from the response. A possible implementation using old style `fetch` could be:
+The first thing I noticed was I didn't have a way to get the information of a friend without filtering by `name` the whole array from the response. A possible implementation using old style `fetch` could be:
 
 ```javascript
 const getGnomes = () => fetch('gnomeURL'); //will return the whole list of gnomes
@@ -269,7 +283,7 @@ const getGnomeById = (id, loadFriends = true) => {
 };
 ```
 
-As you can see, this will lead to serious performance issues and a really bad UX. There may be some improvement it can be made, but I saw that this was the perfect match for GraphQL. Look the same result, but in this case using a Query from GraphQL!
+As you can see, this will lead to serious performance issues and a really bad UX. There may be some improvement it can be made, but I saw that this was the perfect match for GraphQL! Look the same result but in this case, using a Query from GraphQL!
 
 ```javascript
 export const GET_GNOME_BY_ID = gql`
@@ -295,9 +309,11 @@ export const GET_GNOME_BY_ID = gql`
 
 ![Magic](./magic.gif)
 
-### Implementation
+### Implementation :construction_worker:
 
 As I explained before, you have to decide which implementation of GraphQL you'll use to get up and running your server. I decided to use [Micro](https://github.com/zeit/micro) by Zeit and [Apollo server](https://github.com/apollographql/apollo-server) because of the very well explained examples.
+
+You can try the final version of the GraphQL server via GraphiQL [here!](https://brastlewark-finder-sotqubsuzd.now.sh/graphiql)
 
 #### Server definition
 
@@ -335,16 +351,14 @@ server.listen(3001, () => {
 
 As we saw the schema is where we defined the structure for our GraphQL server. When we called `makeExecutableSchema` we should send all the Type Definitions (QueryType, ObjectType, MutationType, etc.) of our server and also them respective resolvers.
 
-Inside `typeDefs` I define:
+Inside `typeDefs` I defined:
 
-* Gnome: This is the ObjectType to represent the Gnome entity inside the server, it stores all the relevant information for a gnome and will be the object sent to the client.
+* `Gnome`: This is the `ObjectType` to represent the Gnome entity inside the server, it stores all the relevant information for a gnome and will be the object sent to the client.
 * Queries:
-  * allGNomes: recieves the critiera for filtering the gnomes (name and an array of professions) and will return an array of Gnomes.
-  * gnome: receives an id (Mandatory field) and returns one Gnome with that Id.
+  * `allGnomes`: receives the criteria for filtering the gnomes (name and an array of professions) and will return an array of `Gnomes`.
+  * `gnome`: receives an id (Mandatory field) and returns the `Gnome` with that Id.
 
-In this case I'm defining two Queries one for retrieving all the Gnomes and another for get only one by Id. Both of them returns an ObjectType called `Gnome`.
-
-Each the fields inside the `Gnome` ObjectType are resolved automatically when the key of the object returned by the service matched, except for friends! If you take a loook inside the resolver, you'll see that Gnome redefined the function of getting a Gnome friends, this is super useful because we can modified the data that comes from the server in a really easy way.
+Each of the fields inside the `Gnome` ObjectType are resolved automatically when the key of the object returned by the service matched, except for friends! If you take a look inside the resolver, you'll see that `Gnome` redefined the function of getting Gnome friends, this is super useful because we can modify the data that comes from the server in a really easy way :smiley:
 
 ```javascript
 import { makeExecutableSchema } from 'graphql-tools';
@@ -418,9 +432,17 @@ const getGnomeById = async (_, { id }) => {
 export { getGnomes, getGnomeById };
 ```
 
+---
+
+I really enjoyed working with GraphQL and the implementation with Apollo, when you get to the point that everything is connected the development is awesome! :star_struck:
+
+I hope that this post has encouraged you to create your own library! Let’s keep building stuff together :construction_worker:
+
 ## Related links
 
-* https://blog.graph.cool/graphql-server-basics-the-schema-ac5e2950214e
-* https://blog.graph.cool/how-to-wrap-a-rest-api-with-graphql-8bf3fb17547d
-* https://blog.graph.cool/top-5-reasons-to-use-graphql-b60cfa683511
-* https://dev-blog.apollodata.com/the-concepts-of-graphql-bc68bd819be3
+* [Introduction to GraphQL](http://graphql.org/learn/)
+* [The Fullstack Tutorial for GraphQL](https://www.howtographql.com)
+* [GraphQL Concepts Visualized](https://dev-blog.apollodata.com/the-concepts-of-graphql-bc68bd819be3)
+* [GraphQL Server Basics](https://blog.graph.cool/graphql-server-basics-the-schema-ac5e2950214e)
+* [How to wrap a REST API with GraphQL](https://blog.graph.cool/how-to-wrap-a-rest-api-with-graphql-8bf3fb17547d)
+* [Top 5 Reasons to Use GraphQL](https://blog.graph.cool/top-5-reasons-to-use-graphql-b60cfa683511)
