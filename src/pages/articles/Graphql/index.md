@@ -71,7 +71,6 @@ Basically, SDL has two main components
 
 * Type: has a name and can extends one or more interfaces.
 
-
 ```graphql
 type Post implements Item {
   # ...
@@ -79,7 +78,6 @@ type Post implements Item {
 ```
 
 * Field: has a name and a type.
-
 
 ```graphql
   age: Int
@@ -198,7 +196,7 @@ Once all `resolvers` returned, the server will gather all the data in the format
 
 ## GraphQL Tools :wrench:
 
-GraphQL was released in 2015, and there are many tools out there which will help you build your own server, but there is only one which you must have. Its name is (GraphiQL)[https://github.com/graphql/graphiql].
+GraphQL was released in 2015, and there are many tools out there which will help you build your own server, but there is only one which you must have. Its name is [GraphiQL](https://github.com/graphql/graphiql).
 
 GraphiQL allows its users to test and present GraphQL APIs by providing a graphic interface that facilitates performing queries and mutations. It uses schema to provide information about data structure and types, and it also supports autocompletion.
 
