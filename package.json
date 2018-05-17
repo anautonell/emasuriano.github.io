@@ -8,20 +8,13 @@
     "build": "gatsby build",
     "clean:public": "rm -rf public",
     "clean": "npm run clean:public",
-    "lint": "./node_modules/.bin/eslint --cache --ext .js,.jsx --ignore-pattern public .",
+    "lint":
+      "./node_modules/.bin/eslint --cache --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "commit": "git add . && git gz",
-    "deploy": "gatsby build && gh-pages -b master -d public",
-    "deploy-travis": "gh-pages -b master -d public"
+    "commit": "git add . && git gz"
   },
   "repository": "git+https://github.com/alxshelepenok/gatsby-starter-lumen.git",
-  "keywords": [
-    "gatsby",
-    "blog",
-    "react",
-    "theme",
-    "starter"
-  ],
+  "keywords": ["gatsby", "blog", "react", "theme", "starter"],
   "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -51,8 +44,7 @@
     "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-disqus-comments": "^1.1.1",
-    "react-helmet": "^5.2.0",
-    "travis-deploy-once": "^5.0.0"
+    "react-helmet": "^5.2.0"
   },
   "devDependencies": {
     "eslint": "^4.14.0",
