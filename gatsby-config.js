@@ -104,7 +104,7 @@ module.exports = {
             resolve: 'gatsby-remark-images',
             options: {
               backgroundColor: 'transparent',
-              linkImagesToOriginal: false
+              showCaptions: true
             }
           },
           {

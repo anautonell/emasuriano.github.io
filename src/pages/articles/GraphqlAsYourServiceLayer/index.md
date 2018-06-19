@@ -3,7 +3,7 @@ title: GraphQL as your Service Layer
 date: "2018-05-15"
 layout: post
 draft: false
-path: "/posts/graphQL-service-layer/"
+path: "/posts/graphQL-as-your-service-layer/"
 category: "Tutorial"
 tags:
 - "Building"
