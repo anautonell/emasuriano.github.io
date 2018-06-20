@@ -2,17 +2,17 @@
 title: Creating a Chrome Extension with React
 date: "2018-06-18"
 layout: post
-draft: true
+draft: false
 path: "/posts/creating-a-chrome-extension-with-react/"
 category: "Tutorial"
 tags:
- - "Chrome"
- - "Building"
- - "React"
-description: "Sometimes the Chrome Store doesn't have the extension you really want or maybe there is a few already built but they're really bad, but you think that in order to build an extension you need some kind of knowledge in a special language of theirs. Let me tell you that if you know how to create a Web Application with React then you're a Chrome Extension developer too!"
+- "Chrome"
+- "Building"
+- "React"
+description: "Sometimes the Chrome Store doesn't have the extension you really want or maybe there is a few already built but they're really bad, but you think that in order to build an extension you need some kind of knowledge in a special language. Let me tell you that if you know how to create a Web Application with React then you're a Chrome Extension developer too!"
 ---
 
-Sometimes the Chrome Store doesn't have the extension you really want or maybe there is a few already built but they're really bad, but you think that in order to build an extension you need some kind of knowledge in a special language of theirs. Let me tell you that if you know how to create a Web Application with React then you're a Chrome Extension developer too! :astonished:
+Sometimes the Chrome Store doesn't have the extension you really want or maybe there is a few already built but they're really bad, but you think that in order to build an extension you need some kind of knowledge in a special language. Let me tell you that if you know how to create a Web Application with React then you're a Chrome Extension developer too! :astonished:
 
 ![Shop](./shop.jpg)
 
@@ -20,7 +20,7 @@ Sometimes the Chrome Store doesn't have the extension you really want or maybe t
 
 ## Setting up the project :tools:
 
-When working with there is plenty of options to set up the workspace. In this case, I'm going to use CRA ([create-react-app](https://github.com/facebook/create-react-app)) just because of its simplicity! So let's start by installing the package and creating our project.
+When working with React there is plenty of options to set up the workspace. In this case, I'm going to use CRA ([create-react-app](https://github.com/facebook/create-react-app)) due to its simplicity! So let's start by installing the package and creating our project.
 
 ```sh
 npm install -g create-react-app
@@ -40,16 +40,16 @@ my-first-chrome-extension
 │   ├── index.html
 │   └── manifest.json
 └── src
-    ├── App.css
-    ├── App.js
-    ├── App.test.js
-    ├── index.css
-    ├── index.js
-    ├── logo.svg
-    └── registerServiceWorker.js
+   ├── App.css
+   ├── App.js
+   ├── App.test.js
+   ├── index.css
+   ├── index.js
+   ├── logo.svg
+   └── registerServiceWorker.js
 ```
 
-This is the last step for a minimal workspace configuration when working on the web, but for this experiment, we need to add one more :nerd_face:. Chrome extensions need to have a `manifest.json` file in the root folder, it provides important information of our extension like name, permissions, current version and the list continues...
+This is the last step for a minimal workspace configuration when working on the web, but for this particular experiment, we need to add one more :nerd_face:. Chrome extensions need to have a `manifest.json` file in the root folder, it provides important information of our extension like name, permissions, current version and the list goes on ...
 
 This is the minimal configuration for a Chrome extension:
 
@@ -72,9 +72,9 @@ This is the minimal configuration for a Chrome extension:
 }
 ```
 
-One important thing to remark is create-react-app already includes a `manifest.json` file in the public folder, so you need to update it with the information from above.
+One important thing you should remember is that create-react-app already includes a `manifest.json` file in the public folder, so you need to update it with the information from above.
 
-The entry point of my extension is located in the `browser_action` object, where I told Chrome that my extension will open a popup and open `index.html`.
+The entry point of my extension is located in the `browser_action` object, where I told Chrome that my extension will open a popup and render `index.html`.
 
 ## Opening my extension inside Chrome :earth_americas:
 
@@ -84,7 +84,7 @@ As any React application in order to ship it first, we need to build it. For tha
 npm run build
 ```
 
-This will create a `build` folder inside our project, where we have our optimized application ready to be open with Chrome! To do that we need to open my Chrome extension by running the following URL on a tab:
+This will create a `build` folder inside our project, where we have our optimized application ready to be open with Chrome! To do that we need to upload my Chrome extension by running the following URL on a tab:
 
 ```
 chrome://extensions/
@@ -100,7 +100,7 @@ If everything went OK, you should be able to see your application icon in the Ex
 
 ## Development Experience :computer:
 
-The cool thing about building an extension with React is that we keep having the awesomeness development experience like having Hot Reloading, npm, ES6, etc. So in order to start coding our extension, we just run.
+The cool thing about building an extension with React is that we keep having the awesomeness development experience like having Hot Reloading, npm, ES6, etc. So in order to run our extension, we have to execute the following command in the console:
 
 ```
 npm start
@@ -108,44 +108,44 @@ npm start
 
 This will open a new tab in our browser with Home Page and we're ready to start building our extension, we don't need to run it inside a Chrome (as an extension). **DISCLAIMER: In case you need any Chrome extension API you may have to run it as an extension in order to have access to them.**
 
-One thing I suggest to do is to change the `width` of our application due to by default it'll take the full width so if we have a wide resolution like (1920x1080) you are going to see everything really wide and the final result won't match with this one. I use `width: 20em`, but that really depends on you.
+Another tip, I suggest you to do is to change the `width` of our application due to by default it'll take the full width so if we have a wide resolution like (1920x1080) you are going to see everything extra wide and the final result won't match with this one. I use `width: 20em`, but that really is up to you.
 
 After you've coded all the features for your extension, you can repeat the Load process the times you want to see how it looks on a Chrome Popup :sparkles:
 
 ## Put it in the store! :package:
 
-Now you have your extension running on your Chrome (locally), but what happens if you want to share it with a friend or with the community? You have to send the build folder manually, and maybe that it's not the best way to do this. This is where the Chrome Store appears! Let's open this URL in your browser:
+Now you have your extension running on your Chrome (locally), but what happens if you want to share it with a friend or with the community? You have to send the build folder manually, and maybe that it's not the best way to do so. This is where the Chrome Store appears! Let's open this URL in your browser:
 
 ```
 https://chrome.google.com/webstore/developer/dashboard
 ```
 
-The first thing I noticed is that, yes in order to upload an extension first you need to pay a fee :disappointed:. Fortunately is a one time pay and it costs US$5.00, so it's not that much!
+The first thing I noticed is that, yes in order to upload an extension first you need to pay a fee :disappointed:. Fortunately is a one time pay and it costs US$5.00, so it's not that expensive!
 
 ![Default Dashboard](./oldDashboard.jpg)
 _Default Dashboard_
 
-After that, I highly suggest using the new Developer Dashboard, because the default is tremendously horrible! :scream: The new one uses Material Design and in my opinion is much more intuitive and nicer.
+After that, I highly recommend using the new Developer Dashboard, because the default is horrible! :scream: The new one uses Material Design and in my opinion is much more intuitive and cleaner.
 
 ![New Dashboard](./newDashboard.jpg)
 _New Dashboard_
 
-In order to upload the extension first, we need to _zip_ the `build` folder, to do so you can use whatever application you want, in my case I use the Zip functionality of Windows. Then click on `NEW ITEM` and upload the zip file, you'll notice that some fields are already filled in like name and description, the rest have to be manually complete.
+In order to upload the extension, first we need to _zip_ the `build` folder, to do so you can use whatever application you want, in my case I used the Zip functionality of Windows. Then click on `NEW ITEM` and upload the zip file, you'll notice that some fields are already filled in like name and description, the rest have to be manually complete.
 
 ![Example of Store](./easyEncryptStore.jpg)
 _Example of Store_
 
-After you've filled all the required fields you're ready to Publish your first extension and see it on the Store! :metal: One thing, don't scary if you are not able to find it using the Google search it takes a few days or maybe weeks to be discoverable.
+After you've filled all the required fields you're ready to Publish your first extension and see it on the Store! :metal: On the other hand, don't be scared if you are not able to find it using the Google search, it takes a few days or maybe weeks to be discoverable.
 
 ## My Experience
 
-Remember that I said that sometimes the extension you're looking for is not inside the Chrome Store? Well, that's my case, I really want to have an extension to encrypt and decrypt a message (JUST THAT), the ones inside the store didn't quite match my requirements.
+Remember that I said that sometimes the extension you're looking for is not inside the Chrome Store? Well, that's me, I really wanted to have an extension to encrypt and decrypt a message (JUST THAT), the ones inside the store didn't quite match my requirements.
 
 Because of that, I build [Easy Encrypt](https://chrome.google.com/webstore/detail/easy-encrypt/pdpinaffkgjneengfdgoohjipndeopcn), an offline cipher which can encrypt and decrypt a message using different Encryption Algorithm. Easy Encrypt is a free Extension and an Open Source project hosted in [Github](https://github.com/EmaSuriano/chrome-easy-decrypt), so any contribution is really appreciated! Also, you can use it as a real example :grinning: Here it's some screenshots using it.
 
 ![Easy Encrypt Screenshots](./easyEncryptScreenshots.jpg)
 
-I was able to create this chrome extension in just a few days, which really surprised me! So if you're scared of coding for another platform, just remember it's the same old React we all known :laughing:
+I was able to create this chrome extension in just a few days, which blew my mind! So if you're scared of coding for another platform, just remember it's the same old React we all known :laughing:
 
 ---
 
