@@ -1,68 +1,12 @@
 import React from 'react';
-import ApplictionHelmet from '../components/Helmet';
-import Post from '../components/Post';
-import Sidebar from '../components/Sidebar';
+// import { Link, StaticQuery, graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import LandingPage from '../sections/LandingPage';
 
-const IndexRoute = props => {
-  const { title, subtitle } = props.data.site.siteMetadata;
-  const posts = props.data.allMarkdownRemark.edges;
-  const items = posts.map(post => (
-    <Post data={post} key={post.node.fields.slug} />
-  ));
+const IndexPage = () => (
+  <Layout>
+    <LandingPage />
+  </Layout>
+);
 
-  return (
-    <div>
-      <ApplictionHelmet title={title} description={subtitle} />
-      <Sidebar {...props} />
-      <div className="content">
-        <div className="content__inner">{items}</div>
-      </div>
-    </div>
-  );
-};
-
-export default IndexRoute;
-
-export const pageQuery = graphql`
-  query IndexQuery {
-    site {
-      siteMetadata {
-        title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        author {
-          name
-          email
-          twitter
-          github
-          medium
-          linkedIn
-        }
-      }
-    }
-    allMarkdownRemark(
-      limit: 1000
-      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
-      sort: { order: DESC, fields: [frontmatter___date] }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-            categorySlug
-          }
-          frontmatter {
-            title
-            date
-            category
-            description
-          }
-        }
-      }
-    }
-  }
-`;
+export default IndexPage;
