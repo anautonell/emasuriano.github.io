@@ -1,21 +1,18 @@
-import React from 'react';
-// import SocialIcons from '@components/SocialIcons';
-// import Nav from '@components/Nav';
-// import ScrollToNext from '@components/ScrollToNext';
-// import BrowserNotes from '@components/BrowserNotes';
+import React, { Fragment } from 'react';
 import Section from '../components/Section';
+import SocialLink from '../components/SocialLink';
 import { StaticQuery, graphql } from 'gatsby';
-import FontAwesome from 'react-fontawesome';
+import { Heading, Flex } from 'rebass';
+import styled from 'styled-components';
 
-const SocialLink = ({ page, link }) => (
-  <a href={link} target="_blank">
-    <FontAwesome name={page} />
-  </a>
-);
+const LandingSection = styled(Section)`
+  color: ${props => props.theme.color};
+  text-align: center;
+`;
 
 const LandingPage = (props, context) => {
   return (
-    <Section className="landing-page">
+    <LandingSection>
       <StaticQuery
         query={graphql`
           query SiteTitleQuery {
@@ -34,25 +31,29 @@ const LandingPage = (props, context) => {
         render={data => {
           const { name, socialLinks, roles } = data.site.siteMetadata;
           return (
-            <main>
-              {/* <BrowserNotes /> */}
-              <div className="intro-wrapper">
-                <h1>Hello, I'm {name}!</h1>
-                <h3>{roles.reduce((acc, curr) => `${acc} | ${curr}`)}</h3>
-                <div className="tagline">
-                  {socialLinks.map(linkData => (
-                    <SocialLink {...linkData} />
-                  ))}
-                </div>
-                {/* <SocialIcons /> */}
-              </div>
-            </main>
+            <Fragment>
+              <Heading is="h1" fontSize={[5, 6, 8]} mb={[3, 4, 5]}>
+                Hello, I'm {name}!
+              </Heading>
+              <Heading is="h2" fontSize={[1, 2, 4]} mb={[2, 3]}>
+                {roles.reduce((acc, curr) => `${acc} | ${curr}`)}
+              </Heading>
+              <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
+                {socialLinks.map(({ page, name }) => (
+                  <SocialLink
+                    m={2}
+                    fontSize={[5, 5, 6]}
+                    key={page}
+                    page={page}
+                    name={name}
+                  />
+                ))}
+              </Flex>
+            </Fragment>
           );
         }}
       />
-
-      {/* <ScrollToNext pageSelector=".about-page" /> */}
-    </Section>
+    </LandingSection>
   );
 };
 

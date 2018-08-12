@@ -24,10 +24,17 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-resolve-src',
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        pathToConfigModule: `src/utils/typography`
+        fonts: [`cabin`, `Open Sans`]
       }
     }
   ]
 };
+
+// {
+//   resolve: `gatsby-plugin-typography`,
+//   options: {
+//     pathToConfigModule: `src/utils/typography`
+//   }
+// }
