@@ -4,6 +4,8 @@ import SocialLink from '../components/SocialLink';
 import { StaticQuery, graphql } from 'gatsby';
 import { Heading, Flex } from 'rebass';
 import styled from 'styled-components';
+import Typed from 'react-typed';
+import TextLoop from 'react-text-loop';
 
 const LandingSection = styled(Section)`
   color: ${props => props.theme.color};
@@ -35,17 +37,17 @@ const LandingPage = (props, context) => {
               <Heading is="h1" fontSize={[5, 6, 8]} mb={[3, 4, 5]}>
                 Hello, I'm {name}!
               </Heading>
-              <Heading is="h2" fontSize={[1, 2, 4]} mb={[2, 3]}>
-                {roles.reduce((acc, curr) => `${acc} | ${curr}`)}
+              <Heading is="h2" fontSize={[3, 4, 6]} mb={[2, 4]}>
+                <TextLoop children={roles} />
               </Heading>
               <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
-                {socialLinks.map(({ page, name }) => (
+                {socialLinks.map(({ page, link }) => (
                   <SocialLink
                     m={2}
                     fontSize={[5, 5, 6]}
                     key={page}
                     page={page}
-                    name={name}
+                    link={link}
                   />
                 ))}
               </Flex>

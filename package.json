@@ -29,6 +29,8 @@
     "react-headroom": "^2.2.2",
     "react-helmet": "^5.2.0",
     "react-scroll": "^1.7.10",
+    "react-text-loop": "^1.1.0",
+    "react-typed": "^1.0.9",
     "react-typography": "^0.16.13",
     "rebass": "^2.1.0",
     "styled-components": "^3.4.2",
