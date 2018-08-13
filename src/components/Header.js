@@ -1,12 +1,18 @@
 import React from 'react';
 import Headroom from 'react-headroom';
-import { Box, Flex, Link, Label } from 'rebass';
+import { Box, Flex, Label } from 'rebass';
 import styled, { withTheme } from 'styled-components';
 import Logo from './Logo';
+import { Link } from 'react-scroll';
 
 const RouteLink = withTheme(({ label, to, theme }) => (
-  <Label ml={[2, 3]} fontSize={[2, 3]}>
-    <Link color={theme.color} href={to} css={{ textDecoration: 'none' }}>
+  <Label
+    ml={[2, 3]}
+    color={theme.color}
+    fontSize={[2, 3]}
+    css={{ cursor: 'pointer' }}
+  >
+    <Link smooth to={to}>
       {label}
     </Link>
   </Label>
@@ -30,14 +36,16 @@ const Header = props => {
         alignItems="center"
         p={3}
       >
-        <Box>
-          <Logo width="50px" />
+        <Box css={{ cursor: 'pointer' }}>
+          <Link smooth to="landing">
+            <Logo width="50px" />
+          </Link>
         </Box>
         <Flex>
-          <RouteLink label="About" to="asdasd" />
-          <RouteLink label="Projects" />
-          <RouteLink label="Writing" />
-          <RouteLink label="Talks" />
+          <RouteLink label="About" to="about" />
+          <RouteLink label="Projects" to="projects" />
+          <RouteLink label="Writing" to="writing" />
+          <RouteLink label="Talks" to="talks" />
         </Flex>
       </Flex>
     </HeaderContainer>

@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import Section from '../components/Section';
 import { Heading } from 'rebass';
 
-const About = (props, context) => {
+const Writing = (props, context) => {
   return (
-    <Section name="about">
-      <Heading>About</Heading>
+    <Section name="writing">
+      <Heading>Writing</Heading>
     </Section>
   );
 };
 
-export default About;
+export default Writing;

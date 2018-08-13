@@ -12,7 +12,7 @@ const LandingSection = styled(Section)`
 
 const LandingPage = (props, context) => {
   return (
-    <LandingSection>
+    <LandingSection name="landing">
       <StaticQuery
         query={graphql`
           query SiteTitleQuery {
