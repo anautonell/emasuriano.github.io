@@ -5,7 +5,7 @@ import { Heading } from 'rebass';
 const Projects = (props, context) => {
   return (
     <Section name="projects">
-      <Heading>Projects</Heading>
+      <Heading color="secondary">Projects</Heading>
     </Section>
   );
 };

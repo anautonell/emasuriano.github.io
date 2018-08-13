@@ -1,13 +1,24 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { ThemeProvider, injectGlobal } from 'styled-components';
+import { Provider } from 'rebass';
 
-const theme = {
-  backgroundColor: '#FFFFFF',
-  color: '#1FB6FF'
+// const theme = {
+//   backgroundColor: '#FFFFFF',
+//   color: '#1FB6FF',
+// };
+const colors = {
+  background: '#FFFFFF',
+  primary: '#6200EE',
+  primaryVariant: '#3700B3',
+  primaryFaded: '#6200EEAA',
+  secondary: '#03DAC6',
+  secondaryVariant: '#018786',
 };
 
 injectGlobal`
+  * { box-sizing: border-box; }
+
   body {
     margin: 0;
     font-family: Cabin;
@@ -16,7 +27,7 @@ injectGlobal`
 
 const Layout = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <Provider theme={{ colors }}>
       <Fragment>
         <Helmet>
           <link
@@ -28,7 +39,7 @@ const Layout = ({ children }) => {
         </Helmet>
         {children}
       </Fragment>
-    </ThemeProvider>
+    </Provider>
   );
 };
 

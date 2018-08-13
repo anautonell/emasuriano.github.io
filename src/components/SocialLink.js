@@ -3,12 +3,12 @@ import FontAwesome from 'react-fontawesome';
 import { Link, Label } from 'rebass';
 import { withTheme } from 'styled-components';
 
-const SocialLink = ({ page, link, size, theme, ...props }) => (
+const SocialLink = ({ page, link, size, color, ...props }) => (
   <Label {...props}>
-    <Link href={link} target="_blank" color={theme.color}>
+    <Link href={link} target="_blank" color={color}>
       <FontAwesome name={page} />
     </Link>
   </Label>
 );
 
-export default withTheme(SocialLink);
+export default SocialLink;

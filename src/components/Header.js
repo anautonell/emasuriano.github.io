@@ -1,14 +1,14 @@
 import React from 'react';
 import Headroom from 'react-headroom';
 import { Box, Flex, Label } from 'rebass';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import Logo from './Logo';
 import { Link } from 'react-scroll';
 
-const RouteLink = withTheme(({ label, to, theme }) => (
+const RouteLink = ({ label, to }) => (
   <Label
     ml={[2, 3]}
-    color={theme.color}
+    color="primary"
     fontSize={[2, 3]}
     css={{ cursor: 'pointer' }}
   >
@@ -16,11 +16,11 @@ const RouteLink = withTheme(({ label, to, theme }) => (
       {label}
     </Link>
   </Label>
-));
+);
 
 const HeaderContainer = styled(Headroom)`
   .headroom {
-    background: ${props => props.theme.backgroundColor}CC;
+    background: ${props => props.theme.colors.background}CC;
   }
 
   position: absolute;
