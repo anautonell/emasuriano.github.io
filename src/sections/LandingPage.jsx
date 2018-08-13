@@ -4,7 +4,6 @@ import SocialLink from '../components/SocialLink';
 import { StaticQuery, graphql } from 'gatsby';
 import { Heading, Flex } from 'rebass';
 import styled from 'styled-components';
-import Typed from 'react-typed';
 import TextLoop from 'react-text-loop';
 
 const LandingSection = styled(Section)`
