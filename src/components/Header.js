@@ -2,7 +2,7 @@ import React from 'react';
 import Headroom from 'react-headroom';
 import { Box, Flex, Link, Label } from 'rebass';
 import styled, { withTheme } from 'styled-components';
-import EmaSurianoLogo from './EmaSurianoLogo';
+import Logo from './Logo';
 
 const RouteLink = withTheme(({ label, to, theme }) => (
   <Label ml={[2, 3]} fontSize={[2, 3]}>
@@ -31,7 +31,7 @@ const Header = props => {
         p={3}
       >
         <Box>
-          <EmaSurianoLogo width="50px" />
+          <Logo width="50px" />
         </Box>
         <Flex>
           <RouteLink label="About" to="asdasd" />
