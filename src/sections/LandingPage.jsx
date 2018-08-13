@@ -43,7 +43,7 @@ const LandingPage = (props, context) => {
               <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
                 {socialLinks.map(({ page, link }) => (
                   <SocialLink
-                    m={2}
+                    mx={3}
                     fontSize={[5, 5, 6]}
                     key={page}
                     page={page}
