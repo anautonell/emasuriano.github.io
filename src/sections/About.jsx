@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Section from '../components/Section';
 import { Heading, Box, Text, Image, Flex } from 'rebass';
-import styled from 'styled-components';
 import profile from './profile.jpg';
 import { Link } from 'react-scroll';
 
@@ -10,16 +9,6 @@ const ListItem = ({ children }) => (
     <Text pb={1}>{children}</Text>
   </li>
 );
-
-const HighlightBackground = styled.span`
-  background: ${props => props.theme.color}AA;
-  padding: 3px;
-  to 
-`;
-
-// const Highlight = ({ to, children }) => to ? <Link to={to} smooth>
-//   <HighlightBackground>{children}</HighlightBackground>
-// </Link> :
 
 const Highlight = ({ children, to }) => (
   <Text
@@ -40,7 +29,9 @@ const Highlight = ({ children, to }) => (
 const About = () => {
   return (
     <Section name="about">
-      <Heading pb={3} color="secondary">About me</Heading>
+      <Heading pb={3} color="secondary">
+        About me
+      </Heading>
       <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
         <Box width={[1, 1, 3 / 4]}>
           <Text lineHeight={2}>

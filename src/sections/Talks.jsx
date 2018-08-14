@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Section from '../components/Section';
 import { Heading } from 'rebass';
 

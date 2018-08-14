@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
-import { ThemeProvider, injectGlobal } from 'styled-components';
+import { injectGlobal } from 'styled-components';
 import { Provider } from 'rebass';
 
 // const theme = {

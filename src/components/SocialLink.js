@@ -1,7 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, Label } from 'rebass';
-import { withTheme } from 'styled-components';
 
 const SocialLink = ({ page, link, size, color, ...props }) => (
   <Label {...props}>
