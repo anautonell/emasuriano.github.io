@@ -36,5 +36,11 @@ module.exports = {
         accessToken: `3fac22c51aed56369f51320e09f4bfe6eab46f899c80d993231e52b72997f618`,
       },
     },
+    {
+      resolve: `gatsby-source-medium`,
+      options: {
+        username: `@emasuriano`,
+      },
+    },
   ],
 };

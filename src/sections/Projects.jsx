@@ -1,14 +1,16 @@
 import React from 'react';
 import Section from '../components/Section';
-import { Heading, Box, Card, Subhead, BackgroundImage, Text } from 'rebass';
+import { Heading, Box, Card, Subhead, Image, Text } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import { getContentfulArray } from '../utils/contentful';
 import styled from 'styled-components';
+import ReactHoverObserver from 'react-hover-observer';
 
 const ProjectContainer = styled.div`
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
 `;
 
 const Title = styled(Subhead)`
@@ -32,14 +34,23 @@ const Project = ({
   publishedDate,
   logo,
 }) => (
-  <Box>
-    <Card bg="primaryFaded">
-      <BackgroundImage ratio={1} src={logo.file.url} />
-      <Title p={2}>Library</Title>
-      <Subhead>{name}</Subhead>
-      <Text>{description}</Text>
-    </Card>
-  </Box>
+  <ReactHoverObserver>
+    {({ isHovering }) => (
+      <Box width={300} height={300}>
+        <Card bg="primaryFaded" p={2}>
+          <Image
+            ratio={1}
+            src={logo.file.url}
+            bg="white"
+            p={2}
+            css={{ borderRadius: '0 0 20px 20px' }}
+          />
+          <Title p={2}>{name}</Title>
+          {isHovering && <Text>{description}</Text>}
+        </Card>
+      </Box>
+    )}
+  </ReactHoverObserver>
 );
 
 const Projects = (props, context) => {

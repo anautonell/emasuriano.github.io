@@ -9,6 +9,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   background: ${props => props.theme.colors.backgroundColor};
+  padding: 0 1em;
 `;
 
 export default Section;
