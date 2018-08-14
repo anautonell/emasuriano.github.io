@@ -1,1 +1,1 @@
-export const getContentfulArray = data => data.edges.map(edge => edge.node);
+export const edgeToArray = data => data.edges.map(edge => edge.node);

@@ -2,7 +2,7 @@ import React from 'react';
 import Section from '../components/Section';
 import { Heading, Box, Card, Subhead, Image, Text } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
-import { getContentfulArray } from '../utils/contentful';
+import { edgeToArray } from '../utils/contentful';
 import styled from 'styled-components';
 import ReactHoverObserver from 'react-hover-observer';
 
@@ -82,7 +82,7 @@ const Projects = (props, context) => {
           }
         `}
         render={data => {
-          const projects = getContentfulArray(data.allContentfulProject);
+          const projects = edgeToArray(data.allContentfulProject);
           return (
             <ProjectContainer>
               {projects.map(p => (
