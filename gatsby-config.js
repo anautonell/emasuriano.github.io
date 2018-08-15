@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     url: 'https://emasuriano.com',
     name: 'Ema Suriano',
-    roles: ['Web Developer', 'Open-Source Enthusiast', 'Writer', 'Speaker'],
+    roles: ['Web Developer', 'Open-Source Enthusiast', 'Writer'],
     socialLinks: [
       {
         page: 'twitter',

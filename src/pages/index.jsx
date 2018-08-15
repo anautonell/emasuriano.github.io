@@ -5,7 +5,6 @@ import LandingPage from '../sections/LandingPage';
 import About from '../sections/About';
 import Projects from '../sections/Projects';
 import Writing from '../sections/Writing';
-import Talks from '../sections/Talks';
 
 const IndexPage = () => (
   <Layout>
@@ -14,7 +13,6 @@ const IndexPage = () => (
     <About />
     <Projects />
     <Writing />
-    <Talks />
   </Layout>
 );
 

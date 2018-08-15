@@ -30,7 +30,7 @@ const About = () => {
   return (
     <Section name="about">
       <Heading pb={3} color="secondary">
-        About me
+        About me 👨‍💻
       </Heading>
       <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
         <Box width={[1, 1, 3 / 4]}>
@@ -52,7 +52,7 @@ const About = () => {
             <Highlight>share knowledge</Highlight> with others. For that reason,
             I start <Highlight to="writing">writing post</Highlight> about the
             latest technologies in Medium and also{' '}
-            <Highlight to="talks">do talks</Highlight> in local meetups.
+            <Highlight>do talks</Highlight> in local meetups.
           </Text>
           <Text lineHeight={2} pb={3}>
             For me the <Highlight>Open Source</Highlight> philosophy was a{' '}

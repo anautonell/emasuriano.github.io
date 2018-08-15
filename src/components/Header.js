@@ -45,7 +45,6 @@ const Header = props => {
           <RouteLink label="About" to="about" />
           <RouteLink label="Projects" to="projects" />
           <RouteLink label="Writing" to="writing" />
-          <RouteLink label="Talks" to="talks" />
         </Flex>
       </Flex>
     </HeaderContainer>

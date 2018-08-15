@@ -1,25 +1,55 @@
 import React from 'react';
 import Section from '../components/Section';
-import { Heading } from 'rebass';
+import { Heading, Box, Text } from 'rebass';
 import { edgeToArray } from '../utils/contentful';
 import { StaticQuery, graphql } from 'gatsby';
+import { CardContainer, Card } from '../components/Card';
+import styled from 'styled-components';
 
-const Post = ({ title, text, image, url }) => (
-  <div>
-    <h1>{title}</h1>
-    <p>{title}</p>
-    <img src={image} />
-    <p>{url}</p>
-  </div>
+const CoverImage = styled.img`
+  width: 100%;
+  object-fit: cover;
+`;
+
+const EllipsisHeading = styled(Heading)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
+
+const Post = ({ title, text, image, url, date, time }) => (
+  <Card
+    onClick={() => window.open(url, '_blank')}
+    css={{ cursor: 'pointer' }}
+    p={20}
+  >
+    <EllipsisHeading mb={3}>{title}</EllipsisHeading>
+    <CoverImage src={image} height="200px" />
+    <Text mt={3}>{text}</Text>
+    <Text color="grey" mt={3} textAlign="right">{`${date} - ${Math.ceil(
+      time,
+    )} min`}</Text>
+  </Card>
 );
 
 const parsePost = postFromGraphql => {
   const MEDIUM_CDN = 'https://cdn-images-1.medium.com/max/800';
   const MEDIUM_URL = 'https://medium.com';
-  const { id, uniqueSlug, title, virtuals, author } = postFromGraphql;
+  const {
+    id,
+    uniqueSlug,
+    createdAt,
+    title,
+    virtuals,
+    author,
+  } = postFromGraphql;
   return {
     id,
     title,
+    time: virtuals.readingTime,
+    date: createdAt,
     text: virtuals.subtitle,
     image: `${MEDIUM_CDN}/${virtuals.previewImage.imageId}`,
     url: `${MEDIUM_URL}/${author.username}/${uniqueSlug}`,
@@ -29,18 +59,22 @@ const parsePost = postFromGraphql => {
 const Writing = (props, context) => {
   return (
     <Section name="writing">
-      <Heading color="secondary">Writing</Heading>
+      <Heading color="secondary" mb={3}>
+        Writing ✍️
+      </Heading>
       <StaticQuery
         query={graphql`
           query MediumPostQuery {
-            allMediumPost {
+            allMediumPost(limit: 6, sort: { fields: createdAt, order: DESC }) {
               edges {
                 node {
                   id
                   uniqueSlug
                   title
+                  createdAt(formatString: "MMM YYYY")
                   virtuals {
                     subtitle
+                    readingTime
                     previewImage {
                       imageId
                     }
@@ -55,13 +89,12 @@ const Writing = (props, context) => {
         `}
         render={data => {
           const posts = edgeToArray(data.allMediumPost).map(parsePost);
-          console.log(posts);
           return (
-            <div>
+            <CardContainer>
               {posts.map(p => (
                 <Post key={p.id} {...p} />
               ))}
-            </div>
+            </CardContainer>
           );
         }}
       />
