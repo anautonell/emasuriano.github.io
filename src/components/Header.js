@@ -34,7 +34,7 @@ const Header = props => {
         p={3}
       >
         <Box css={{ cursor: 'pointer' }}>
-          <a href="# ">
+          <a href="#home">
             <Logo width="50px" />
           </a>
         </Box>

@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
 import { StaticQuery, graphql } from 'gatsby';
-import { Heading, Flex } from 'rebass';
+import { Heading, Flex, Box } from 'rebass';
 import TextLoop from 'react-text-loop';
 
 const LandingPage = (props, context) => {
   return (
-    <Section id=" ">
+    <Section id="home">
       <StaticQuery
         query={graphql`
           query SiteTitleQuery {
@@ -37,13 +37,13 @@ const LandingPage = (props, context) => {
                 Hello, I'm {name}!
               </Heading>
               <Heading
-                textAlign="center"
                 is="h2"
                 color="primary"
                 fontSize={[3, 4, 6]}
                 mb={[2, 4]}
+                textAlign="center"
               >
-                <TextLoop children={roles} />
+                <TextLoop children={roles} mask />
               </Heading>
               <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
                 {socialLinks.map(({ page, link }) => (

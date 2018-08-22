@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
-import LandingPage from '../sections/LandingPage';
+import Landing from '../sections/Landing';
 import About from '../sections/About';
 import Projects from '../sections/Projects';
 import Writing from '../sections/Writing';
@@ -9,7 +9,7 @@ import Writing from '../sections/Writing';
 const IndexPage = () => (
   <Layout>
     <Header />
-    <LandingPage />
+    <Landing />
     <About />
     <Projects />
     <Writing />
