@@ -7,7 +7,7 @@ import TextLoop from 'react-text-loop';
 
 const LandingPage = (props, context) => {
   return (
-    <Section name="landing">
+    <Section id=" ">
       <StaticQuery
         query={graphql`
           query SiteTitleQuery {

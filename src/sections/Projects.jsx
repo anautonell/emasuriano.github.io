@@ -87,7 +87,7 @@ const Project = ({
 
 const Projects = (props, context) => {
   return (
-    <Section name="projects">
+    <Section id="projects">
       <Heading color="secondary">Projects</Heading>
       <StaticQuery
         query={graphql`

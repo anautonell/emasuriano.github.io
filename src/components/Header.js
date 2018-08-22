@@ -3,7 +3,6 @@ import Headroom from 'react-headroom';
 import { Box, Flex, Label } from 'rebass';
 import styled from 'styled-components';
 import Logo from './Logo';
-import { Link } from 'react-scroll';
 
 const RouteLink = ({ label, to }) => (
   <Label
@@ -12,9 +11,7 @@ const RouteLink = ({ label, to }) => (
     fontSize={[2, 3]}
     css={{ cursor: 'pointer' }}
   >
-    <Link smooth to={to}>
-      {label}
-    </Link>
+    <a href={`#${to}`}>{label}</a>
   </Label>
 );
 
@@ -37,9 +34,9 @@ const Header = props => {
         p={3}
       >
         <Box css={{ cursor: 'pointer' }}>
-          <Link smooth to="landing">
+          <a href="# ">
             <Logo width="50px" />
-          </Link>
+          </a>
         </Box>
         <Flex>
           <RouteLink label="About" to="about" />

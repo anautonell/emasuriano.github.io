@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { injectGlobal } from 'styled-components';
 import { Provider } from 'rebass';
+import { configureAnchors } from 'react-scrollable-anchor';
+
+configureAnchors({ scrollDuration: 600, offset: 0 });
 
 // const theme = {
 //   backgroundColor: '#FFFFFF',

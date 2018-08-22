@@ -2,7 +2,6 @@ import React from 'react';
 import Section from '../components/Section';
 import { Heading, Box, Text, Image, Flex } from 'rebass';
 import profile from './profile.jpg';
-import { Link } from 'react-scroll';
 
 const ListItem = ({ children }) => (
   <li>
@@ -16,19 +15,13 @@ const Highlight = ({ children, to }) => (
     p={1}
     bg="primaryFaded"
   >
-    {to ? (
-      <Link to={to} smooth>
-        {children}
-      </Link>
-    ) : (
-      children
-    )}
+    {to ? <a href={`#${to}`}>{children}</a> : children}
   </Text>
 );
 
 const About = () => {
   return (
-    <Section name="about">
+    <Section id="about">
       <Heading pb={3} color="secondary">
         About me 👨‍💻
       </Heading>

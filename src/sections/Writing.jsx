@@ -58,7 +58,7 @@ const parsePost = postFromGraphql => {
 
 const Writing = (props, context) => {
   return (
-    <Section name="writing">
+    <Section id="writing">
       <Heading color="secondary" mb={3}>
         Writing ✍️
       </Heading>
