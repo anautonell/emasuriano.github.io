@@ -43,7 +43,7 @@ const LandingPage = (props, context) => {
                 mb={[2, 4]}
                 textAlign="center"
               >
-                <TextLoop children={roles} mask />
+                <TextLoop children={roles} />
               </Heading>
               <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
                 {socialLinks.map(({ page, link }) => (

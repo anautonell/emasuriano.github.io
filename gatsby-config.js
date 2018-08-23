@@ -42,5 +42,6 @@ module.exports = {
         username: `@emasuriano`,
       },
     },
+    'gatsby-transformer-remark',
   ],
 };

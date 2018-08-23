@@ -11,7 +11,9 @@ const RouteLink = ({ label, to }) => (
     fontSize={[2, 3]}
     css={{ cursor: 'pointer' }}
   >
-    <a href={`#${to}`}>{label}</a>
+    <a href={`#${to}`} style={{ textDecoration: 'none' }}>
+      {label}
+    </a>
   </Label>
 );
 
