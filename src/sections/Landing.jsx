@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
 import { StaticQuery, graphql } from 'gatsby';
-import { Heading, Flex, Box } from 'rebass';
+import { Heading, Flex } from 'rebass';
 import TextLoop from 'react-text-loop';
 
 const LandingPage = (props, context) => {

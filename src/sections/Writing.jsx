@@ -60,7 +60,10 @@ const Writing = (props, context) => {
   return (
     <Section id="writing">
       <Heading color="secondary" mb={3}>
-        Writing ✍️
+        Writing{' '}
+        <span role="img" aria-label="writting">
+          ✍️
+        </span>
       </Heading>
       <StaticQuery
         query={graphql`

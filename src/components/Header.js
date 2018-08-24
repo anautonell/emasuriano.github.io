@@ -1,6 +1,6 @@
 import React from 'react';
 import Headroom from 'react-headroom';
-import { Box, Flex } from 'rebass';
+import { Flex } from 'rebass';
 import styled, { withTheme } from 'styled-components';
 import RouteLink from './RouteLink';
 import withLocation from '../utils/withLocation';
