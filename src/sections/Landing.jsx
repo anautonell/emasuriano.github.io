@@ -7,7 +7,7 @@ import TextLoop from 'react-text-loop';
 
 const LandingPage = (props, context) => {
   return (
-    <Section id="home">
+    <Section.Container id="home">
       <StaticQuery
         query={graphql`
           query SiteTitleQuery {
@@ -61,7 +61,7 @@ const LandingPage = (props, context) => {
           );
         }}
       />
-    </Section>
+    </Section.Container>
   );
 };
 

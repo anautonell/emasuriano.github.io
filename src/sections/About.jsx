@@ -5,6 +5,10 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
 const AboutText = styled(Box)`
+  p:first-child {
+    margin-top: 0em;
+  }
+
   p {
     margin-top: 2em;
     line-height: 2em;
@@ -24,13 +28,8 @@ const AboutText = styled(Box)`
 
 const About = () => {
   return (
-    <Section id="about">
-      <Heading color="secondary">
-        About me{' '}
-        <span role="img" aria-label="notebook">
-          💻
-        </span>
-      </Heading>
+    <Section.Container id="about">
+      <Section.Header name="About me" icon="🙋‍♂️" label="person" />
       <StaticQuery
         query={graphql`
           query AboutMeQuery {
@@ -70,7 +69,7 @@ const About = () => {
           );
         }}
       />
-    </Section>
+    </Section.Container>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ScrollableAnchor from 'react-scrollable-anchor';
+import { Heading } from 'rebass';
 
 const SectionContainer = styled.section`
   min-height: 100vh;
@@ -12,10 +13,9 @@ const SectionContainer = styled.section`
   justify-content: center;
   background: ${props => props.theme.colors.backgroundColor};
   padding: 5em 1em;
-  border: 5px solid black;
 `;
 
-const Section = ({ id, children }) => (
+const Container = ({ id, children }) => (
   <div>
     <ScrollableAnchor id={id}>
       <SectionContainer>{children}</SectionContainer>
@@ -23,4 +23,16 @@ const Section = ({ id, children }) => (
   </div>
 );
 
-export default Section;
+const Header = ({ name, icon, label }) => (
+  <Heading color="secondary" mb={4}>
+    {name}
+    <span role="img" aria-label={label} style={{ marginLeft: '10px' }}>
+      {icon}
+    </span>
+  </Heading>
+);
+
+export default {
+  Container,
+  Header,
+};

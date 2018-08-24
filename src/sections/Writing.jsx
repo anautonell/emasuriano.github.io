@@ -58,13 +58,8 @@ const parsePost = postFromGraphql => {
 
 const Writing = (props, context) => {
   return (
-    <Section id="writing">
-      <Heading color="secondary" mb={3}>
-        Writing{' '}
-        <span role="img" aria-label="writting">
-          ✍️
-        </span>
-      </Heading>
+    <Section.Container id="writing">
+      <Section.Header name="Writing" icon="✍️" label="writing" />
       <StaticQuery
         query={graphql`
           query MediumPostQuery {
@@ -101,7 +96,7 @@ const Writing = (props, context) => {
           );
         }}
       />
-    </Section>
+    </Section.Container>
   );
 };
 
