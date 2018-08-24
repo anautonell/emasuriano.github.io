@@ -62,7 +62,6 @@ const About = () => {
         `}
         render={data => {
           const { description, profile } = data.contentfulAbout;
-          console.log(data);
           return (
             <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
               <AboutText

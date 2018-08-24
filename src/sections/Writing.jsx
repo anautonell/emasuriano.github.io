@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from '../components/Section';
-import { Heading, Box, Text } from 'rebass';
+import { Heading, Text } from 'rebass';
 import { edgeToArray } from '../utils/contentful';
 import { StaticQuery, graphql } from 'gatsby';
 import { CardContainer, Card } from '../components/Card';

@@ -11,7 +11,8 @@ const SectionContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   background: ${props => props.theme.colors.backgroundColor};
-  padding: 0 1em;
+  padding: 5em 1em;
+  border: 5px solid black;
 `;
 
 const Section = ({ id, children }) => (

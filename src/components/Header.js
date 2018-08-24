@@ -1,21 +1,10 @@
 import React from 'react';
 import Headroom from 'react-headroom';
-import { Box, Flex, Label } from 'rebass';
-import styled from 'styled-components';
+import { Box, Flex } from 'rebass';
+import styled, { withTheme } from 'styled-components';
+import RouteLink from './RouteLink';
+import withLocation from '../utils/withLocation';
 import Logo from './Logo';
-
-const RouteLink = ({ label, to }) => (
-  <Label
-    ml={[2, 3]}
-    color="primary"
-    fontSize={[2, 3]}
-    css={{ cursor: 'pointer' }}
-  >
-    <a href={`#${to}`} style={{ textDecoration: 'none' }}>
-      {label}
-    </a>
-  </Label>
-);
 
 const HeaderContainer = styled(Headroom)`
   .headroom {
@@ -26,6 +15,21 @@ const HeaderContainer = styled(Headroom)`
   width: 100%;
 `;
 
+const LogoHeader = withTheme(
+  withLocation(({ location, theme }) => (
+    <a href="#home">
+      <Logo
+        width="50px"
+        color={
+          ['', '#home'].includes(location)
+            ? theme.colors.primary
+            : theme.colors.secondary
+        }
+      />
+    </a>
+  )),
+);
+
 const Header = props => {
   return (
     <HeaderContainer>
@@ -35,11 +39,7 @@ const Header = props => {
         alignItems="center"
         p={3}
       >
-        <Box css={{ cursor: 'pointer' }}>
-          <a href="#home">
-            <Logo width="50px" />
-          </a>
-        </Box>
+        <LogoHeader />
         <Flex>
           <RouteLink label="About" to="about" />
           <RouteLink label="Projects" to="projects" />
