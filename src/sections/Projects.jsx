@@ -49,12 +49,7 @@ const Project = ({
 }) => (
   <Card p={0}>
     <Flex css={{ height: '200px' }}>
-      <Flex
-        width="calc(100% - 200px)"
-        flexDirection="column"
-        justifyContent="space-between"
-        p={2}
-      >
+      <Flex width="calc(100% - 200px)" flexDirection="column" p={2}>
         <span>
           <Title m={2} pb={1}>
             {name}
@@ -63,7 +58,38 @@ const Project = ({
         <Text p={2} width="100%">
           {description}
         </Text>
-        <Flex justifyContent="flex-end">
+      </Flex>
+      <Box width={'200px'} margin="auto">
+        <Image
+          src={logo.file.url}
+          p={4}
+          css={{
+            height: '200px !important',
+            width: '200px',
+          }}
+        />
+        <ImageSubtitle bg="secondary">{type}</ImageSubtitle>
+        <ImageSubtitle
+          bg="secondary"
+          style={{
+            top: '-200px',
+            float: 'left',
+            clipPath: 'polygon(0 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%)',
+            padding: '10px',
+            paddingRight: '20px',
+          }}
+        >
+          {publishedDate}
+        </ImageSubtitle>
+        <Flex
+          justifyContent="flex-end"
+          css={{
+            position: 'relative',
+            top: '-237px',
+            float: 'right',
+            padding: '2px',
+          }}
+        >
           <SocialLink
             color="primary"
             hoverColor="primaryFaded"
@@ -83,19 +109,6 @@ const Project = ({
             link={projectUrl}
           />
         </Flex>
-      </Flex>
-      <Separator />
-      <Box width={'200px'} margin="auto">
-        <Image
-          src={logo.file.url}
-          bg="white"
-          p={4}
-          css={{
-            height: '200px !important',
-            width: '200px',
-          }}
-        />
-        <ImageSubtitle bg="secondary">{type}</ImageSubtitle>
       </Box>
     </Flex>
   </Card>
@@ -116,7 +129,7 @@ const Projects = (props, context) => {
                   description
                   projectUrl
                   repositoryUrl
-                  publishedDate(formatString: "MMM - YYYY")
+                  publishedDate(formatString: "YYYY")
                   type
                   logo {
                     id
@@ -133,7 +146,7 @@ const Projects = (props, context) => {
         render={data => {
           const projects = edgeToArray(data.allContentfulProject);
           return (
-            <CardContainer minWidth="420px">
+            <CardContainer minWidth="400px">
               {projects.map(p => (
                 <Project key={p.id} {...p} />
               ))}

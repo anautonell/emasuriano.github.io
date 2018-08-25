@@ -18,13 +18,48 @@ const AboutText = styled(Box)`
     margin: 0;
   }
 
-  a { 
+  /* a { 
     padding: 5px;
     background: ${props => props.theme.colors.primaryFaded}
     color: ${props => props.theme.colors.background}
     cursor: pointer;
     text-decoration: none;
-  }
+  } */
+
+  a {
+		display: inline-block;
+    /* color: ${props => props.theme.colors.primary}; */
+    transition: color 250ms, text-shadow 250ms;
+    color: black;
+		text-decoration: none;
+    text-shadow: 0px 1px 0px ${props => props.theme.colors.background};
+		position: relative;
+
+		&::after {
+			position: absolute;
+			z-index: -1;
+			bottom: -1px;
+			left: 50%;
+			transform: translateX(-50%);
+			content: '';
+			width: 100%;
+			height: 3px;
+			background-color: ${props => props.theme.colors.primaryFaded};
+			transition: all 250ms;
+		}
+
+		&:hover {
+			color: white;
+			text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+			
+			&::after {
+				height: 105%;
+				width: 105%;
+			}
+			
+		}
+		
+	}
 `;
 
 const About = () => {
@@ -63,6 +98,7 @@ const About = () => {
                 <Image
                   src={profile.file.url}
                   mx="auto"
+                  pl={1}
                   css={{ borderRadius: '50%' }}
                 />
               </Box>

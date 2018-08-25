@@ -1,0 +1,49 @@
+.triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 40vh solid #ff4081;
+  border-right: 40vw solid transparent;
+  opacity: 0.9;
+  z-index: -1;
+  transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+.triangle-2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 35vh solid #cecdfe;
+  border-right: 75vw solid transparent;
+  opacity: 0.9;
+  z-index: -2;
+  transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.triangle-3 {
+  position: absolute;
+  display: block;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 45vh solid #4b007d;
+  border-left: 75vw solid transparent;
+  opacity: 0.9;
+  z-index: -3;
+  transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+@media only screen and (min-width: 768px) {
+  .triangle {
+    border-top: 80vh solid #ff4081;
+    border-right: 35vw solid transparent;
+  }
+  .triangle-2 {
+    border-top: 120vh solid #cecdfe;
+    border-right: 40vw solid transparent;
+  }
+  .triangle-3 {
+    border-top: 40vh solid #4b007d;
+    border-right: 60vw solid transparent;
+    /* display: none; */
+  }
+}

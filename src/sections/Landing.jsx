@@ -4,6 +4,7 @@ import SocialLink from '../components/SocialLink';
 import { StaticQuery, graphql } from 'gatsby';
 import { Heading, Flex } from 'rebass';
 import TextLoop from 'react-text-loop';
+import MouseIcon from '../components/MouseIcon';
 
 const LandingPage = (props, context) => {
   return (
@@ -58,6 +59,7 @@ const LandingPage = (props, context) => {
                   />
                 ))}
               </Flex>
+              <MouseIcon />
             </Fragment>
           );
         }}

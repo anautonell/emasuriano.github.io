@@ -7,8 +7,12 @@ import withLocation from '../utils/withLocation';
 import Logo from './Logo';
 
 const HeaderContainer = styled(Headroom)`
-  .headroom {
+  /* .headroom {
     background: ${props => props.theme.colors.background}CC;
+  } */
+
+  .headroom--pinned {
+    background: ${props => props.theme.colors.background}CC; 
   }
 
   position: absolute;
