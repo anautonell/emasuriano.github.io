@@ -1,22 +1,26 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link, Label } from 'rebass';
-import ReactHoverObserver from 'react-hover-observer';
+import { Tooltip } from 'react-tippy';
+import styled from 'styled-components';
+import { hover } from 'glamor';
 
-const SocialLink = ({ page, link, color, hoverColor, ...props }) => (
+const IconLink = styled(Link)`
+  transition: color 0.5s;
+  color: ${props => props.color}
+
+  &:hover {
+  color: ${props => props.hover}
+  }
+`;
+
+const SocialLink = ({ page, name, link, color, hoverColor, ...props }) => (
   <Label {...props}>
-    <ReactHoverObserver>
-      {({ isHovering }) => (
-        <Link
-          href={link}
-          target="_blank"
-          color={isHovering ? hoverColor : color}
-          css={{ transition: 'color 0.5s' }}
-        >
-          <FontAwesome name={page} />
-        </Link>
-      )}
-    </ReactHoverObserver>
+    <Tooltip title={name} position="bottom" trigger="mouseenter">
+      <IconLink href={link} target="_blank" color={color} hover={hoverColor}>
+        <FontAwesome name={page} />
+      </IconLink>
+    </Tooltip>
   </Label>
 );
 

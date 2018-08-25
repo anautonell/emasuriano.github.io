@@ -14,9 +14,10 @@ const CoverImage = styled.img`
 const EllipsisHeading = styled(Heading)`
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
+  display: -webkit-inline-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
 const ImageSubtitle = styled(Text)`
@@ -24,11 +25,11 @@ const ImageSubtitle = styled(Text)`
   display: inline;
   float: right;
   padding: 10px;
-  padding-left: 40px;
+  padding-left: 20px;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);
 `;
 
 const Post = ({ title, text, image, url, date, time }) => {
@@ -39,7 +40,9 @@ const Post = ({ title, text, image, url, date, time }) => {
       css={{ cursor: 'pointer' }}
       p={0}
     >
-      <EllipsisHeading m={3}>{title}</EllipsisHeading>
+      <EllipsisHeading m={3} p={1}>
+        {title}
+      </EllipsisHeading>
       <CoverImage src={image} height="200px" />
       <Text m={3}>{text}</Text>
       <ImageSubtitle textAlign="right" bg="secondary">
@@ -75,7 +78,7 @@ const Writing = (props, context) => {
   return (
     <Section.Container id="writing">
       <Section.Header
-        name="Writing - taken from Medium"
+        name="Writing - picked from Medium"
         icon="✍️"
         label="writing"
       />

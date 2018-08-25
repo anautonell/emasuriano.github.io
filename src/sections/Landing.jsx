@@ -18,6 +18,7 @@ const LandingPage = (props, context) => {
                 socialLinks {
                   page
                   link
+                  name
                 }
               }
             }
@@ -46,14 +47,14 @@ const LandingPage = (props, context) => {
                 <TextLoop children={roles} />
               </Heading>
               <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
-                {socialLinks.map(({ page, link }) => (
+                {socialLinks.map(props => (
                   <SocialLink
                     mx={3}
                     color="primary"
+                    hoverColor="primaryFaded"
                     fontSize={[5, 5, 6]}
-                    key={page}
-                    page={page}
-                    link={link}
+                    key={props.page}
+                    {...props}
                   />
                 ))}
               </Flex>

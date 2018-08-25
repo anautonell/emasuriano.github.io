@@ -11,7 +11,9 @@ const SectionContainer = styled.section`
   flex: 0 1 auto;
   flex-direction: column;
   justify-content: center;
-  background: ${props => props.theme.colors.backgroundColor};
+  /* background: ${props => props.theme.colors.backgroundColor}; */
+  /* background-image: linear-gradient(to top, #845ec2, #a086d4, #bdaee4, #ddd6f2, #ffffff); */
+  bcakground: #FBEAFF
   padding: 5em 1em;
 `;
 

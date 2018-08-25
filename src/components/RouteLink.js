@@ -6,7 +6,8 @@ import withLocation from '../utils/withLocation';
 const LinkAnimated = styled.a`
   text-decoration: none;
   position: relative;
-  margin-bottom: 0
+  margin-bottom: 0;
+  padding-bottom: 5px;
   border-bottom: ${props =>
     props.selected &&
     `${props.borderWidth} solid ${props.theme.colors.primary}`};
@@ -41,7 +42,7 @@ const RouteLink = ({ label, to, location }) => {
       fontSize={[2, 3]}
       css={{ cursor: 'pointer' }}
     >
-      <LinkAnimated href={href} selected={location === href} borderWidth="2px">
+      <LinkAnimated href={href} selected={location === href} borderWidth="4px">
         {label}
       </LinkAnimated>
     </Label>

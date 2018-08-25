@@ -12,20 +12,30 @@ const Title = styled(Subhead)`
   font-weight: 600;
   text-transform: uppercase;
   display: table;
-  border-bottom: ${props => props.theme.colors.secondary} 5px solid;
+  border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
 const ImageSubtitle = styled(Text)`
   position: relative;
   display: inline;
-  top: -28px;
+  top: -37px;
   left: 0;
   padding: 10px;
-  padding-right: 30px;
+  padding-left: 20px;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  clip-path: polygon(0 0, 0 100%, 100% 100%, 75% 0%);
+  float: right
+  clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);
+`;
+
+const Separator = styled.div`
+  width: 4px;
+  position: relative;
+  background: ${props => props.theme.colors.secondary};
+  top: 30px
+  height: 140px;
+  border-radius: 5px;
 `;
 
 const Project = ({
@@ -37,47 +47,53 @@ const Project = ({
   publishedDate,
   logo,
 }) => (
-  <Card bg="primaryFaded" p={2} css={{ height: '200px' }}>
-    <Flex>
+  <Card p={0}>
+    <Flex css={{ height: '200px' }}>
       <Flex
-        width="calc(100% - 160px)"
-        p={1}
+        width="calc(100% - 200px)"
         flexDirection="column"
         justifyContent="space-between"
+        p={2}
       >
         <span>
-          <Title p={1} color="white">
+          <Title m={2} pb={1}>
             {name}
           </Title>
         </span>
-        <Text color="white" p={2} width="100%">
+        <Text p={2} width="100%">
           {description}
         </Text>
-        <Flex p={2} justifyContent="flex-end">
+        <Flex justifyContent="flex-end">
           <SocialLink
-            color="secondary"
-            hoverColor="secondaryVariant"
+            color="primary"
+            hoverColor="primaryFaded"
             fontSize={5}
             mx={1}
+            name="Check repository"
             page="github"
             link={repositoryUrl}
           />
           <SocialLink
-            color="secondary"
-            hoverColor="secondaryVariant"
+            color="primary"
+            hoverColor="primaryFaded"
             fontSize={5}
             mx={1}
+            name="See project"
             page="globe"
             link={projectUrl}
           />
         </Flex>
       </Flex>
+      <Separator />
       <Box width={'200px'} margin="auto">
         <Image
           src={logo.file.url}
           bg="white"
-          p={3}
-          css={{ height: '183px !important', width: '183px' }}
+          p={4}
+          css={{
+            height: '200px !important',
+            width: '200px',
+          }}
         />
         <ImageSubtitle bg="secondary">{type}</ImageSubtitle>
       </Box>
@@ -117,7 +133,7 @@ const Projects = (props, context) => {
         render={data => {
           const projects = edgeToArray(data.allContentfulProject);
           return (
-            <CardContainer minWidth="400px">
+            <CardContainer minWidth="420px">
               {projects.map(p => (
                 <Project key={p.id} {...p} />
               ))}

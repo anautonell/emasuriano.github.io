@@ -5,16 +5,27 @@ module.exports = {
     roles: ['Web Developer', 'Open-Source Enthusiast', 'Writer'],
     socialLinks: [
       {
+        name: 'Twitter',
         page: 'twitter',
         link: 'https://twitter.com/emasuriano',
       },
-      { page: 'github', link: 'http://github.com/EmaSuriano' },
       {
+        name: 'GitHub',
+        page: 'github',
+        link: 'http://github.com/EmaSuriano',
+      },
+      {
+        name: 'Contact me',
         page: 'envelope',
         link: 'https://emanuelsuriano.typeform.com/to/OeETl6',
       },
-      { page: 'medium', link: 'https://medium.com/@emasuriano' },
       {
+        name: 'Medium',
+        page: 'medium',
+        link: 'https://medium.com/@emasuriano',
+      },
+      {
+        name: 'LinkedIn',
         page: 'linkedin',
         link: 'https://www.linkedin.com/in/emanuel-suriano/',
       },

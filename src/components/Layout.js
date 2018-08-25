@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { injectGlobal } from 'styled-components';
 import { Provider } from 'rebass';
 import { configureAnchors } from 'react-scrollable-anchor';
+import 'react-tippy/dist/tippy.css';
 
 configureAnchors({ scrollDuration: 600, offset: 0 });
 
