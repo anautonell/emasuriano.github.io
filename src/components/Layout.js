@@ -6,10 +6,6 @@ import { configureAnchors } from 'react-scrollable-anchor';
 
 configureAnchors({ scrollDuration: 600, offset: 0 });
 
-// const theme = {
-//   backgroundColor: '#FFFFFF',
-//   color: '#1FB6FF',
-// };
 const colors = {
   background: '#FFFFFF',
   primary: '#6200EE',

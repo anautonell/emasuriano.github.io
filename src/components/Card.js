@@ -5,9 +5,11 @@ import { Box, Card as CardRebass } from 'rebass';
 export const CardContainer = styled.div`
   display: grid;
   grid-gap: 30px;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(${props => props.minWidth}, 1fr)
+  );
   justify-items: center;
-  grid-auto-rows: 200px;
 `;
 
 export const Card = ({ children, ...props }) => {

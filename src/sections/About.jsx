@@ -21,6 +21,7 @@ const AboutText = styled(Box)`
   a { 
     padding: 5px;
     background: ${props => props.theme.colors.primaryFaded}
+    color: ${props => props.theme.colors.background}
     cursor: pointer;
     text-decoration: none;
   }

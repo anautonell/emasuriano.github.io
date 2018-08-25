@@ -19,11 +19,13 @@ const ImageSubtitle = styled(Text)`
   position: relative;
   display: inline;
   top: -28px;
-  padding: 10px 15px;
+  left: 0;
+  padding: 10px;
+  padding-right: 30px;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  border-top-right-radius: 8px;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 75% 0%);
 `;
 
 const Project = ({
@@ -38,7 +40,7 @@ const Project = ({
   <Card bg="primaryFaded" p={2} css={{ height: '200px' }}>
     <Flex>
       <Flex
-        width="calc(100% - 150px)"
+        width="calc(100% - 160px)"
         p={1}
         flexDirection="column"
         justifyContent="space-between"
@@ -54,6 +56,7 @@ const Project = ({
         <Flex p={2} justifyContent="flex-end">
           <SocialLink
             color="secondary"
+            hoverColor="secondaryVariant"
             fontSize={5}
             mx={1}
             page="github"
@@ -61,6 +64,7 @@ const Project = ({
           />
           <SocialLink
             color="secondary"
+            hoverColor="secondaryVariant"
             fontSize={5}
             mx={1}
             page="globe"
@@ -88,7 +92,7 @@ const Projects = (props, context) => {
       <StaticQuery
         query={graphql`
           query ProjectsQuery {
-            allContentfulProject {
+            allContentfulProject(sort: { fields: publishedDate, order: DESC }) {
               edges {
                 node {
                   id
@@ -113,7 +117,7 @@ const Projects = (props, context) => {
         render={data => {
           const projects = edgeToArray(data.allContentfulProject);
           return (
-            <CardContainer>
+            <CardContainer minWidth="400px">
               {projects.map(p => (
                 <Project key={p.id} {...p} />
               ))}

@@ -19,20 +19,35 @@ const EllipsisHeading = styled(Heading)`
   -webkit-box-orient: vertical;
 `;
 
-const Post = ({ title, text, image, url, date, time }) => (
-  <Card
-    onClick={() => window.open(url, '_blank')}
-    css={{ cursor: 'pointer' }}
-    p={20}
-  >
-    <EllipsisHeading mb={3}>{title}</EllipsisHeading>
-    <CoverImage src={image} height="200px" />
-    <Text mt={3}>{text}</Text>
-    <Text color="grey" mt={3} textAlign="right">{`${date} - ${Math.ceil(
-      time,
-    )} min`}</Text>
-  </Card>
-);
+const ImageSubtitle = styled(Text)`
+  position: relative;
+  display: inline;
+  float: right;
+  padding: 10px;
+  padding-left: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+`;
+
+const Post = ({ title, text, image, url, date, time }) => {
+  const timestamp = `${date} - ${Math.ceil(time)} min`;
+  return (
+    <Card
+      onClick={() => window.open(url, '_blank')}
+      css={{ cursor: 'pointer' }}
+      p={0}
+    >
+      <EllipsisHeading m={3}>{title}</EllipsisHeading>
+      <CoverImage src={image} height="200px" />
+      <Text m={3}>{text}</Text>
+      <ImageSubtitle textAlign="right" bg="secondary">
+        {timestamp}
+      </ImageSubtitle>
+    </Card>
+  );
+};
 
 const parsePost = postFromGraphql => {
   const MEDIUM_CDN = 'https://cdn-images-1.medium.com/max/800';
@@ -59,7 +74,11 @@ const parsePost = postFromGraphql => {
 const Writing = (props, context) => {
   return (
     <Section.Container id="writing">
-      <Section.Header name="Writing" icon="✍️" label="writing" />
+      <Section.Header
+        name="Writing - taken from Medium"
+        icon="✍️"
+        label="writing"
+      />
       <StaticQuery
         query={graphql`
           query MediumPostQuery {
@@ -88,7 +107,7 @@ const Writing = (props, context) => {
         render={data => {
           const posts = edgeToArray(data.allMediumPost).map(parsePost);
           return (
-            <CardContainer>
+            <CardContainer minWidth="300px">
               {posts.map(p => (
                 <Post key={p.id} {...p} />
               ))}
