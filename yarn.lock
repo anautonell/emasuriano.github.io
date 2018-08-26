@@ -4792,7 +4792,7 @@ global-prefix@^1.0.1:
     is-windows "^1.0.1"
     which "^1.2.14"
 
-global@^4.3.0, global@~4.3.0:
+global@^4.3.0, global@~4.3.0, global@~4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   dependencies:
@@ -8253,6 +8253,12 @@ react-motion@^0.5.0:
     performance-now "^0.2.0"
     prop-types "^15.5.8"
     raf "^3.1.0"
+
+react-scroll-listen@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/react-scroll-listen/-/react-scroll-listen-0.6.2.tgz#bc34e0fc25976d29c466855b6e170c94717b0cb8"
+  dependencies:
+    global "~4.3.2"
 
 react-scrollable-anchor@^0.6.1:
   version "0.6.1"

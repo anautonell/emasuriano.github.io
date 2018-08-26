@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { Heading } from 'rebass';
+import Triangle from './Background/Triangle';
 
 const SectionContainer = styled.section`
   min-height: 100vh;

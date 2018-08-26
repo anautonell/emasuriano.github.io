@@ -12,6 +12,10 @@ const ScrollLink = styled.a`
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
+
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const ScrollAnimation = keyframes`
@@ -48,7 +52,7 @@ const Scroll = styled.circle`
 const MouseIcon = () => (
   <ScrollLink href="#about">
     <MouseContainer xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 130">
-      <g fill="none" fill-rule="evenodd">
+      <g fill="none">
         <Mouse width="70" height="118" x="1.5" y="1.5" rx="36" />
         <Scroll cx="36.5" cy="31.5" r="4.5" />
       </g>

@@ -8,6 +8,7 @@ const LinkAnimated = styled.a`
   position: relative;
   margin-bottom: 0;
   padding-bottom: 5px;
+  color: inherit;
   border-bottom: ${props =>
     props.selected &&
     `${props.borderWidth} solid ${props.theme.colors.primary}`};
@@ -38,7 +39,7 @@ const RouteLink = ({ label, to, location }) => {
   return (
     <Label
       ml={[2, 3]}
-      color="primary"
+      color="background"
       fontSize={[2, 3]}
       css={{ cursor: 'pointer' }}
     >

@@ -12,7 +12,7 @@ const HeaderContainer = styled(Headroom)`
   } */
 
   .headroom--pinned {
-    background: ${props => props.theme.colors.background}CC; 
+    background: ${props => props.theme.colors.primaryFaded}; 
   }
 
   position: absolute;
@@ -24,11 +24,11 @@ const LogoHeader = withTheme(
     <a href="#home">
       <Logo
         width="50px"
-        color={
-          ['', '#home'].includes(location)
-            ? theme.colors.primary
-            : theme.colors.secondary
-        }
+        // color={
+        //   ['', '#home'].includes(location)
+        //     ? theme.colors.primary
+        //     : theme.colors.secondary
+        // }
       />
     </a>
   )),

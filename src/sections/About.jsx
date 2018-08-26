@@ -32,10 +32,9 @@ const AboutText = styled(Box)`
     transition: color 250ms, text-shadow 250ms;
     color: black;
 		text-decoration: none;
-    text-shadow: 0px 1px 0px ${props => props.theme.colors.background};
 		position: relative;
 
-		&::after {
+		&:after {
 			position: absolute;
 			z-index: -1;
 			bottom: -1px;
@@ -50,11 +49,10 @@ const AboutText = styled(Box)`
 
 		&:hover {
 			color: white;
-			text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
 			
 			&::after {
-				height: 105%;
-				width: 105%;
+				height: 110%;
+				width: 110%;
 			}
 			
 		}
@@ -99,6 +97,7 @@ const About = () => {
                   src={profile.file.url}
                   mx="auto"
                   pl={1}
+                  pt={1}
                   css={{ borderRadius: '50%' }}
                 />
               </Box>
