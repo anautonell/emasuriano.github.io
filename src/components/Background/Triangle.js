@@ -5,7 +5,7 @@ const Triangle = styled.div`
   position: absolute;
   width: 0;
   height: 0;
-  opacity: 0.9;
+  /* opacity: 0.9; */
   z-index: -2;
   transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 
@@ -24,7 +24,7 @@ const Triangle = styled.div`
   }}
 
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (min-width: 768px) {
     ${props =>
       props.invertY
         ? `border-bottom-width: ${props.height[1]};`

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import ScrollableAnchor from 'react-scrollable-anchor';
-import { Heading } from 'rebass';
+import { Heading, Flex } from 'rebass';
 import Triangle from './Background/Triangle';
 
 const SectionContainer = styled.section`
   min-height: 100vh;
+  min-width: 400px;
   max-width: 1366px;
   display: flex;
   margin: auto;
@@ -14,12 +15,15 @@ const SectionContainer = styled.section`
   justify-content: center;
   /* background: ${props => props.theme.colors.backgroundColor}; */
   /* background-image: linear-gradient(to top, #845ec2, #a086d4, #bdaee4, #ddd6f2, #ffffff); */
-  bcakground: #FBEAFF
+  /* background: #FBEAFF */
   padding: 5em 1em;
 `;
 
-const Container = ({ id, children }) => (
-  <div>
+const defaultBackground = () => <div />;
+
+const Container = ({ id, children, Background = defaultBackground }) => (
+  <div style={{ position: 'relative' }}>
+    <Background />
     <ScrollableAnchor id={id}>
       <SectionContainer>{children}</SectionContainer>
     </ScrollableAnchor>

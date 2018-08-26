@@ -7,98 +7,97 @@ import TextLoop from 'react-text-loop';
 import MouseIcon from '../components/MouseIcon';
 import Triangle from '../components/Background/Triangle';
 
-const Background = ({ children }) => (
+const Background = () => (
   <div>
     <Triangle
       color="#cecdfe"
-      height={['120vh', '25vh']}
-      width={['40vw', '75vw']}
+      height={['25vh', '80vh']}
+      width={['75vw', '60vw']}
     />
 
     <Triangle
       color="#ff4081"
-      height={['120vh', '28vh']}
-      width={['35vw', '40vw']}
+      height={['28vh', '80vh']}
+      width={['40vw', '35vw']}
     />
 
     <Triangle
       color="#4b007d"
-      top="25vh"
-      right="75vw"
-      height={['40vh', '25vh']}
-      width={['60vw', '75vw']}
+      height={['25vh', '40vh']}
+      width={['75vw', '60vw']}
       invertX
     />
-    {children}
+
+    <Triangle
+      color="#cecdfe"
+      height={['25vh', '20vh']}
+      width={['100vw', '100vw']}
+      invertX
+      invertY
+    />
   </div>
 );
 
 const LandingPage = (props, context) => {
   return (
-    <Background>
-      <Section.Container id="home">
-        <StaticQuery
-          query={graphql`
-            query SiteTitleQuery {
-              site {
-                siteMetadata {
+    <Section.Container id="home" Background={Background}>
+      <StaticQuery
+        query={graphql`
+          query SiteTitleQuery {
+            site {
+              siteMetadata {
+                name
+                roles
+                socialLinks {
+                  page
+                  link
                   name
-                  roles
-                  socialLinks {
-                    page
-                    link
-                    name
-                  }
                 }
               }
             }
-          `}
-          render={data => {
-            const { name, socialLinks, roles } = data.site.siteMetadata;
+          }
+        `}
+        render={data => {
+          const { name, socialLinks, roles } = data.site.siteMetadata;
 
-            return (
-              <Fragment>
-                <Heading
-                  textAlign="center"
-                  is="h1"
-                  color="primary"
-                  fontSize={[5, 6, 8]}
-                  mb={[3, 4, 5]}
-                >
-                  Hello, I'm {name}!
-                </Heading>
-                <Heading
-                  is="h2"
-                  color="primary"
-                  fontSize={[4, 5, 6]}
-                  mb={[2, 4]}
-                  textAlign="center"
-                >
-                  <TextLoop children={roles} />
-                </Heading>
-                <Flex
-                  alignItems="center"
-                  justifyContent="center"
-                  flexWrap="wrap"
-                >
-                  {socialLinks.map(props => (
-                    <SocialLink
-                      mx={3}
-                      color="primary"
-                      hoverColor="primaryFaded"
-                      fontSize={[5, 6, 6]}
-                      key={props.page}
-                      {...props}
-                    />
-                  ))}
-                </Flex>
-                <MouseIcon />
-              </Fragment>
-            );
-          }}
-        />
-      </Section.Container>
-    </Background>
+          return (
+            <Fragment>
+              <Heading
+                textAlign="center"
+                is="h1"
+                color="primary"
+                fontSize={[5, 6, 8]}
+                mb={[3, 4, 5]}
+              >
+                Hello, I'm {name}!
+              </Heading>
+              <Heading
+                is="h2"
+                color="primary"
+                fontSize={[4, 5, 6]}
+                mb={[2, 4]}
+                textAlign="center"
+              >
+                <TextLoop children={roles} />
+              </Heading>
+              <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
+                {socialLinks.map(props => (
+                  <SocialLink
+                    mx={3}
+                    color="primary"
+                    hoverColor="primaryFaded"
+                    fontSize={[5, 6, 6]}
+                    key={props.page}
+                    {...props}
+                  />
+                ))}
+              </Flex>
+              <MouseIcon />
+            </Fragment>
+          );
+        }}
+      />
+    </Section.Container>
   );
 };
 

@@ -44,7 +44,7 @@ const Header = props => {
         p={3}
       >
         <LogoHeader />
-        <Flex>
+        <Flex mr={[0, 3, 5]}>
           <RouteLink label="About" to="about" />
           <RouteLink label="Projects" to="projects" />
           <RouteLink label="Writing" to="writing" />
