@@ -5,6 +5,44 @@ import { edgeToArray } from '../utils/contentful';
 import { StaticQuery, graphql } from 'gatsby';
 import { CardContainer, Card } from '../components/Card';
 import styled from 'styled-components';
+import Triangle from '../components/Background/Triangle';
+
+const Background = () => (
+  <div>
+    <Triangle
+      color="#cecdfe"
+      height={['15vh', '10vh']}
+      width={['100vw', '100vw']}
+      invertX
+    />
+
+    <Triangle
+      color="#ff4081"
+      height={['60vh', '40vh']}
+      width={['70vw', '40vw']}
+      invertY
+    />
+
+    <Triangle
+      color="#4b007d"
+      height={['50vh', '20vh']}
+      width={['100vw', '100vw']}
+      invertX
+      invertY
+    />
+    {/* 
+
+    
+
+    <Triangle
+      color="#4b007d"
+      height={['25vh', '40vh']}
+      width={['75vw', '60vw']}
+      invertX
+      invertY
+    /> */}
+  </div>
+);
 
 const CoverImage = styled.img`
   width: 100%;
@@ -76,7 +114,7 @@ const parsePost = postFromGraphql => {
 
 const Writing = (props, context) => {
   return (
-    <Section.Container id="writing">
+    <Section.Container id="writing" Background={Background}>
       <Section.Header
         name="Writing - picked from Medium"
         icon="✍️"

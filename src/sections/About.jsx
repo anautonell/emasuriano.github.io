@@ -7,42 +7,23 @@ import Triangle from '../components/Background/Triangle';
 
 const Background = () => (
   <div>
-    {/* <Triangle
-      color="#cecdfe"
-      height={['25vh', '80vh']}
-      width={['75vw', '60vw']}
-    />
-
     <Triangle
       color="#ff4081"
-      height={['28vh', '80vh']}
-      width={['40vw', '35vw']}
-    />
-
-    <Triangle
-      color="#4b007d"
-      height={['25vh', '40vh']}
-      width={['75vw', '60vw']}
-      invertX
-    /> */}
-
-    <Triangle
-      color="#ff4081"
-      height={['28vh', '80vh']}
-      width={['40vw', '35vw']}
+      height={['50vh', '20vh']}
+      width={['50vw', '50vw']}
       invertY
     />
 
     <Triangle
       color="#4b007d"
       height={['25vh', '40vh']}
-      width={['75vw', '60vw']}
+      width={['75vw', '70vw']}
       invertX
     />
 
     <Triangle
       color="#cecdfe"
-      height={['25vh', '15vh']}
+      height={['25vh', '10vh']}
       width={['100vw', '100vw']}
     />
   </div>

@@ -30,7 +30,7 @@ const Background = () => (
 
     <Triangle
       color="#cecdfe"
-      height={['25vh', '20vh']}
+      height={['15vh', '20vh']}
       width={['100vw', '100vw']}
       invertX
       invertY

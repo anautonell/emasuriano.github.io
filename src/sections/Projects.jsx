@@ -6,6 +6,40 @@ import { edgeToArray } from '../utils/contentful';
 import styled from 'styled-components';
 import { CardContainer, Card } from '../components/Card';
 import SocialLink from '../components/SocialLink';
+import Triangle from '../components/Background/Triangle';
+
+const Background = () => (
+  <div>
+    <Triangle
+      color="#ff4081"
+      height={['80vh', '80vh']}
+      width={['100vw', '100vw']}
+      invertX
+    />
+
+    <Triangle
+      color="background"
+      height={['50vh', '20vh']}
+      width={['50vw', '50vw']}
+      invertX
+    />
+
+    <Triangle
+      color="#4b007d"
+      height={['25vh', '40vh']}
+      width={['75vw', '60vw']}
+      invertX
+      invertY
+    />
+
+    <Triangle
+      color="#cecdfe"
+      height={['25vh', '20vh']}
+      width={['100vw', '100vw']}
+      invertY
+    />
+  </div>
+);
 
 const Title = styled(Subhead)`
   font-size: 14px;
@@ -116,7 +150,7 @@ const Project = ({
 
 const Projects = (props, context) => {
   return (
-    <Section.Container id="projects">
+    <Section.Container id="projects" Background={Background}>
       <Section.Header name="Projects" icon="💻" label="notebook" />
       <StaticQuery
         query={graphql`

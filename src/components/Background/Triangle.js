@@ -7,10 +7,13 @@ const Triangle = styled.div`
   height: 0;
   /* opacity: 0.9; */
   z-index: -2;
-  transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  /* transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67); */
+
 
   ${props => {
-    const border = `${props.height[0]} solid ${props.color};`;
+    const border = `${props.height[0]} solid ${props.theme.colors[
+      props.color
+    ] || props.color};`;
     return props.invertY
       ? `border-bottom: ${border}; bottom: 0;`
       : `border-top: ${border};`;
