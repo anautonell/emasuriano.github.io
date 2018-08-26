@@ -1,5 +1,15 @@
-# Ema Suriano Portfolio
+# Emanuel Suriano Portfolio
 
-Hello, this is my portfolio where I write about me, my articles, talks, etc.
+Hi 👋 This is my personal portfolio where I write a bit about me, the stuff I've worked and all the related links of me.
 
-It is based on a Gatsby starter called [Lumen](https://github.com/alxshelepenok/gatsby-starter-lumen)
+Feel free to use this portfolio as an example of yours 😄
+
+Technologies used:
+
+- Gatsby
+- Styled-components
+- React
+
+# License
+
+MIT © Emanuel Suriano
