@@ -11,7 +11,7 @@ const LinkAnimated = styled.a`
   color: inherit;
   border-bottom: ${props =>
     props.selected &&
-    `${props.borderWidth} solid ${props.theme.colors.primary}`};
+    `${props.borderWidth} solid ${props.theme.colors.primaryLight}`};
   transition: 0.4s;
 
   &:after {

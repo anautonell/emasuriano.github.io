@@ -4,17 +4,9 @@ import { injectGlobal } from 'styled-components';
 import { Provider } from 'rebass';
 import { configureAnchors } from 'react-scrollable-anchor';
 import 'react-tippy/dist/tippy.css';
+import theme from '../utils/theme';
 
 configureAnchors({ scrollDuration: 600, offset: 0 });
-
-const colors = {
-  background: '#FFFFFF',
-  primary: '#6200EE',
-  primaryVariant: '#3700B3',
-  primaryFaded: '#6200EEAA',
-  secondary: '#03DAC6',
-  secondaryVariant: '#018786',
-};
 
 injectGlobal`
   * { box-sizing: border-box; }
@@ -27,7 +19,7 @@ injectGlobal`
 
 const Layout = ({ children }) => {
   return (
-    <Provider theme={{ colors }}>
+    <Provider theme={theme}>
       <Fragment>
         <Helmet>
           <link

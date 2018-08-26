@@ -7,10 +7,10 @@ import { hover } from 'glamor';
 
 const IconLink = styled(Link)`
   transition: color 0.5s;
-  color: ${props => props.color}
+  color: ${props => props.theme.colors[props.color]};
 
   &:hover {
-  color: ${props => props.hover}
+    color: ${props => props.theme.colors[props.hover]};
   }
 `;
 

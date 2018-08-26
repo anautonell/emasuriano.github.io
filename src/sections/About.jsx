@@ -8,22 +8,22 @@ import Triangle from '../components/Background/Triangle';
 const Background = () => (
   <div>
     <Triangle
-      color="#ff4081"
+      color="secondaryLight"
       height={['50vh', '20vh']}
       width={['50vw', '50vw']}
       invertY
     />
 
     <Triangle
-      color="#4b007d"
+      color="primaryDark"
       height={['25vh', '40vh']}
       width={['75vw', '70vw']}
       invertX
     />
 
     <Triangle
-      color="#cecdfe"
-      height={['25vh', '10vh']}
+      color="backgroundDark"
+      height={['25vh', '20vh']}
       width={['100vw', '100vw']}
     />
   </div>
@@ -59,7 +59,7 @@ const AboutText = styled(Box)`
       content: '';
       width: 100%;
       height: 3px;
-      background-color: ${props => props.theme.colors.primaryFaded};
+      background-color: ${props => props.theme.colors.primaryLight};
       transition: all 250ms;
     }
 

@@ -4,7 +4,7 @@ import { Text } from 'rebass';
 
 const FooterContainer = styled.footer`
   padding: 1em;
-  background: ${props => props.theme.colors.primaryFaded};
+  background: ${props => props.theme.colors.primaryDark};
   color: ${props => props.theme.colors.background};
   text-align: right;
 `;

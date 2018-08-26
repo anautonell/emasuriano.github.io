@@ -7,12 +7,8 @@ import withLocation from '../utils/withLocation';
 import Logo from './Logo';
 
 const HeaderContainer = styled(Headroom)`
-  /* .headroom {
-    background: ${props => props.theme.colors.background}CC;
-  } */
-
   .headroom--pinned {
-    background: ${props => props.theme.colors.primaryFaded}; 
+    background: ${props => props.theme.colors.primaryDark};
   }
 
   position: absolute;
@@ -22,14 +18,7 @@ const HeaderContainer = styled(Headroom)`
 const LogoHeader = withTheme(
   withLocation(({ location, theme }) => (
     <a href="#home">
-      <Logo
-        width="50px"
-        // color={
-        //   ['', '#home'].includes(location)
-        //     ? theme.colors.primary
-        //     : theme.colors.secondary
-        // }
-      />
+      <Logo width="50px" />
     </a>
   )),
 );

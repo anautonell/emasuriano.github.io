@@ -31,7 +31,7 @@ const Container = ({ id, children, Background = defaultBackground }) => (
 );
 
 const Header = ({ name, icon, label }) => (
-  <Heading color="secondary" mb={4}>
+  <Heading color="secondaryDark" mb={4}>
     {name}
     <span role="img" aria-label={label} style={{ marginLeft: '10px' }}>
       {icon}

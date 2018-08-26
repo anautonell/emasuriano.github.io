@@ -11,7 +11,7 @@ import Triangle from '../components/Background/Triangle';
 const Background = () => (
   <div>
     <Triangle
-      color="#ff4081"
+      color="secondaryLight"
       height={['80vh', '80vh']}
       width={['100vw', '100vw']}
       invertX
@@ -25,7 +25,7 @@ const Background = () => (
     />
 
     <Triangle
-      color="#4b007d"
+      color="primaryDark"
       height={['25vh', '40vh']}
       width={['75vw', '60vw']}
       invertX
@@ -33,7 +33,7 @@ const Background = () => (
     />
 
     <Triangle
-      color="#cecdfe"
+      color="backgroundDark"
       height={['25vh', '20vh']}
       width={['100vw', '100vw']}
       invertY
@@ -102,9 +102,10 @@ const Project = ({
             width: '200px',
           }}
         />
-        <ImageSubtitle bg="secondary">{type}</ImageSubtitle>
+        <ImageSubtitle bg="backgroundDark">{type}</ImageSubtitle>
         <ImageSubtitle
-          bg="secondary"
+          bg="primary"
+          color="background"
           style={{
             top: '-200px',
             float: 'left',
@@ -126,7 +127,7 @@ const Project = ({
         >
           <SocialLink
             color="primary"
-            hoverColor="primaryFaded"
+            hoverColor="primaryLight"
             fontSize={5}
             mx={1}
             name="Check repository"
@@ -135,7 +136,7 @@ const Project = ({
           />
           <SocialLink
             color="primary"
-            hoverColor="primaryFaded"
+            hoverColor="primaryLight"
             fontSize={5}
             mx={1}
             name="See project"

@@ -10,26 +10,26 @@ import Triangle from '../components/Background/Triangle';
 const Background = () => (
   <div>
     <Triangle
-      color="#cecdfe"
+      color="backgroundDark"
       height={['25vh', '80vh']}
       width={['75vw', '60vw']}
     />
 
     <Triangle
-      color="#ff4081"
+      color="secondary"
       height={['28vh', '80vh']}
       width={['40vw', '35vw']}
     />
 
     <Triangle
-      color="#4b007d"
-      height={['25vh', '40vh']}
+      color="primaryDark"
+      height={['25vh', '35vh']}
       width={['75vw', '60vw']}
       invertX
     />
 
     <Triangle
-      color="#cecdfe"
+      color="backgroundDark"
       height={['15vh', '20vh']}
       width={['100vw', '100vw']}
       invertX
@@ -85,7 +85,7 @@ const LandingPage = (props, context) => {
                   <SocialLink
                     mx={3}
                     color="primary"
-                    hoverColor="primaryFaded"
+                    hoverColor="primaryLight"
                     fontSize={[5, 6, 6]}
                     key={props.page}
                     {...props}
