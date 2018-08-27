@@ -1,21 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import ScrollableAnchor from 'react-scrollable-anchor';
-import { Heading, Flex } from 'rebass';
-import Triangle from './Background/Triangle';
+import { Heading } from 'rebass';
 
 const SectionContainer = styled.section`
   min-height: 100vh;
-  min-width: 400px;
+  min-width: 420px;
   max-width: 1366px;
   display: flex;
   margin: auto;
   flex: 0 1 auto;
   flex-direction: column;
   justify-content: center;
-  /* background: ${props => props.theme.colors.backgroundColor}; */
-  /* background-image: linear-gradient(to top, #845ec2, #a086d4, #bdaee4, #ddd6f2, #ffffff); */
-  /* background: #FBEAFF */
   padding: 5em 1em;
 `;
 

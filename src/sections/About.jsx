@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from '../components/Section';
-import { Heading, Box, Image, Flex } from 'rebass';
+import { Box, Image, Flex } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Triangle from '../components/Background/Triangle';
@@ -16,7 +16,7 @@ const Background = () => (
 
     <Triangle
       color="primaryDark"
-      height={['25vh', '40vh']}
+      height={['20vh', '40vh']}
       width={['75vw', '70vw']}
       invertX
     />

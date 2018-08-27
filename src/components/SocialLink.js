@@ -3,7 +3,6 @@ import FontAwesome from 'react-fontawesome';
 import { Link, Label } from 'rebass';
 import { Tooltip } from 'react-tippy';
 import styled from 'styled-components';
-import { hover } from 'glamor';
 
 const IconLink = styled(Link)`
   transition: color 0.5s;

@@ -3,8 +3,10 @@
   "name": "emasuriano.github.io",
   "description": "Emanuel Suriano portfolio",
   "scripts": {
+    "clean": "cleandir ./.cache",
     "develop": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "build:prod": "run-s clean build"
   },
   "repository": "git+https://github.com/EmaSuriano/emasuriano.github.io.git",
   "keywords": [
@@ -17,14 +19,16 @@
   "license": "MIT",
   "dependencies": {
     "babel-plugin-styled-components": "^1.5.1",
-    "gatsby": "^2.0.0-beta.97",
+    "clean-dir": "^1.0.3",
+    "gatsby": "^2.0.0-rc.0",
     "gatsby-plugin-google-fonts": "^0.0.4",
     "gatsby-plugin-react-helmet": "^3.0.0-beta.4",
     "gatsby-plugin-resolve-src": "^2.0.0-beta.1",
-    "gatsby-plugin-styled-components": "^2.0.11",
+    "gatsby-plugin-styled-components": "^3.0.0-rc.0",
     "gatsby-source-contentful": "^1.3.54",
     "gatsby-source-medium": "^1.0.14",
     "gatsby-transformer-remark": "^1.7.44",
+    "npm-run-all": "^4.1.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

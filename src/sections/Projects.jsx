@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from '../components/Section';
-import { Heading, Subhead, Image, Text, Flex, Box } from 'rebass';
+import { Subhead, Image, Text, Flex, Box } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import { edgeToArray } from '../utils/contentful';
 import styled from 'styled-components';
@@ -59,17 +59,8 @@ const ImageSubtitle = styled(Text)`
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  float: right
+  float: right;
   clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);
-`;
-
-const Separator = styled.div`
-  width: 4px;
-  position: relative;
-  background: ${props => props.theme.colors.secondary};
-  top: 30px
-  height: 140px;
-  border-radius: 5px;
 `;
 
 const Project = ({
@@ -102,10 +93,11 @@ const Project = ({
             width: '200px',
           }}
         />
-        <ImageSubtitle bg="backgroundDark">{type}</ImageSubtitle>
+        <ImageSubtitle bg="primaryLight" color="white">
+          {type}
+        </ImageSubtitle>
         <ImageSubtitle
-          bg="primary"
-          color="background"
+          bg="backgroundDark"
           style={{
             top: '-200px',
             float: 'left',

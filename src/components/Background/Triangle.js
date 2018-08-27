@@ -1,14 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Triangle = styled.div`
   position: absolute;
   width: 0;
   height: 0;
-  /* opacity: 0.9; */
   z-index: -2;
-  /* transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67); */
-
 
   ${props => {
     const border = `${props.height[0]} solid ${props.theme.colors[

@@ -72,7 +72,7 @@ const Post = ({ title, text, image, url, date, time }) => {
       </EllipsisHeading>
       <CoverImage src={image} height="200px" />
       <Text m={3}>{text}</Text>
-      <ImageSubtitle textAlign="right" bg="secondaryLight">
+      <ImageSubtitle textAlign="right" bg="primaryLight" color="white">
         {timestamp}
       </ImageSubtitle>
     </Card>
