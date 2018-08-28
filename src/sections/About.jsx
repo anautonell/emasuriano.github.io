@@ -100,16 +100,19 @@ const About = () => {
           return (
             <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
               <AboutText
-                width={[1, 1, 3 / 4]}
+                width={[1, 1, 4 / 6]}
+                px={[1, 2, 4]}
                 dangerouslySetInnerHTML={{
                   __html: description.childMarkdownRemark.html,
                 }}
               />
 
-              <Box width={[1, 1, 1 / 4]} css={{ maxWidth: '300px' }}>
+              <Box
+                width={[1, 1, 2 / 6]}
+                css={{ maxWidth: '300px', margin: 'auto' }}
+              >
                 <Image
                   src={profile.file.url}
-                  mx="auto"
                   pl={1}
                   pt={1}
                   css={{ borderRadius: '50%' }}

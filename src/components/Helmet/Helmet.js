@@ -7,6 +7,8 @@ import safariPinnedTab from './safari-pinned-tab.svg';
 import favicon from './favicon.ico';
 import bigIcon from './android-chrome-192x192.png';
 
+// TODO: Improvement to do here is, take the image from contentful and apply it to the header
+
 const Helmet = () => {
   const title = 'Ema Suriano';
   const description =
