@@ -31,9 +31,10 @@ const coralPalette = {
   background: '#FFFFFF',
   backgroundDark: '#feebf0',
 
-  primary: '#e63946',
-  primaryLight: '#ff7071',
-  primaryDark: '#ad001f',
+  primary: '#ff3f4e',
+  primaryLight: '#ff777a',
+  primaryDark: '#c50026',
+
   secondary: '#5ed1f3',
   secondaryLight: '#97ffff',
   secondaryDark: '#0ca0c0',
