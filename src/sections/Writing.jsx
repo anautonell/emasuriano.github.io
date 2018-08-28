@@ -137,7 +137,7 @@ const Writing = (props, context) => {
         render={data => {
           const posts = edgeToArray(data.allMediumPost).map(parsePost);
           return (
-            <CardContainer>
+            <CardContainer minWidth="300px">
               {posts.map(p => (
                 <Post key={p.id} {...p} />
               ))}
