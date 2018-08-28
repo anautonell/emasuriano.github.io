@@ -36,6 +36,7 @@
     "react-headroom": "^2.2.2",
     "react-helmet": "^5.2.0",
     "react-hover-observer": "^2.1.0",
+    "react-responsive": "^5.0.0",
     "react-scroll-listen": "^0.6.2",
     "react-scrollable-anchor": "^0.6.1",
     "react-text-loop": "^1.1.0",

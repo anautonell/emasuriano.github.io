@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { CardContainer, Card } from '../components/Card';
 import SocialLink from '../components/SocialLink';
 import Triangle from '../components/Background/Triangle';
+import MediaQuery from 'react-responsive';
 
 const Background = () => (
   <div>
@@ -73,71 +74,88 @@ const Project = ({
   logo,
 }) => (
   <Card p={0}>
-    <Flex css={{ height: '200px' }}>
-      <Flex width="calc(100% - 200px)" flexDirection="column" p={2}>
-        <span>
-          <Title m={2} pb={1}>
-            {name}
-          </Title>
-        </span>
-        <Text p={2} width="100%">
-          {description}
-        </Text>
-      </Flex>
-      <Box width={'200px'} margin="auto">
-        <Image
-          src={logo.file.url}
-          p={4}
-          css={{
-            height: '200px !important',
-            width: '200px',
-          }}
-        />
-        <ImageSubtitle bg="primaryLight" color="white">
-          {type}
-        </ImageSubtitle>
-        <ImageSubtitle
-          bg="backgroundDark"
-          style={{
-            top: '-200px',
-            float: 'left',
-            clipPath: 'polygon(0 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%)',
-            padding: '10px',
-            paddingRight: '20px',
-          }}
-        >
-          {publishedDate}
-        </ImageSubtitle>
-        <Flex
-          justifyContent="flex-end"
-          css={{
-            position: 'relative',
-            top: '-237px',
-            float: 'right',
-            padding: '2px',
-          }}
-        >
-          <SocialLink
-            color="primary"
-            hoverColor="primaryLight"
-            fontSize={5}
-            mx={1}
-            name="Check repository"
-            page="github"
-            link={repositoryUrl}
-          />
-          <SocialLink
-            color="primary"
-            hoverColor="primaryLight"
-            fontSize={5}
-            mx={1}
-            name="See project"
-            page="globe"
-            link={projectUrl}
-          />
-        </Flex>
-      </Box>
-    </Flex>
+    <MediaQuery minDeviceWidth={400}>
+      {matches => {
+        const width = matches ? '200px' : '100px';
+        return (
+          <Flex css={{ height: '200px' }}>
+            <Flex width={`calc(100% - ${width})`} flexDirection="column" p={2}>
+              <span>
+                <Title m={2} pb={1}>
+                  {name}
+                </Title>
+              </span>
+              <Text p={2} width="100%">
+                {description}
+              </Text>
+            </Flex>
+            <Box width={width} margin="auto">
+              <Image
+                src={logo.file.url}
+                p={matches ? 4 : 2}
+                css={{
+                  height: `${width} !important`,
+                  width,
+                  marginTop: matches ? '0px' : '50px',
+                }}
+              />
+              <ImageSubtitle
+                bg="primaryLight"
+                color="white"
+                style={{
+                  top: matches ? '-37px' : '13px',
+                }}
+              >
+                {type}
+              </ImageSubtitle>
+              {matches && (
+                <ImageSubtitle
+                  bg="backgroundDark"
+                  style={{
+                    top: '-200px',
+                    float: 'left',
+                    clipPath:
+                      'polygon(0 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%)',
+                    padding: '10px',
+                    paddingRight: '20px',
+                  }}
+                >
+                  {publishedDate}
+                </ImageSubtitle>
+              )}
+              <Flex
+                justifyContent="flex-end"
+                css={{
+                  position: 'relative',
+                  top: matches ? '-237px' : '-187px',
+                  float: 'right',
+                  padding: '2px',
+                }}
+              >
+                <SocialLink
+                  color="primary"
+                  hoverColor="primaryLight"
+                  fontSize={5}
+                  mx={1}
+                  name="Check repository"
+                  page="github"
+                  link={repositoryUrl}
+                />
+                <SocialLink
+                  color="primary"
+                  hoverColor="primaryLight"
+                  fontSize={5}
+                  mx={1}
+                  name="See project"
+                  page="globe"
+                  link={projectUrl}
+                />
+              </Flex>
+            </Box>
+          </Flex>
+        );
+      }}
+    </MediaQuery>
   </Card>
 );
 

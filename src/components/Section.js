@@ -5,7 +5,7 @@ import { Heading } from 'rebass';
 
 const SectionContainer = styled.section`
   min-height: 100vh;
-  min-width: 420px;
+  min-width: 320px;
   max-width: 1366px;
   display: flex;
   margin: auto;
