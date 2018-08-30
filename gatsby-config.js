@@ -74,5 +74,12 @@ module.exports = {
         icon: 'src/components/Helmet/android-chrome-192x192.png',
       },
     },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        color: `#02a3ee`,
+      },
+    },
+    'gatsby-plugin-offline',
   ],
 };
