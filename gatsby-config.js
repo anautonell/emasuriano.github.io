@@ -33,7 +33,18 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-resolve-src',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'EmaSuriano',
+        short_name: 'EmaSuriano',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#02a3ee',
+        display: 'minimal-ui',
+        icon: 'favicons/1.png',
+      },
+    },
     'gatsby-plugin-styled-components',
     {
       resolve: `gatsby-plugin-google-fonts`,
@@ -56,28 +67,10 @@ module.exports = {
     },
     'gatsby-transformer-remark',
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-124973846-1',
         head: true,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: 'Ema Suriano Portfolio',
-        short_name: 'Ema Suriano',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#02a3ee',
-        display: 'minimal-ui',
-        icon: 'src/components/Helmet/android-chrome-192x192.png',
-      },
-    },
-    {
-      resolve: `gatsby-plugin-nprogress`,
-      options: {
-        color: `#02a3ee`,
       },
     },
     'gatsby-plugin-offline',
