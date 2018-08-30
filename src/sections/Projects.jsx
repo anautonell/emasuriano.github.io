@@ -53,15 +53,23 @@ const Title = styled(Subhead)`
 const ImageSubtitle = styled(Text)`
   position: relative;
   display: inline;
-  top: -37px;
+  top: ${props => props.top};
   left: 0;
   padding: 10px;
-  padding-left: 20px;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  float: right;
-  clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);
+  ${props => {
+    return props.posX === 'left'
+      ? 'float: left; padding-right: 20px;'
+      : 'float: right; padding-left: 20px;';
+  }}
+  /* stupid prettier */
+
+  ${props =>
+    props.posY === 'top'
+      ? 'clip-path: polygon(0 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);'
+      : 'clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);'};
 `;
 
 const Project = ({
@@ -102,23 +110,18 @@ const Project = ({
               <ImageSubtitle
                 bg="primaryLight"
                 color="white"
-                style={{
-                  top: matches ? '-37px' : '13px',
-                }}
+                posX="right"
+                posY="bottom"
+                top={matches ? '-37px' : '13px'}
               >
                 {type}
               </ImageSubtitle>
               {matches && (
                 <ImageSubtitle
                   bg="backgroundDark"
-                  style={{
-                    top: '-200px',
-                    float: 'left',
-                    clipPath:
-                      'polygon(0 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%)',
-                    padding: '10px',
-                    paddingRight: '20px',
-                  }}
+                  top="-200px"
+                  posX="left"
+                  posY="top"
                 >
                   {publishedDate}
                 </ImageSubtitle>
