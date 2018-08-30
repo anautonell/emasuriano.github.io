@@ -1,13 +1,13 @@
 import React from 'react';
-import Section from '../components/Section';
 import { Subhead, Image, Text, Flex, Box } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
-import { edgeToArray } from '../utils/contentful';
+import MediaQuery from 'react-responsive';
 import styled from 'styled-components';
+import Section from '../components/Section';
+import { edgeToArray } from '../utils/contentful';
 import { CardContainer, Card } from '../components/Card';
 import SocialLink from '../components/SocialLink';
 import Triangle from '../components/Background/Triangle';
-import MediaQuery from 'react-responsive';
 
 const Background = () => (
   <div>
@@ -59,11 +59,10 @@ const ImageSubtitle = styled(Text)`
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  ${props => {
-    return props.posX === 'left'
+  ${props =>
+    props.posX === 'left'
       ? 'float: left; padding-right: 20px;'
-      : 'float: right; padding-left: 20px;';
-  }}
+      : 'float: right; padding-left: 20px;'}
   /* stupid prettier */
 
   ${props =>
@@ -82,7 +81,7 @@ const Project = ({
   logo,
 }) => (
   <Card p={0}>
-    <MediaQuery minWidth={400}>
+    <MediaQuery minWidth={400} values={{ deviceWidth: 500 }}>
       {matches => {
         const width = matches ? '200px' : '100px';
         return (
