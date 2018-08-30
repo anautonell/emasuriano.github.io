@@ -1,8 +1,8 @@
 import React from 'react';
-import Section from '../components/Section';
 import { Box, Image, Flex } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import Section from '../components/Section';
 import Triangle from '../components/Background/Triangle';
 
 const Background = () => (
@@ -74,56 +74,54 @@ const AboutText = styled(Box)`
   }
 `;
 
-const About = () => {
-  return (
-    <Section.Container id="about" Background={Background}>
-      <Section.Header name="About me" icon="🙋‍♂️" label="person" />
-      <StaticQuery
-        query={graphql`
-          query AboutMeQuery {
-            contentfulAbout {
-              description {
-                childMarkdownRemark {
-                  html
-                }
+const About = () => (
+  <Section.Container id="about" Background={Background}>
+    <Section.Header name="About me" icon="🙋‍♂️" label="person" />
+    <StaticQuery
+      query={graphql`
+        query AboutMeQuery {
+          contentfulAbout {
+            description {
+              childMarkdownRemark {
+                html
               }
-              profile {
-                file {
-                  url
-                }
+            }
+            profile {
+              file {
+                url
               }
             }
           }
-        `}
-        render={data => {
-          const { description, profile } = data.contentfulAbout;
-          return (
-            <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
-              <AboutText
-                width={[1, 1, 4 / 6]}
-                px={[1, 2, 4]}
-                dangerouslySetInnerHTML={{
-                  __html: description.childMarkdownRemark.html,
-                }}
-              />
+        }
+      `}
+      render={data => {
+        const { description, profile } = data.contentfulAbout;
+        return (
+          <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
+            <AboutText
+              width={[1, 1, 4 / 6]}
+              px={[1, 2, 4]}
+              dangerouslySetInnerHTML={{
+                __html: description.childMarkdownRemark.html,
+              }}
+            />
 
-              <Box
-                width={[1, 1, 2 / 6]}
-                css={{ maxWidth: '300px', margin: 'auto' }}
-              >
-                <Image
-                  src={profile.file.url}
-                  pl={1}
-                  pt={1}
-                  css={{ borderRadius: '50%' }}
-                />
-              </Box>
-            </Flex>
-          );
-        }}
-      />
-    </Section.Container>
-  );
-};
+            <Box
+              width={[1, 1, 2 / 6]}
+              css={{ maxWidth: '300px', margin: 'auto' }}
+            >
+              <Image
+                src={profile.file.url}
+                pl={1}
+                pt={1}
+                css={{ borderRadius: '50%' }}
+              />
+            </Box>
+          </Flex>
+        );
+      }}
+    />
+  </Section.Container>
+);
 
 export default About;
