@@ -3,7 +3,6 @@ import { StaticQuery, graphql } from 'gatsby';
 import { Heading, Flex } from 'rebass';
 import Typist from 'react-typist';
 import TypistLoop from 'react-typist-loop';
-// import TextLoop from 'react-text-loop';
 import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
 import MouseIcon from '../components/MouseIcon';
@@ -82,13 +81,12 @@ const LandingPage = () => (
               <TypistLoop interval={500}>
                 {roles.map(text => (
                   <Typist key={text} delayStart={500}>
-                    <Typist.Delay ms={500} />
                     {text}
+                    <Typist.Delay ms={500} />
                     <Typist.Backspace count={text.length} delay={200} />
                   </Typist>
                 ))}
               </TypistLoop>
-              {/* <TextLoop children={roles} /> */}
             </Heading>
             <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
               {socialLinks.map(linkProps => (

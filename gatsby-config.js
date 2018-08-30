@@ -55,5 +55,12 @@ module.exports = {
       },
     },
     'gatsby-transformer-remark',
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-124973846-1',
+        head: true,
+      },
+    },
   ],
 };
