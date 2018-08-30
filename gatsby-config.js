@@ -62,5 +62,17 @@ module.exports = {
         head: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Ema Suriano Portfolio',
+        short_name: 'Ema Suriano',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#02a3ee',
+        display: 'minimal-ui',
+        icon: 'src/components/Helmet/android-chrome-192x192.png',
+      },
+    },
   ],
 };
