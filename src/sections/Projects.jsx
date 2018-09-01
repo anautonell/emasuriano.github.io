@@ -82,7 +82,10 @@ const Project = ({
   logo,
 }) => (
   <Card p={0}>
-    <MediaQuery minWidth={400}>
+    <MediaQuery
+      minWidth={400}
+      values={{ ...(!window && { deviceWidth: 300 }) }}
+    >
       {matches => {
         const width = matches ? '200px' : '100px';
         return (
