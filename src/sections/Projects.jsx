@@ -110,11 +110,11 @@ const Project = ({
     <Flex css={{ height: '200px' }}>
       <TextContainer>
         <span>
-          <Title m={2} pb={1}>
+          <Title my={2} pb={1}>
             {name}
           </Title>
         </span>
-        <Text p={2} width="100%">
+        <Text width="100%" css={{ overflow: 'auto' }}>
           {description}
         </Text>
       </TextContainer>
@@ -188,7 +188,7 @@ const Projects = () => (
       render={data => {
         const projects = edgeToArray(data.allContentfulProject);
         return (
-          <CardContainer minWidth="400px">
+          <CardContainer minWidth="350px">
             {projects.map(p => (
               <Project key={p.id} {...p} />
             ))}
