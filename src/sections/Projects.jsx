@@ -1,7 +1,6 @@
 import React from 'react';
-import { Subhead, Image, Text, Flex, Box, Label } from 'rebass';
+import { Subhead, Image, Text, Flex, Label } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
-import MediaQuery from 'react-responsive';
 import styled from 'styled-components';
 import Section from '../components/Section';
 import { edgeToArray } from '../utils/contentful';
@@ -51,7 +50,52 @@ const Title = styled(Subhead)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
-const getWindow = () => typeof window !== 'undefined' && window;
+const TextContainer = styled.div`
+  display: flex;
+  width: calc(100% - 100px);
+  flex-direction: column;
+  padding: 10px;
+
+  @media (min-width: 400px) {
+    width: calc(100% - 200px);
+  }
+`;
+
+const ImageContainer = styled.div`
+  width: 100px;
+  margin: auto;
+
+  @media (min-width: 400px) {
+    width: 200px;
+  }
+`;
+
+const ProjectImage = styled(Image)`
+  padding: 10px;
+  margin-top: 50px;
+  height: 100px !important;
+  width: 100px;
+
+  @media (min-width: 400px) {
+    width: 200px;
+    padding: 40px;
+    height: 200px !important;
+    margin-top: 0px;
+  }
+`;
+
+const SocialLinksContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  float: right;
+  padding: 2px;
+  top: -220px;
+
+  @media (min-width: 400px) {
+    top: -237px;
+  }
+`;
 
 const Project = ({
   name,
@@ -63,82 +107,54 @@ const Project = ({
   logo,
 }) => (
   <Card p={0}>
-    <MediaQuery
-      minWidth={400}
-      values={{ ...(!getWindow() && { deviceWidth: 300 }) }}
-    >
-      {matches => {
-        const width = matches ? '200px' : '100px';
-        return (
-          <Flex css={{ height: '200px' }}>
-            <Flex width={`calc(100% - ${width})`} flexDirection="column" p={2}>
-              <span>
-                <Title m={2} pb={1}>
-                  {name}
-                </Title>
-              </span>
-              <Text p={2} width="100%">
-                {description}
-              </Text>
-            </Flex>
-            <Box width={width} margin="auto">
-              <Image
-                src={logo.image.src}
-                alt={logo.title}
-                p={matches ? 4 : 2}
-                css={{
-                  height: `${width} !important`,
-                  width,
-                  marginTop: matches ? '0px' : '50px',
-                }}
-              />
-              <ImageSubtitle
-                bg="primaryLight"
-                color="white"
-                top={matches ? '-37px' : '13px'}
-              >
-                {type}
-              </ImageSubtitle>
-              {matches && (
-                <ImageSubtitle bg="backgroundDark" top="-200px" invert="true">
-                  {publishedDate}
-                </ImageSubtitle>
-              )}
-              <Flex
-                justifyContent="flex-end"
-                css={{
-                  position: 'relative',
-                  top: matches ? '-237px' : '-187px',
-                  float: 'right',
-                  padding: '2px',
-                }}
-              >
-                <Label mx={1} fontSize={5}>
-                  <SocialLink
-                    color="primary"
-                    hoverColor="primaryLight"
-                    name="Check repository"
-                    fontAwesomeIcon="github"
-                    url={repositoryUrl}
-                  />
-                </Label>
-                <Label mx={1} fontSize={5}>
-                  <SocialLink
-                    color="primary"
-                    hoverColor="primaryLight"
-                    fontSize={5}
-                    mx={1}
-                    name="See project"
-                    fontAwesomeIcon="globe"
-                    url={projectUrl}
-                  />
-                </Label>
-              </Flex>
-            </Box>
-          </Flex>
-        );
-      }}
-    </MediaQuery>
+    <Flex css={{ height: '200px' }}>
+      <TextContainer>
+        <span>
+          <Title m={2} pb={1}>
+            {name}
+          </Title>
+        </span>
+        <Text p={2} width="100%">
+          {description}
+        </Text>
+      </TextContainer>
+      <ImageContainer>
+        <ProjectImage src={logo.image.src} alt={logo.title} />
+        <ImageSubtitle bg="primaryLight" color="white" top="13px" topS="-37px">
+          {type}
+        </ImageSubtitle>
+        <ImageSubtitle
+          bg="backgroundDark"
+          invert="true"
+          topS="-200px"
+          top="-227px"
+        >
+          {publishedDate}
+        </ImageSubtitle>
+        <SocialLinksContainer>
+          <Label mx={1} fontSize={5}>
+            <SocialLink
+              color="primary"
+              hoverColor="primaryLight"
+              name="Check repository"
+              fontAwesomeIcon="github"
+              url={repositoryUrl}
+            />
+          </Label>
+          <Label mx={1} fontSize={5}>
+            <SocialLink
+              color="primary"
+              hoverColor="primaryLight"
+              fontSize={5}
+              mx={1}
+              name="See project"
+              fontAwesomeIcon="globe"
+              url={projectUrl}
+            />
+          </Label>
+        </SocialLinksContainer>
+      </ImageContainer>
+    </Flex>
   </Card>
 );
 
