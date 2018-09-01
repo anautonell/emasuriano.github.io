@@ -1,9 +1,9 @@
 import React from 'react';
 import Headroom from 'react-headroom';
-import { Flex } from 'rebass';
+import { Flex, Image } from 'rebass';
 import styled from 'styled-components';
 import RouteLink from './RouteLink';
-import Logo from './Logo';
+import Logo from './Logo/Portfolio.svg';
 
 const HeaderContainer = styled(Headroom)`
   .headroom--pinned {
@@ -23,7 +23,7 @@ const Header = () => (
       p={3}
     >
       <a href="#home">
-        <Logo width="50px" />
+        <Image src={Logo} width="50px" alt="Portfolio Logo" />
       </a>
       <Flex mr={[0, 3, 5]}>
         <RouteLink label="About" to="about" />

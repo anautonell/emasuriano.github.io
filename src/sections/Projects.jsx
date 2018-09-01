@@ -120,13 +120,13 @@ const Project = ({
       </TextContainer>
       <ImageContainer>
         <ProjectImage src={logo.image.src} alt={logo.title} />
-        <ImageSubtitle bg="primaryLight" color="white" top="13px" topS="-37px">
+        <ImageSubtitle bg="primaryLight" color="white" top="13px" top-s="-37px">
           {type}
         </ImageSubtitle>
         <ImageSubtitle
           bg="backgroundDark"
           invert="true"
-          topS="-200px"
+          top-s="-200px"
           top="-227px"
         >
           {publishedDate}

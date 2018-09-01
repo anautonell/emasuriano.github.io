@@ -17,7 +17,7 @@ const ImageSubtitle = styled(Text)`
       : 'float: right; padding-left: 20px; clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);'};
 
   @media (min-width: 400px) {
-    top: ${props => props.topS};
+    top: ${props => props['top-s']};
   }
 `;
 

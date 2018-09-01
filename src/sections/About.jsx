@@ -114,8 +114,8 @@ const About = () => (
               <Image
                 src={profile.image.src}
                 alt={profile.title}
-                pl={1}
-                pt={1}
+                ml={[0, 0, 1]}
+                mt={[4, 4, 0]}
                 css={{ borderRadius: '50%' }}
               />
             </Box>
