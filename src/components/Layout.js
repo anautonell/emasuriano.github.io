@@ -17,15 +17,13 @@ injectGlobal`
   }
 `;
 
-const Layout = ({ children }) => {
-  return (
-    <Provider theme={theme}>
-      <Fragment>
-        <Helmet />
-        {children}
-      </Fragment>
-    </Provider>
-  );
-};
+const Layout = ({ children }) => (
+  <Provider theme={theme}>
+    <Fragment>
+      <Helmet />
+      {children}
+    </Fragment>
+  </Provider>
+);
 
 export default Layout;
