@@ -8,6 +8,7 @@ import { edgeToArray } from '../utils/contentful';
 import { CardContainer, Card } from '../components/Card';
 import SocialLink from '../components/SocialLink';
 import Triangle from '../components/Triangle';
+import ImageSubtitle from '../components/ImageSubtitle';
 
 const Background = () => (
   <div>
@@ -48,28 +49,6 @@ const Title = styled(Subhead)`
   text-transform: uppercase;
   display: table;
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
-`;
-
-const ImageSubtitle = styled(Text)`
-  position: relative;
-  display: inline;
-  top: ${props => props.top};
-  left: 0;
-  padding: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  
-  ${props =>
-    props.posX === 'left'
-      ? 'float: left; padding-right: 20px;'
-      : 'float: right; padding-left: 20px;'}
-  
-  /* stupid prettier */
-  ${props =>
-    props.posY === 'top'
-      ? 'clip-path: polygon(0 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);'
-      : 'clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);'};
 `;
 
 const Project = ({
@@ -114,19 +93,12 @@ const Project = ({
               <ImageSubtitle
                 bg="primaryLight"
                 color="white"
-                posX="right"
-                posY="bottom"
                 top={matches ? '-37px' : '13px'}
               >
                 {type}
               </ImageSubtitle>
               {matches && (
-                <ImageSubtitle
-                  bg="backgroundDark"
-                  top="-200px"
-                  posX="left"
-                  posY="top"
-                >
+                <ImageSubtitle bg="backgroundDark" top="-200px" invert="true">
                   {publishedDate}
                 </ImageSubtitle>
               )}

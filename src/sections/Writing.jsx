@@ -6,6 +6,7 @@ import Section from '../components/Section';
 import { edgeToArray } from '../utils/contentful';
 import { CardContainer, Card } from '../components/Card';
 import Triangle from '../components/Triangle';
+import ImageSubtitle from '../components/ImageSubtitle';
 
 const Background = () => (
   <div>
@@ -47,18 +48,6 @@ const EllipsisHeading = styled(Heading)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
-const ImageSubtitle = styled(Text)`
-  position: relative;
-  display: inline;
-  float: right;
-  padding: 10px;
-  padding-left: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);
-`;
-
 const Post = ({ title, text, image, url, date, time }) => {
   const timestamp = `${date} - ${Math.ceil(time)} min`;
   return (
@@ -72,7 +61,7 @@ const Post = ({ title, text, image, url, date, time }) => {
       </EllipsisHeading>
       <CoverImage src={image} height="200px" alt={title} />
       <Text m={3}>{text}</Text>
-      <ImageSubtitle textAlign="right" bg="primaryLight" color="white">
+      <ImageSubtitle bg="primaryLight" color="white">
         {timestamp}
       </ImageSubtitle>
     </Card>

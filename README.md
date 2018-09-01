@@ -20,6 +20,10 @@ The idea is to upload it to Gatsby template in the near future, in the meantime 
 ![Projects](./screens/Projects.png)
 ![Writing](./screens/Writing.png)
 
+Because it's always important to catch bad request, here it's the 404 :)
+
+![404](./screens/404.png)
+
 ## License
 
 MIT © Emanuel Suriano

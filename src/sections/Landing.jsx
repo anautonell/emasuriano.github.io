@@ -89,11 +89,10 @@ const LandingPage = () => (
             </Heading>
             <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
               {socialLinks.map(({ id, ...rest }) => (
-                <Label mx={3} fontSize={[5, 6, 6]}>
+                <Label mx={3} fontSize={[5, 6, 6]} key={id}>
                   <SocialLink
                     color="primary"
                     hoverColor="primaryLight"
-                    key={id}
                     {...rest}
                   />
                 </Label>

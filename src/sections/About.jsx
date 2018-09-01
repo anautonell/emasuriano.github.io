@@ -81,7 +81,7 @@ const About = () => (
       query={graphql`
         query AboutMeQuery {
           contentfulAbout {
-            description {
+            aboutMe {
               childMarkdownRemark {
                 html
               }
@@ -96,14 +96,14 @@ const About = () => (
         }
       `}
       render={data => {
-        const { description, profile } = data.contentfulAbout;
+        const { aboutMe, profile } = data.contentfulAbout;
         return (
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
             <AboutText
               width={[1, 1, 4 / 6]}
               px={[1, 2, 4]}
               dangerouslySetInnerHTML={{
-                __html: description.childMarkdownRemark.html,
+                __html: aboutMe.childMarkdownRemark.html,
               }}
             />
 
