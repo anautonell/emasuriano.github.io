@@ -1,5 +1,5 @@
 import React from 'react';
-import { Subhead, Image, Text, Flex, Box } from 'rebass';
+import { Subhead, Image, Text, Flex, Box, Label } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import MediaQuery from 'react-responsive';
 import styled from 'styled-components';
@@ -7,7 +7,8 @@ import Section from '../components/Section';
 import { edgeToArray } from '../utils/contentful';
 import { CardContainer, Card } from '../components/Card';
 import SocialLink from '../components/SocialLink';
-import Triangle from '../components/Background/Triangle';
+import Triangle from '../components/Triangle';
+import ImageSubtitle from '../components/ImageSubtitle';
 
 const Background = () => (
   <div>
@@ -50,27 +51,6 @@ const Title = styled(Subhead)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
-const ImageSubtitle = styled(Text)`
-  position: relative;
-  display: inline;
-  top: ${props => props.top};
-  left: 0;
-  padding: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  ${props =>
-    props.posX === 'left'
-      ? 'float: left; padding-right: 20px;'
-      : 'float: right; padding-left: 20px;'}
-  /* stupid prettier */
-
-  ${props =>
-    props.posY === 'top'
-      ? 'clip-path: polygon(0 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);'
-      : 'clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);'};
-`;
-
 const Project = ({
   name,
   description,
@@ -81,7 +61,10 @@ const Project = ({
   logo,
 }) => (
   <Card p={0}>
-    <MediaQuery minWidth={400} values={{ deviceWidth: 500 }}>
+    <MediaQuery
+      minWidth={400}
+      values={{ ...(!window && { deviceWidth: 300 }) }}
+    >
       {matches => {
         const width = matches ? '200px' : '100px';
         return (
@@ -98,7 +81,8 @@ const Project = ({
             </Flex>
             <Box width={width} margin="auto">
               <Image
-                src={logo.file.url}
+                src={logo.image.src}
+                alt={logo.title}
                 p={matches ? 4 : 2}
                 css={{
                   height: `${width} !important`,
@@ -109,19 +93,12 @@ const Project = ({
               <ImageSubtitle
                 bg="primaryLight"
                 color="white"
-                posX="right"
-                posY="bottom"
                 top={matches ? '-37px' : '13px'}
               >
                 {type}
               </ImageSubtitle>
               {matches && (
-                <ImageSubtitle
-                  bg="backgroundDark"
-                  top="-200px"
-                  posX="left"
-                  posY="top"
-                >
+                <ImageSubtitle bg="backgroundDark" top="-200px" invert="true">
                   {publishedDate}
                 </ImageSubtitle>
               )}
@@ -134,24 +111,26 @@ const Project = ({
                   padding: '2px',
                 }}
               >
-                <SocialLink
-                  color="primary"
-                  hoverColor="primaryLight"
-                  fontSize={5}
-                  mx={1}
-                  name="Check repository"
-                  page="github"
-                  link={repositoryUrl}
-                />
-                <SocialLink
-                  color="primary"
-                  hoverColor="primaryLight"
-                  fontSize={5}
-                  mx={1}
-                  name="See project"
-                  page="globe"
-                  link={projectUrl}
-                />
+                <Label mx={1} fontSize={5}>
+                  <SocialLink
+                    color="primary"
+                    hoverColor="primaryLight"
+                    name="Check repository"
+                    fontAwesomeIcon="github"
+                    url={repositoryUrl}
+                  />
+                </Label>
+                <Label mx={1} fontSize={5}>
+                  <SocialLink
+                    color="primary"
+                    hoverColor="primaryLight"
+                    fontSize={5}
+                    mx={1}
+                    name="See project"
+                    fontAwesomeIcon="globe"
+                    url={projectUrl}
+                  />
+                </Label>
               </Flex>
             </Box>
           </Flex>
@@ -161,48 +140,45 @@ const Project = ({
   </Card>
 );
 
-const Projects = (props, context) => {
-  return (
-    <Section.Container id="projects" Background={Background}>
-      <Section.Header name="Projects" icon="💻" label="notebook" />
-      <StaticQuery
-        query={graphql`
-          query ProjectsQuery {
-            allContentfulProject(sort: { fields: publishedDate, order: DESC }) {
-              edges {
-                node {
-                  id
-                  name
-                  description
-                  projectUrl
-                  repositoryUrl
-                  publishedDate(formatString: "YYYY")
-                  type
-                  logo {
-                    id
-                    title
-                    file {
-                      url
-                    }
+const Projects = () => (
+  <Section.Container id="projects" Background={Background}>
+    <Section.Header name="Projects" icon="💻" label="notebook" />
+    <StaticQuery
+      query={graphql`
+        query ProjectsQuery {
+          allContentfulProject(sort: { fields: publishedDate, order: DESC }) {
+            edges {
+              node {
+                id
+                name
+                description
+                projectUrl
+                repositoryUrl
+                publishedDate(formatString: "YYYY")
+                type
+                logo {
+                  title
+                  image: resize(width: 200, quality: 100) {
+                    src
                   }
                 }
               }
             }
           }
-        `}
-        render={data => {
-          const projects = edgeToArray(data.allContentfulProject);
-          return (
-            <CardContainer minWidth="400px">
-              {projects.map(p => (
-                <Project key={p.id} {...p} />
-              ))}
-            </CardContainer>
-          );
-        }}
-      />
-    </Section.Container>
-  );
-};
+        }
+      `}
+      render={data => {
+        const projects = edgeToArray(data.allContentfulProject);
+        return (
+          <CardContainer minWidth="400px">
+            {projects.map(p => (
+              <Project key={p.id} {...p} />
+            ))}
+          </CardContainer>
+        );
+      }}
+    />
+  </Section.Container>
+);
 
 export default Projects;

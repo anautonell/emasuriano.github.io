@@ -3,10 +3,9 @@
   "name": "emasuriano.github.io",
   "description": "Emanuel Suriano portfolio",
   "scripts": {
-    "clean": "cleandir ./.cache",
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "build:prod": "run-s clean build"
+    "build": "cleandir ./.cache && gatsby build",
+    "develop": "cleandir ./.cache && gatsby develop",
+    "lint": "eslint ./src"
   },
   "repository": "git+https://github.com/EmaSuriano/emasuriano.github.io.git",
   "keywords": [

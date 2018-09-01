@@ -9,18 +9,16 @@ const FooterContainer = styled.footer`
   text-align: right;
 `;
 
-const Footer = () => {
-  return (
-    <FooterContainer>
-      <Text>
-        Built with Gatsby and Contentful{' '}
-        <span role="img" aria-label="heart">
-          ❤️
-        </span>
-        - 2018
-      </Text>
-    </FooterContainer>
-  );
-};
+const Footer = () => (
+  <FooterContainer>
+    <Text>
+      Built with Gatsby and Contentful
+      <span role="img" aria-label="heart">
+        ❤️
+      </span>
+      - 2018
+    </Text>
+  </FooterContainer>
+);
 
 export default Footer;

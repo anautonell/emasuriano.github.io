@@ -1,9 +1,8 @@
 import React from 'react';
 import Headroom from 'react-headroom';
 import { Flex } from 'rebass';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import RouteLink from './RouteLink';
-import withLocation from '../utils/withLocation';
 import Logo from './Logo';
 
 const HeaderContainer = styled(Headroom)`
@@ -15,32 +14,24 @@ const HeaderContainer = styled(Headroom)`
   width: 100%;
 `;
 
-const LogoHeader = withTheme(
-  withLocation(({ location, theme }) => (
-    <a href="#home">
-      <Logo width="50px" />
-    </a>
-  )),
-);
-
-const Header = props => {
-  return (
-    <HeaderContainer>
-      <Flex
-        flexWrap="wrap"
-        justifyContent="space-between"
-        alignItems="center"
-        p={3}
-      >
-        <LogoHeader />
-        <Flex mr={[0, 3, 5]}>
-          <RouteLink label="About" to="about" />
-          <RouteLink label="Projects" to="projects" />
-          <RouteLink label="Writing" to="writing" />
-        </Flex>
+const Header = () => (
+  <HeaderContainer>
+    <Flex
+      flexWrap="wrap"
+      justifyContent="space-between"
+      alignItems="center"
+      p={3}
+    >
+      <a href="#home">
+        <Logo width="50px" />
+      </a>
+      <Flex mr={[0, 3, 5]}>
+        <RouteLink label="About" to="about" />
+        <RouteLink label="Projects" to="projects" />
+        <RouteLink label="Writing" to="writing" />
       </Flex>
-    </HeaderContainer>
-  );
-};
+    </Flex>
+  </HeaderContainer>
+);
 
 export default Header;

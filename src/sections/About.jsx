@@ -3,7 +3,7 @@ import { Box, Image, Flex } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import Triangle from '../components/Background/Triangle';
+import Triangle from '../components/Triangle';
 
 const Background = () => (
   <div>
@@ -81,28 +81,29 @@ const About = () => (
       query={graphql`
         query AboutMeQuery {
           contentfulAbout {
-            description {
+            aboutMe {
               childMarkdownRemark {
                 html
               }
             }
             profile {
-              file {
-                url
+              title
+              image: resize(width: 450, quality: 100) {
+                src
               }
             }
           }
         }
       `}
       render={data => {
-        const { description, profile } = data.contentfulAbout;
+        const { aboutMe, profile } = data.contentfulAbout;
         return (
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
             <AboutText
               width={[1, 1, 4 / 6]}
               px={[1, 2, 4]}
               dangerouslySetInnerHTML={{
-                __html: description.childMarkdownRemark.html,
+                __html: aboutMe.childMarkdownRemark.html,
               }}
             />
 
@@ -111,7 +112,8 @@ const About = () => (
               css={{ maxWidth: '300px', margin: 'auto' }}
             >
               <Image
-                src={profile.file.url}
+                src={profile.image.src}
+                alt={profile.title}
                 pl={1}
                 pt={1}
                 css={{ borderRadius: '50%' }}

@@ -6,26 +6,25 @@ import 'react-tippy/dist/tippy.css';
 import theme from '../utils/theme';
 import Helmet from './Helmet';
 
-configureAnchors({ scrollDuration: 600, offset: 0 });
+const resetCss = () => injectGlobal`
+* { box-sizing: border-box; }
 
-injectGlobal`
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    font-family: Cabin;
-  }
+body {
+  margin: 0;
+  font-family: Cabin;
+}
 `;
 
-const Layout = ({ children }) => {
-  return (
-    <Provider theme={theme}>
-      <Fragment>
-        <Helmet />
-        {children}
-      </Fragment>
-    </Provider>
-  );
-};
+configureAnchors({ scrollDuration: 600, offset: 0 });
+resetCss();
+
+const Layout = ({ children }) => (
+  <Provider theme={theme}>
+    <Fragment>
+      <Helmet />
+      {children}
+    </Fragment>
+  </Provider>
+);
 
 export default Layout;
