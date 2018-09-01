@@ -51,6 +51,8 @@ const Title = styled(Subhead)`
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
 `;
 
+const getWindow = () => typeof window !== 'undefined' && window;
+
 const Project = ({
   name,
   description,
@@ -63,7 +65,7 @@ const Project = ({
   <Card p={0}>
     <MediaQuery
       minWidth={400}
-      values={{ ...(!window && { deviceWidth: 300 }) }}
+      values={{ ...(!getWindow() && { deviceWidth: 300 }) }}
     >
       {matches => {
         const width = matches ? '200px' : '100px';
