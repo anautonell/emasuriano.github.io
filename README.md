@@ -6,12 +6,30 @@ Feel free to use this portfolio as an example of yours 😄
 
 The idea is to upload it to Gatsby template in the near future, in the meantime you can fork it.
 
-## Technologies used
+## Features
 
-- React
-- Gatsby
+- Gatsby v2
 - Rebass (Styled-components system)
-- Contentful
+- Dynamic content from Contentful CMS
+- Offline
+- Lighthouse score of 93
+- Offline support
+- PWA ready
+- SEO
+- Google Analytics
+- Responsive design
+- Single page with scrolling behaviour
+- Palette Theme by config
+- React-headroom
+- Font icons using font-awesome
+- Google Analytics integration
+- Netlify Deployment Friendly
+- Medium syncronization
+- Social sharing (Twitter, Facebook, Google, LinkedIn)
+- Developer tools:
+  - eslint
+  - prettier
+  - flow (incoming)
 
 ## Screenshots
 
