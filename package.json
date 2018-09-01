@@ -3,7 +3,7 @@
   "name": "emasuriano.github.io",
   "description": "Emanuel Suriano portfolio",
   "scripts": {
-    "build": "cleandir ./.cache && gatsby develop",
+    "build": "cleandir ./.cache && gatsby build",
     "develop": "cleandir ./.cache && gatsby develop",
     "lint": "eslint ./src"
   },
