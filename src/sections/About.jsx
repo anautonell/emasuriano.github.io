@@ -3,7 +3,7 @@ import { Box, Image, Flex } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Section from '../components/Section';
-import Triangle from '../components/Background/Triangle';
+import Triangle from '../components/Triangle';
 
 const Background = () => (
   <div>
@@ -87,8 +87,9 @@ const About = () => (
               }
             }
             profile {
-              file {
-                url
+              title
+              image: resize(width: 450, quality: 100) {
+                src
               }
             }
           }
@@ -111,7 +112,8 @@ const About = () => (
               css={{ maxWidth: '300px', margin: 'auto' }}
             >
               <Image
-                src={profile.file.url}
+                src={profile.image.src}
+                alt={profile.title}
                 pl={1}
                 pt={1}
                 css={{ borderRadius: '50%' }}

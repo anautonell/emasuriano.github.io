@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link, Label } from 'rebass';
+import { Link } from 'rebass';
 import { Tooltip } from 'react-tippy';
 import styled from 'styled-components';
 
@@ -13,14 +13,12 @@ const IconLink = styled(Link)`
   }
 `;
 
-const SocialLink = ({ page, name, link, color, hoverColor, ...props }) => (
-  <Label {...props}>
-    <Tooltip title={name} position="bottom" trigger="mouseenter">
-      <IconLink href={link} target="_blank" color={color} hover={hoverColor}>
-        <FontAwesome name={page} />
-      </IconLink>
-    </Tooltip>
-  </Label>
+const SocialLink = ({ fontAwesomeIcon, name, url, color, hoverColor }) => (
+  <Tooltip title={name} position="bottom" trigger="mouseenter">
+    <IconLink href={url} target="_blank" color={color} hover={hoverColor}>
+      <FontAwesome name={fontAwesomeIcon} />
+    </IconLink>
+  </Tooltip>
 );
 
 export default SocialLink;

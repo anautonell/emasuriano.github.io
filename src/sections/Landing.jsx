@@ -1,25 +1,25 @@
 import React, { Fragment } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import { Heading, Flex } from 'rebass';
+import { Heading, Flex, Label } from 'rebass';
 import Typist from 'react-typist';
 import TypistLoop from 'react-typist-loop';
 import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
 import MouseIcon from '../components/MouseIcon';
-import Triangle from '../components/Background/Triangle';
+import Triangle from '../components/Triangle';
 
 const Background = () => (
   <div>
     <Triangle
       color="backgroundDark"
-      height={['25vh', '80vh']}
-      width={['75vw', '60vw']}
+      height={['35vh', '80vh']}
+      width={['95vw', '60vw']}
     />
 
     <Triangle
       color="secondary"
-      height={['28vh', '80vh']}
-      width={['40vw', '35vw']}
+      height={['38vh', '80vh']}
+      width={['50vw', '35vw']}
     />
 
     <Triangle
@@ -31,7 +31,7 @@ const Background = () => (
 
     <Triangle
       color="backgroundDark"
-      height={['15vh', '20vh']}
+      height={['20vh', '20vh']}
       width={['100vw', '100vw']}
       invertX
       invertY
@@ -44,21 +44,20 @@ const LandingPage = () => (
     <StaticQuery
       query={graphql`
         query SiteTitleQuery {
-          site {
-            siteMetadata {
+          contentfulAbout {
+            name
+            roles
+            socialLinks {
+              id
+              url
               name
-              roles
-              socialLinks {
-                page
-                link
-                name
-              }
+              fontAwesomeIcon
             }
           }
         }
       `}
       render={data => {
-        const { name, socialLinks, roles } = data.site.siteMetadata;
+        const { name, socialLinks, roles } = data.contentfulAbout;
 
         return (
           <Fragment>
@@ -89,15 +88,15 @@ const LandingPage = () => (
               </TypistLoop>
             </Heading>
             <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
-              {socialLinks.map(linkProps => (
-                <SocialLink
-                  mx={3}
-                  color="primary"
-                  hoverColor="primaryLight"
-                  fontSize={[5, 6, 6]}
-                  key={linkProps.page}
-                  {...linkProps}
-                />
+              {socialLinks.map(({ id, ...rest }) => (
+                <Label mx={3} fontSize={[5, 6, 6]}>
+                  <SocialLink
+                    color="primary"
+                    hoverColor="primaryLight"
+                    key={id}
+                    {...rest}
+                  />
+                </Label>
               ))}
             </Flex>
             <MouseIcon />
