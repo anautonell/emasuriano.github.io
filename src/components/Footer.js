@@ -11,8 +11,6 @@ const FooterContainer = styled.footer`
   display: flex;
   flex: 0 1 auto;
   flex-direction: column;
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
   justify-content: center;
   align-items: center;
 `;

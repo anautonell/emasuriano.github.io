@@ -1,5 +1,6 @@
-const randomItemFromArray = array =>
-  array[Math.floor(Math.random() * array.length)];
+function randomItemFromArray(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
 
 const pinkPalette = {
   background: '#FFFFFF',
@@ -40,6 +41,6 @@ const coralPalette = {
   secondaryDark: '#0ca0c0',
 };
 
-export default {
+module.exports = {
   colors: randomItemFromArray([pinkPalette, greenPalette, coralPalette]),
 };

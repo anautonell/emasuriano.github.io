@@ -3,7 +3,7 @@ import { injectGlobal } from 'styled-components';
 import { Provider } from 'rebass';
 import { configureAnchors } from 'react-scrollable-anchor';
 import 'react-tippy/dist/tippy.css';
-import theme from '../utils/theme';
+import theme from '../theme';
 import Helmet from './Helmet';
 
 const resetCss = () => injectGlobal`
